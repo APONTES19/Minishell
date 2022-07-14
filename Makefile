@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/07/13 18:09:36 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/07/14 18:22:03 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,10 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "\033[1;32m"
 		@echo "	Minishell created ✓"
 		@echo "\033[0m"
-		@echo "\033[0;33m	Welcome to Minishell by Lucasmar and Ryoshio-'s 42sp \033[0m"
+		@echo "\033[0;33m	Welcome to Minishell by Lucasmar and ryoshio-'s 42sp \033[0m"
 		@echo "\033[0;39m"
-		@echo "	run ./minishell in the terminal + command of your choice !"
-		@echo "	ex: ./minishell ls -la
+		@echo "	run ./Minishell in the terminal + comand of your choice !"
+		@echo "	ex: ./Minishell ls -la"
 		@echo "\033[0m"
 
 $(LIBFT):
@@ -66,11 +66,11 @@ $(PRINTF):
 
 clean:
 		@$(RM_DIR) $(OBJ_PATH)
-		@echo "\033[0;31m ▥ Push_swap objects clean ✓ \033[0m"
+		@echo "\033[0;31m ▥ Minishell objects clean ✓ \033[0m"
 
 fclean:		clean
 		@$(RM) $(NAME)
-		@echo "\033[0;31m ▥ Push_swap clean ✓ \033[0m"
+		@echo "\033[0;31m ▥ Minishell clean ✓ \033[0m"
 
 fcleanlib:
 	@cd $(PRINTF_PATH) && $(MAKE) fclean
@@ -78,7 +78,7 @@ fcleanlib:
 	@echo "\033[0;31m ▥ libs clean ✓ \033[0m"
 
 fcleall: fcleanlib fclean
-		 @echo "\033[0;31m ▥ libs and Push_swap clean ✓ \033[0m"
+		 @echo "\033[0;31m ▥ libs and Minishell clean ✓ \033[0m"
 
 re:			fclean all
 

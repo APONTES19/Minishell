@@ -6,14 +6,15 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 16:58:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/13 17:43:02 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:12:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include "./libs.h"
+# include "./libs.h"
+# include <stddef.h>
 
 int		ft_atoi(const char *str);
 void	*ft_bzero(void *str, size_t n);
