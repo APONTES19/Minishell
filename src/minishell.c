@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/19 18:02:32 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:45:28 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main(int argc, char **argv)
 {
 	char	*cmd;
+
+	ft_printf("%s",argv[0]);
 
 	if(argc == 1)
 	{
@@ -32,10 +34,10 @@ int main(int argc, char **argv)
 
 char	*ft_cmd(void)
 {
-	char	buf[1024];
 	char	*cmd;
 
-	cmd = fgets(buf, 1024, stdin);
+	cmd = readline();
+
 	if (ft_strncmp(cmd, "exit", 4) == 0)
 				exit(EXIT_SUCCESS);
 	return(cmd);

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 11:55:28 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/19 17:43:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:43:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,6 @@
 # include "../libs/gnl/includes/get_next_line.h"
 #include <stdlib.h> // exit
 #include <stdio.h> // fget
+#include <string.h>//readline
+#include <unistd.h>// read
 #endif
