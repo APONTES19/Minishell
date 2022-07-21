@@ -6,7 +6,7 @@
 #    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/07/21 19:38:13 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/07/21 20:06:35 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME=minishell
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=minishell.c
+SRC_FILES=minishell.c comand.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)

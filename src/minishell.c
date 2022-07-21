@@ -6,25 +6,28 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/21 19:50:05 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:00:48 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
-
+	
 	(void )argv;
-
+	
+	
 	if(argc == 1)
 	{
+		ft_comand(envp, "ls", "/usr/bin/ls");
 		while(1)
 		{
 			//ft_printf(" Minishell~~$");
 			cmd = ft_cmd();
 			ft_printf(" :cmd%s\n ", cmd);
+			
 		}
 	}
 	else
