@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
+#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/07/14 18:22:03 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/07/21 19:38:13 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 
 $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@$(CC) $(FLAG) $(GNL_FLAGS) -I $(HEADERS_PATH) -o $@ $(OBJ) \
-		$(LIBFT) $(PRINTF)
+		$(LIBFT) $(PRINTF) -lreadline
 # message in terminal ************ #
 		@echo "\033[1;32m"
 		@echo "	Minishell created ✓"
