@@ -24,7 +24,7 @@ int main(int argc, char **argv, char **envp)
 		while(1)
 		{
 			cmd = ft_cmd();
-			ft_printf(" :cmd%s\n ", cmd);
+			ft_printf("%s\n ", cmd);
 		}
 	}
 	else
