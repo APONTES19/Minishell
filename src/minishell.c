@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/19 21:08:44 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/19 23:38:57 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void ft_cmd(t_ms * ms)
 	if (ft_strncmp(ms->cmd, "exit", 4) == 0)
 	{
 		free(ms->cmd);
-		//free(ms);
 		exit(EXIT_SUCCESS);
 		
 	}
