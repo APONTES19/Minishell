@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/19 20:44:23 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/19 21:08:44 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int main(int argc, char **argv, char **envp)
 	{
 		while(1)
 		{
-			ms.cmd= ft_cmd();
+			ft_cmd(&ms);
 			ft_printf("%s\n ", ms.cmd);
+			free(ms.cmd);
 		}
 	}
 	else
@@ -34,22 +35,18 @@ int main(int argc, char **argv, char **envp)
 	return (0);
 }
 
-char	*ft_cmd(void)
+void ft_cmd(t_ms * ms)
 {
-	char	*cmd;
 
-	cmd = readline("Minishell~$");
+	ms->cmd = readline("Minishell~$");
 
-	if (ft_strncmp(cmd, "exit", 4) == 0)
+	if (ft_strncmp(ms->cmd, "exit", 4) == 0)
 	{
+		free(ms->cmd);
+		//free(ms);
 		exit(EXIT_SUCCESS);
-		free(cmd);
+		
 	}
-	return(cmd);
+
 }
 
-void	ft_error(int number)
-{
-	if (number == 0)
-		ft_printf("Invalid arguments\n");
-}

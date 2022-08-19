@@ -6,7 +6,7 @@
 #    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/07/21 20:06:35 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/08/19 21:18:10 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME=minishell
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=minishell.c
+SRC_FILES=minishell.c error.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
@@ -57,6 +57,10 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "	run ./Minishell in the terminal + comand of your choice !"
 		@echo "	ex: ./Minishell ls -la"
 		@echo "\033[0m"
+
+#running
+ru: 
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./includes/readline.supp ./minishell
 
 $(LIBFT):
 	@cd $(LIBFT_PATH) && $(MAKE)
