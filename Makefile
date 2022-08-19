@@ -6,7 +6,7 @@
 #    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/08/19 21:19:10 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/08/19 21:22:50 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "\033[0m"
 
 #running
-run: 
+run: all
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./includes/readline.supp ./minishell
 
 $(LIBFT):
