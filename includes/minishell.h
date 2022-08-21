@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/21 20:30:52 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:55:03 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # include <signal.h>
 //vars
 
-char	*ft_cmd(void); // teste inicial
+void ft_cmd(t_ms *ms); // teste inicial
+
 void	ft_error(int number);
 void	ft_comand(char **env, char *comand, char *path);
 #endif
