@@ -12,37 +12,23 @@
 
 #include "../includes/minishell.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_special(t_ms *ms)
 {
-	t_ms  ms;
-	(void )argv;
-	(void )envp;
+	int	i;
 
-	ft_memset(&ms, '0', sizeof(ms));
-	if(argc == 1)
+	i = 0;
+	while(ms->cmd[i])
 	{
-		while(1)
+		if(ms->cmd[i] == '\'')
+			i+= ft_strlen(&ms->cmd[i]) - ft_strlen(ft_strchr(&ms->cmd[i+1], '\'')) ;
+		if(ms->cmd[i] == '\"')
+			i+= ft_strlen(&ms->cmd[i]) - ft_strlen(ft_strchr(&ms->cmd[i+1], '\"'));
+		if((ft_strchr(SPECIAL_CH, ms->cmd[i])))
 		{
-			ft_cmd(&ms);
-			add_history(ms.cmd);
-			ft_special(&ms);
-			ft_printf("%s\n", ms.cmd);
-			free(ms.cmd);
+			ft_printf("invalid character: %c\n", ms->cmd[i]);
+			return(1);
 		}
+		i++;
 	}
-	else
-		ft_error(0);
-	return (0);
-}
-
-void ft_cmd(t_ms * ms)
-{
-	ms->cmd = readline("Minishell~$");
-
-	if (ft_strncmp(ms->cmd, "exit", 4) == 0)
-	{
-		rl_clear_history();
-		free(ms->cmd);
-		exit(EXIT_SUCCESS);
-	}
+	return(0);
 }

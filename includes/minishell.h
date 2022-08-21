@@ -32,4 +32,5 @@ void ft_cmd(t_ms *ms); // teste inicial
 
 void	ft_error(int number);
 void	ft_comand(char **env, char *comand, char *path);
+int		ft_special(t_ms *ms);
 #endif

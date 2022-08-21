@@ -25,14 +25,16 @@ NAME=minishell
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=minishell.c error.c
+SRC_FILES=minishell.c\
+		  error.c\
+		  parse.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 # compilation **************************************************************** #
 CC=cc
-FLAG=-Wall -Werror -Wextra #-fsanitize=address -g3
+FLAG=-Wall -Werror -Wextra
 GNL_FLAGS= -D BUFFER_SIZE=6000
 # clean ********************************************************************** #
 RM=-rm -f
