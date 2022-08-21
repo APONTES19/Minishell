@@ -6,7 +6,7 @@
 #    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/08/20 01:07:05 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/08/21 21:21:31 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 
 #running
 run: all
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./includes/readline.supp ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --suppressions=./includes/readline.supp ./minishell
 
 $(LIBFT):
 	@cd $(LIBFT_PATH) && $(MAKE)
