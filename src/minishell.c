@@ -36,7 +36,7 @@ char	*ft_cmd(void)
 {
 	char	*cmd;
 
-	cmd = readline("Minishell~$ >>> ");
+	cmd = readline("Minishell~$");
 
 	if (ft_strncmp(cmd, "exit", 4) == 0)
 	{
