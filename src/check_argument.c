@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 08:50:05 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/08/22 09:18:23 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/23 01:50:46 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int ft_check_argument(t_ms	*ms)
 	}
 	if(ft_check_special(ms))
 	{
-		ft_printf("I have caracter especial");
+		ft_printf("I have caracter special");
 		return (0);
 	}
 	return (1);

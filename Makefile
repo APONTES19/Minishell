@@ -6,7 +6,7 @@
 #    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/08/21 23:11:43 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/08/27 07:38:38 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME=minishell
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=minishell.c error.c check_argument.c
+SRC_FILES=minishell.c error.c check_argument.c parse.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)

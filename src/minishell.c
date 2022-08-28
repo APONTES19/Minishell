@@ -6,12 +6,11 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/22 09:09:31 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/27 08:00:13 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 int main(int argc, char **argv, char **envp)
 {
@@ -30,8 +29,9 @@ int main(int argc, char **argv, char **envp)
 			ft_printf("%s\n ", ms.cmd);
 			add_history(ms.cmd);
 			if(ft_check_argument(&ms))
-				ft_printf("\nok\n");
+				ft_printf("%d", counter_parse(ms.cmd));
 			free(ms.cmd);
+			ms.cmd = NULL;
 		}
 	}
 	else
@@ -48,7 +48,6 @@ void ft_cmd(t_ms * ms)
 	{
 		rl_clear_history();
 		free(ms->cmd);
-		
 		exit(EXIT_SUCCESS);
 		
 	}

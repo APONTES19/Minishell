@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/22 09:13:35 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/08/27 07:37:58 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void ft_cmd(t_ms *ms); // teste inicial
 void	ft_error(int number);
 void	ft_comand(char **env, char *comand, char *path);
 int		ft_check_argument(t_ms	*ms);
+int		counter_parse(char *line);
 #endif
