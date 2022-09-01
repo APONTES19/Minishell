@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/21 22:21:28 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/02 00:00:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	t_ms  ms;
+	t_ms	ms;
+	t_cmd	cmd;
+
 	(void )argv;
 	(void )envp;
 
@@ -24,10 +26,13 @@ int main(int argc, char **argv, char **envp)
 		while(1)
 		{
 			ft_cmd(&ms);
-			add_history(ms.cmd);
+			add_history(ms.line);
 			ft_special(&ms);
-			ft_printf("%s\n", ms.cmd);
-			free(ms.cmd);
+			ft_check_pipe(&ms);
+			ft_comand_split(&ms, &cmd);
+			//ft_check_$(&ms);
+			ft_printf("%s\n", ms.line);
+			free(ms.line);
 		}
 	}
 	else
@@ -37,12 +42,12 @@ int main(int argc, char **argv, char **envp)
 
 void ft_cmd(t_ms * ms)
 {
-	ms->cmd = readline("Minishell~$");
+	ms->line = readline("Minishell~$ ");
 
-	if (ft_strncmp(ms->cmd, "exit", 4) == 0)
+	if (ft_strncmp(ms->line, "exit", 4) == 0)
 	{
 		rl_clear_history();
-		free(ms->cmd);
+		free(ms->line);
 		exit(EXIT_SUCCESS);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strutcs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/08/19 20:37:13 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:04:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@
 typedef struct minishell
 {
 	int		fd;
-	char	*cmd;
+	char	*line;
+	int		n_pipe;
+	int		n_$;
+	int		i;
+	int		j;
+	int		k;
 }	t_ms;
 
-
+typedef struct comand
+{
+	char	**list_cmd;
+	char	**base_list_cmd;
+}	t_cmd;
 
 
 #endif
