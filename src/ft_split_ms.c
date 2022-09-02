@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/01 23:12:06 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:06:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ char	**ft_split_ms(char const *s, char c)
 	index = -1;
 	while (counter <= ft_strlen(s))
 	{
-		if (s[counter] == '\'' || s[counter] == '\"')
+		printf("Valor fora da \' P:%zu\n",p);
+		if ((s[counter] == '\'' || s[counter] == '\"') && c == ' ')
+		{
 			counter += next_quote(&s[counter], &result[p++]);
+			printf("Valor dentro da \' P:%zu\n",p);
+		}
 		if (s[counter] != c && index < 0)
 			index = counter;
-		else if ((s[counter] == c || counter == ft_strlen(s)) && index >= 0)
+		else if (((s[counter] == c &&)|| counter == ft_strlen(s)) && index >= 0)
 		{
 			result[p++] = duplicate(s, index, counter);
 			index = -1;
