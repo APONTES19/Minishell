@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/01 23:19:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:16:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,29 @@
 # include "./define.h"
 # include "./libs.h"
 # include "./strutcs.h"
-
-
 # include <stdio.h>
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <fcntl.h> //access
+# include <fcntl.h>
 # include <sys/wait.h>
 # include <errno.h>
 # include <signal.h>
-//vars
 
-void ft_cmd(t_ms *ms); // teste inicial
-
-void	ft_error(int number);
+void	ft_get_line(t_ms *ms);
+void	ft_error(int number, t_ms *ms);
 void	ft_comand(char **env, char *comand, char *path);
 int		ft_special(t_ms *ms);
 void	ft_check_pipe(t_ms *ms);
 void	ft_check_$(t_ms *ms);
-void	ft_comand_split(t_ms *ms, t_cmd *cmd);
+void	ft_comand_split(t_ms *ms, t_cmd *cmd, char **envp);
 char	**ft_split_ms(char const *s, char c);
+int		ft_get_path(t_ms *ms, char *cmd, char **envp);
+void	ft_execve(t_ms *ms, char **cmd);
+void	ft_base_free(t_ms *ms, t_cmd *cmd);
+int		ft_check_input(t_ms *ms);
+void	next_pipe(t_ms *ms);
+int		ft_check_quote(t_ms	*ms);
+void	ft_aux_path(t_ms *ms, int number);
 
 #endif

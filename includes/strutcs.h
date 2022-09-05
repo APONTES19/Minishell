@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/01 21:04:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:26:58 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,18 @@ typedef struct minishell
 	int		i;
 	int		j;
 	int		k;
+	char	**path_list;
+	char	*path_cmd;
+	char	*temp;
+	int		pid;
+	char	**envp;
+	int		pipe_d;
+
 }	t_ms;
 
 typedef struct comand
 {
-	char	**list_cmd;
+	char	**arg_cmd;
 	char	**base_list_cmd;
 }	t_cmd;
 

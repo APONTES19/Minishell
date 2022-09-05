@@ -6,92 +6,14 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/01 23:20:10 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:21:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_special(t_ms *ms)
+void	ft_comand_split(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	ms->i = 0;
-	while(ms->line[ms->i])
-	{
-		if (ms->line[ms->i] == '\'')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\'')
-				ms->i++;
-		}
-		if (ms->line[ms->i] == '\"')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\"')
-				ms->i++;
-		}
-		if((ft_strchr(SPECIAL_CH, ms->line[ms->i])))
-		{
-			ft_printf("invalid character: %c\n", ms->line[ms->i]);
-			return(1);
-		}
-		ms->i++;
-	}
-	return(0);
-}
-
-void	ft_check_pipe(t_ms *ms)
-{
-	ms->i = 0;
-	ms->n_pipe = 1;
-	while(ms->line[ms->i])
-	{
-		if (ms->line[ms->i] == '\'')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\'')
-				ms->i++;
-		}
-		if (ms->line[ms->i] == '\"')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\"')
-				ms->i++;
-		}
-		if(ms->line[ms->i] == '|')
-			ms->n_pipe++;
-		ms->i++;
-	}
-}
-
-void	ft_check_$(t_ms *ms)
-{
-	ms->i = 0;
-	ms->n_$ = 0;
-	while(ms->line[ms->i])
-	{
-		if (ms->line[ms->i] == '\'')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\'')
-				ms->i++;
-		}
-		if (ms->line[ms->i] == '\"')
-		{
-			ms->i++;
-			while(ms->line[ms->i] != '\"')
-			{
-				if(ms->line[ms->i] == '$')
-					ms->n_$++;
-				ms->i++;
-			}
-		}
-		ms->i++;
-	}
-}
-
-void	ft_comand_split(t_ms *ms, t_cmd *cmd)
-{
-	printf("numero de pipe: %d\n", ms->n_pipe);//apagar linha só check
 	if(ms->n_pipe > 1)
 	{
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
@@ -110,7 +32,7 @@ void	ft_comand_split(t_ms *ms, t_cmd *cmd)
 		ms->i = 0;
 		while(ms->i != ms->n_pipe)
 		{
-			cmd[ms->i].list_cmd = ft_split_ms(cmd->base_list_cmd[ms->i], ' ');
+			cmd[ms->i].arg_cmd = ft_split_ms(cmd->base_list_cmd[ms->i], ' ');
 			ms->i++;
 		}
 
@@ -121,10 +43,10 @@ void	ft_comand_split(t_ms *ms, t_cmd *cmd)
 		{
 			printf("Struc cmd[%d]\n",ms->i);
 			ms->j = 0;
-			while(cmd[ms->i].list_cmd[ms->j])
+			while(cmd[ms->i].arg_cmd[ms->j])
 			{
-				//ft_change_pipe(ms, cmd[ms->i].list_cmd[ms->j], '\t', '|');
-				printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].list_cmd[ms->j]);
+				//ft_change_pipe(ms, cmd[ms->i].arg_cmd[ms->j], '\t', '|');
+				printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
 				ms->j++;
 			}
 			ms->i++;
@@ -135,20 +57,25 @@ void	ft_comand_split(t_ms *ms, t_cmd *cmd)
 	{
 		ms->i = 0;
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
-		cmd[ms->i].list_cmd = ft_split_ms(ms->line, ' ');
+		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
 
 	//excluir este movimento.
 		printf("\n_________Aqui começa o split __________\n");
 		while(ms->i != ms->n_pipe)
 		{
 			ms->j = 0;
-			while(cmd[ms->i].list_cmd[ms->j])
+			while(cmd[ms->i].arg_cmd[ms->j])
 			{
-				printf("Arg[%d]%s\n",ms->j,cmd[ms->i].list_cmd[ms->j]);
+				printf("Arg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
 				ms->j++;
 			}
 			ms->i++;
 		}
 		printf("_________Aqui termina o split __________\n\n");
 	}
+	if(ft_get_path(ms, cmd[0].arg_cmd[0], envp) != 0)
+		ft_error(10, ms);
+	else
+		ft_execve(ms, cmd[0].arg_cmd);
+	//ft_base_free(ms, cmd);
 }

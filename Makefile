@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/09/01 21:20:57 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/09/05 21:10:26 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ OBJ_PATH=./obj
 SRC_FILES=minishell.c\
 		  error.c\
 		  parse.c\
-		  ft_split_ms.c
+		  ft_split_ms.c\
+		  comand.c\
+		  check_input.c\
+		  check_input_2.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
