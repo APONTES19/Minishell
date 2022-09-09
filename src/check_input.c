@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/05 21:49:52 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:16:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	ft_check_input(t_ms *ms)
 {
-	if (!ft_check_quote(ms))
-	{
-		ft_error(29, ms);
-			return (1);
-	}
-	if (ft_special(ms) == 1)
-		return (1);
-	ft_check_pipe(ms);
+	if (ft_check_quote(ms) == 0)
+		return (0);
+	if (ft_special(ms) == 0)
+		return (0);
+	if (ft_check_pipe(ms) == 0)
+		return (0);
 	ft_check_$(ms);
-	return (0);
+	return (1);
 }
 
 int	ft_check_quote(t_ms *ms)
@@ -44,13 +42,16 @@ int	ft_check_quote(t_ms *ms)
 				ms->i++;
 		}
 		if (!ms->line[ms->i])
+		{
+			ft_error(01, ms);
 			return (0);
+		}
 		ms->i ++;
 	}
 	return (1);
 }
 
-void	ft_check_pipe(t_ms *ms)
+int	ft_check_pipe(t_ms *ms)
 {
 	ms->i = 0;
 	ms->n_pipe = 1;
@@ -70,26 +71,36 @@ void	ft_check_pipe(t_ms *ms)
 		}
 		if (ms->line[ms->i] == '|')
 		{
-			next_pipe(ms);
+			if (next_pipe(ms) == 0)
+				return(0);
 			ms->n_pipe++;
 		}
 		ms->i++;
 	}
+	return(1);
 }
 
-void	next_pipe(t_ms *ms)
+int	next_pipe(t_ms *ms)
 {
 	if (ms->i == 0)
 	{
 		if (ms->line[ms->i + 1] == '|')
-			ft_error(19, ms);
+		{
+			ft_error(04, ms);
+			return (0);
+		}
 		else
-			ft_error(9, ms);
+		{
+			ft_error(03, ms);
+			return (0);
+		}
 	}
-	else
+	else if (ms->line[ms->i + 1] == '|')
 	{
-		if (ms->line[ms->i + 1] == '|')
-			ms->pipe_d = 1;
-		//verificar como fazer isso
+		//ms->pipe_d = 1;
+		//ms->line[ms->i + 1] = ' ';
+		ft_error(04, ms);
+		return (0);
 	}
+	return(1);
 }

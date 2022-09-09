@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/09 20:51:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:48:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ int main(int argc, char **argv, char **envp)
 	(void )argv;
 	if(argc == 1)
 	{
+		if (envp == NULL)
+			ft_error(06, &ms);
 		ft_memset(&ms, '0', sizeof(ms));
 		while(1)
 		{
 			ft_get_line(&ms);
 			add_history(ms.line);
-			if (ft_check_input(&ms) == 1)
-				free(ms.line);
-			else
-				ft_comand_split(&ms, &cmd, envp);
+			if (ft_check_input(&ms) != 0)
+				if(ft_comand_split(&ms, &cmd, envp) == 0)
+					ft_error(06, &ms);
 		}
 	}
 	else

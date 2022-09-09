@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/09 19:54:19 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:15:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ static char	*duplicate(const char *str, int start, int end)
 
 	i = 0;
 	duplicate = malloc((end - start + 1) * sizeof(char));
+	if (duplicate == NULL)
+		return (duplicate);
 	while (start < end)
 	{
 		duplicate[i] = str[start];
@@ -131,7 +133,7 @@ static void	next_quote(const char *s, t_var *var)
 	{
 		var->i++;
 	}
-	if(s[i - 1] == ' ' || i == 0)
+	if (s[i - 1] == ' ' || i == 0)
 	{
 		var->result[var->p] = duplicate(s, i, (var->i + 1));
 		var->p++;
