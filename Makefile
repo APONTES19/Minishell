@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/09/05 21:10:26 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/09/08 22:27:09 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,8 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "\033[0m"
 		@echo "\033[0;33m	Welcome to Minishell by Lucasmar and ryoshio-'s 42sp \033[0m"
 		@echo "\033[0;39m"
-		@echo "	run ./Minishell in the terminal + comand of your choice !"
-		@echo "	ex: ./Minishell ls -la"
+		@echo "	run ./Minishell in the terminal !"
+		@echo "	ex: ls -la "
 		@echo "\033[0m"
 
 #running

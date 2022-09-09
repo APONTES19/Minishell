@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/02 19:21:24 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:54:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ typedef struct _var
 	int		index;
 	char	**result;
 	int		quote;
+	int		len_s;
 }t_var;
 
 static int		set_size(const char *str, char c);
 static char		*duplicate(const char *str, int start, int end);
-static int		next_quote(const char *s, char **result);
+static void		next_quote(const char *s, t_var *var);
+
 static int		init_var(t_var *var, char const *s, char c);
 
 char	**ft_split_ms(char const *s, char c)
@@ -37,7 +39,7 @@ char	**ft_split_ms(char const *s, char c)
 		{
 			var.quote++;
 			if (c == ' ')
-				var.i += next_quote(&s[var.i], &var.result[var.p++]);
+				next_quote(s, &var);
 			else if (var.quote > 1)
 				var.quote = 0;
 		}
@@ -62,6 +64,7 @@ static int	init_var(t_var *var, char const *s, char c)
 	var->p = 0;
 	var->index = -1;
 	var->quote = 0;
+	var->len_s = ft_strlen(s);
 	var->result = malloc((set_size(s, c) + 1) * sizeof(char *));
 	if (!s || !var->result)
 		return (0);
@@ -114,19 +117,25 @@ static char	*duplicate(const char *str, int start, int end)
 	return (duplicate);
 }
 
-static int	next_quote(const char *s, char **result)
+static void	next_quote(const char *s, t_var *var)
 {
 	int		i;
 	char	type;
 
-	i = 1;
+	i = var->i;
+	var->i++;
 	type = '\'';
 	if (s[i] == '\"')
 		type = '\"';
-	while (s[i] != type)
+	while (s[var->i] != type)
 	{
-		i++;
+		var->i++;
 	}
-	*result = duplicate(s, 0, (i + 1));
-	return (i + 1);
+	if(s[i - 1] == ' ' || i == 0)
+	{
+		var->result[var->p] = duplicate(s, i, (var->i + 1));
+		var->p++;
+	}
+	var->i++;
+	var->quote = 0;
 }

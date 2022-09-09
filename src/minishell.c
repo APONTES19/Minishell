@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/05 21:33:19 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:51:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int main(int argc, char **argv, char **envp)
 void ft_get_line(t_ms * ms)
 {
 	ms->line = readline("Minishell~$ ");
-
+	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
+		ft_get_line(ms);
 	if (ft_strncmp(ms->line, "exit", 4) == 0)
 	{
 		rl_clear_history();

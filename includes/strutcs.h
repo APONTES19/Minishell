@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/05 21:26:58 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:53:15 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct minishell
 	int		pid;
 	char	**envp;
 	int		pipe_d;
-
 }	t_ms;
 
 typedef struct comand
