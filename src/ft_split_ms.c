@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/09 23:15:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:52:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ static char	*duplicate(const char *str, int start, int end)
 
 	i = 0;
 	duplicate = malloc((end - start + 1) * sizeof(char));
-	if (duplicate == NULL)
-		return (duplicate);
 	while (start < end)
 	{
 		duplicate[i] = str[start];

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/09 23:57:16 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:11:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,47 @@ void	ft_error(int number, t_ms *ms)
 
 }
 
-void	ft_error_2(int number, t_cmd *cmd)
+void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 {
 	if (number == 07)
+	{
 		ft_printf("%s: command not found\n", cmd[0].arg_cmd[0]);
+		ft_base_free(ms, cmd);
+	}
 }
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd)
 {
-	ms->i = 0;
-	while(ms->i != ms->n_pipe)
-	{
-		free(cmd->base_list_cmd[ms->i]);
-		ms->i++;
-	}
-	cmd->base_list_cmd = NULL;
+	int i;
+	int j;
 
+	j = 0;
+	while(j < ms->n_pipe)
+	{
+		if(ms->n_pipe > 1)
+		{
+			free(cmd[0].base_list_cmd[j]);
+			cmd[0].base_list_cmd[j] = NULL;
+		}
+	    i = 0;
+	    while(cmd[j].arg_cmd[i])
+	    {
+	        free(cmd[j].arg_cmd[i]);
+			cmd[j].arg_cmd[i] = NULL;
+	        i ++;
+	    }
+	    free(cmd[j].arg_cmd);
+	    cmd[j].arg_cmd =NULL;
+	    j ++;
+	}
+	if(ms->n_pipe > 1)
+		free(cmd[0].base_list_cmd);
+	free(cmd);
 }
 
-// if (ms->n_pipe > 1)
-// {
-// 	cmd->base_list_cmd
-// 	cmd[ms->i].arg_cmd
-// }
-// else
-// {
-// 	cmd[0].arg_cmd;
-// }
-
-// ao sair dar free nas alocações feitas para os comandos
-// dar free no path_list gerado no get path
+void	ft_exit(t_ms *ms, t_cmd *cmd)
+{
+	ft_base_free(ms, cmd);
+	free (ms->path_cmd);
+	ms->path_cmd = NULL;
+}

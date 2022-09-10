@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/09 23:47:29 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:13:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,33 @@ int	ft_get_path(t_ms *ms, char *cmd, char **envp)
 
 void	ft_aux_path(t_ms *ms, int number)
 {
+	free (ms->temp);
+	ms->temp = NULL;
 	if (number == 1)
 	{
-		free (ms->temp);
-		ms->temp = NULL;
 		free (ms->path_cmd);
 		ms->path_cmd = NULL;
 	}
-	if (number == 0)
+	if (number == 0 || number == 2)
 	{
-		free (ms->temp);
-		ms->temp = NULL;
-		free(ms->path_list);
-	}
-	if (number == 2)
-	{
-		free (ms->temp);
-		ms->temp = NULL;
-		free (ms->path_cmd);
-		ms->path_cmd = NULL;
+		ms->k = 0;
+		while (ms->path_list[ms->k])
+		{
+			free (ms->path_list[ms->k]);
+			ms->path_list[ms->k] = NULL;
+			ms->k++;
+		}
 		free(ms->path_list);
 		ms->path_list = NULL;
 	}
+	if (number == 2)
+	{
+		free (ms->path_cmd);
+		ms->path_cmd = NULL;
+	}
 }
 
-void	ft_execve(t_ms *ms, char **cmd)
+void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 {
 	ms->pid = fork();
 	if (ms->pid < 0)
@@ -77,5 +79,8 @@ void	ft_execve(t_ms *ms, char **cmd)
 			ft_error (3, ms);
 	}
 	if (ms->pid > 0)
+	{
 		wait(&ms->pid);
+		ft_exit(ms, cm);
+	}
 }

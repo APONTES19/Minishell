@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/09 23:57:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:53:57 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 void	ft_get_line(t_ms *ms);
 void	ft_error(int number, t_ms *ms);
-void	ft_error_2(int number, t_cmd *cmd);
+void	ft_error_2(int number, t_cmd *cmd, t_ms *ms);
 void	ft_comand(char **env, char *comand, char *path);
 int		ft_special(t_ms *ms);
 int		ft_check_pipe(t_ms *ms);
@@ -35,11 +35,14 @@ void	ft_check_$(t_ms *ms);
 int		ft_comand_split(t_ms *ms, t_cmd *cmd, char **envp);
 char	**ft_split_ms(char const *s, char c);
 int		ft_get_path(t_ms *ms, char *cmd, char **envp);
-void	ft_execve(t_ms *ms, char **cmd);
 void	ft_base_free(t_ms *ms, t_cmd *cmd);
 int		ft_check_input(t_ms *ms);
 int		next_pipe(t_ms *ms);
 int		ft_check_quote(t_ms	*ms);
 void	ft_aux_path(t_ms *ms, int number);
+void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm);
+void	ft_exit(t_ms *ms, t_cmd *cmd);
+void	ft_central (t_ms *ms, t_cmd *cmd);
+void	ft_arg(t_ms *ms, t_cmd *cmd);
 
 #endif
