@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/10 02:52:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:48:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,10 @@ static void	next_quote(const char *s, t_var *var)
 	type = '\'';
 	if (s[i] == '\"')
 		type = '\"';
-	while (s[var->i] != type)
+	while (s[var->i] != type && s[var->i] != '\0')
 	{
+		if(s[var->i + 1] == type && (s[var->i + 2] != ' ' || s[var->i + 2] != '\0'))
+			var->i++;
 		var->i++;
 	}
 	if (s[i - 1] == ' ' || i == 0)
