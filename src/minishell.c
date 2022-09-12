@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/12 20:02:54 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:13:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void ft_get_line(t_ms * ms)
 		rl_clear_history();
 		free(ms->line);
 		ms->line = NULL;
+		
 		exit(EXIT_SUCCESS);
 	}
 }

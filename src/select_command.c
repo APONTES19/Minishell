@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   select_comand.c                                    :+:      :+:    :+:   */
+/*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/12 20:00:13 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:16:38 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_arg(t_ms *ms, t_cmd *cmd, char **envp)
 	else if (!ft_strncmp(cmd[0].arg_cmd[0], "unset", 5))
 		ft_printf("UNSET\n");
 	else if (!ft_strncmp(cmd[0].arg_cmd[0], "echo", 4))
-		ft_printf("ECHO\n");
+		ft_echo(ms, cmd);
 	else
 		ft_execve_cmd(ms, cmd, envp);
 }

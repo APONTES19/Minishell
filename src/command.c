@@ -18,7 +18,6 @@ void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp)
 		ft_error_2(07, cmd, ms);
 	else
 		ft_execve(ms, cmd[0].arg_cmd, cmd);
-	//ft_base_free(ms, cmd);
 }
 
 void	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
