@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/12 20:59:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:21:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms);
 int		ft_special(t_ms *ms);
 int		ft_check_pipe(t_ms *ms);
 void	ft_check_$(t_ms *ms);
-void	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp);
+int		ft_command_split(t_ms *ms, t_cmd *cmd, char **envp);
 char	**ft_split_ms(char const *s, char c);
 int		ft_get_path(t_ms *ms, char *cmd, char **envp);
 void	ft_base_free(t_ms *ms, t_cmd *cmd);
@@ -46,5 +46,6 @@ void	ft_arg(t_ms *ms, t_cmd *cmd, char **envp);
 void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp);
 void	ft_echo(t_ms *ms, t_cmd *cmd);
 void	ft_quote_echo(t_ms *ms, t_cmd *cmd);
+void	ft_clean_quote(t_cmd *cmd);
 
 #endif

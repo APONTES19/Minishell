@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/12 20:04:24 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 04:03:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,28 @@
 
 void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	if(ft_get_path(ms, cmd[0].arg_cmd[0], envp) == 0)
+
+	if(ft_get_path(ms, cmd[ms->p].arg_cmd[0], envp) == 0)
 		ft_error_2(07, cmd, ms);
 	else
-		ft_execve(ms, cmd[0].arg_cmd, cmd);
+		ft_execve(ms, cmd[ms->p].arg_cmd, cmd);
 }
 
-void	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
+int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 {
 	if(ms->n_pipe > 1)
 	{
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd->base_list_cmd = ft_split_ms(ms->line, '|');
+		//excluir debug
+        ms->i = 0;
+        printf("\n__________Base list__________\n");
+        while(ms->i != ms->n_pipe)
+        {
+            printf("arg[%d]%s\n",ms->i,cmd->base_list_cmd[ms->i]);
+            ms->i++;
+        }
+        printf("\n__________Fim Base list__________\n");
 		ms->i = 0;
 		while(ms->i != ms->n_pipe)
 		{
@@ -39,11 +49,19 @@ void	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
 	}
+	if (cmd[0].arg_cmd[0] == NULL)
+	{
+		ft_error(8, ms);
+		return(0);
+	}
+	printf("ARG:|%s|\n",cmd[0].arg_cmd[0]);
 	ft_select(ms, cmd, envp);
+	return(1);
 }
 
 int	ft_get_path(t_ms *ms, char *cmd, char **envp)
 {
+	printf("Path ! \n");
 	ms->i = 0;
 	while (envp[ms->i++])
 	{
@@ -100,6 +118,8 @@ void	ft_aux_path(t_ms *ms, int number)
 
 void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 {
+	printf("Execve ! \n");
+	(void)cm->base_list_cmd;
 	ms->pid = fork();
 	if (ms->pid < 0)
 		ft_error (2, ms);
@@ -111,6 +131,7 @@ void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 	if (ms->pid > 0)
 	{
 		wait(&ms->pid);
-		ft_exit(ms, cm);
+		if (ms->p == (ms->n_pipe -1))
+			ft_exit(ms, cm);
 	}
 }

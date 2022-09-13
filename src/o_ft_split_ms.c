@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 04:17:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:48:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct _var
 	char	**result;
 	int		quote;
 	int		len_s;
-	int		n_q;
 }t_var;
 
 static int		set_size(const char *str, char c);
@@ -38,13 +37,13 @@ char	**ft_split_ms(char const *s, char c)
 	{
 		if (s[var.i] == '\'' || s[var.i] == '\"')
 		{
-			if(var.quote == 0)
-				next_quote(s, &var);
 			var.quote++;
-			if (var.quote == var.n_q)
+			if (c == ' ')
+				next_quote(s, &var);
+			else if (var.quote > 1)
 				var.quote = 0;
 		}
-		if ((s[var.i] != c || var.quote > 0) && var.index < 0)
+		if (s[var.i] != c && var.index < 0)
 			var.index = var.i;
 		else if (((s[var.i] == c && var.quote == 0) || \
 			var.i == ft_strlen(s)) && var.index >= 0)
@@ -61,7 +60,7 @@ char	**ft_split_ms(char const *s, char c)
 static int	init_var(t_var *var, char const *s, char c)
 {
 	ft_memset(var, 0, sizeof var);
-	var->i = 0;
+	var->i = -0;
 	var->p = 0;
 	var->index = -1;
 	var->quote = 0;
@@ -120,16 +119,25 @@ static char	*duplicate(const char *str, int start, int end)
 
 static void	next_quote(const char *s, t_var *var)
 {
-	int	i;
+	int		i;
 	char	type;
 
-	type = s[var->i];
-	i = 0;
-	var->n_q = 0;
-	while(s[i])
+	i = var->i;
+	var->i++;
+	type = '\'';
+	if (s[i] == '\"')
+		type = '\"';
+	while (s[var->i] != type && s[var->i] != '\0')
 	{
-		if(s[i] == type)
-			var->n_q++;
-		i++;
+		if(s[var->i + 1] == type && (s[var->i + 2] != ' ' || s[var->i + 2] != '\0'))
+			var->i++;
+		var->i++;
 	}
+	if (s[i - 1] == ' ' || i == 0)
+	{
+		var->result[var->p] = duplicate(s, i, (var->i + 1));
+		var->p++;
+	}
+	var->i++;
+	var->quote = 0;
 }

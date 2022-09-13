@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/10 04:11:19 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 04:14:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_error(int number, t_ms *ms)
 		ft_printf("malloc error\n");
 	if (number == 06)
 		ft_printf("envp error\n");
+	if (number == 8)
+		ft_printf("split error\n");
 	if (number == 12)
 		ft_printf("Erro no PID arguments\n");
 	if (number == 13)
@@ -47,12 +49,14 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 	if (number == 07)
 	{
 		ft_printf("%s: command not found\n", cmd[0].arg_cmd[0]);
-		ft_base_free(ms, cmd);
+		if (ms->p == (ms->n_pipe -1))
+			ft_base_free(ms, cmd);
 	}
 }
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd)
 {
+	printf ("limpando a base\n");
 	int i;
 	int j;
 
