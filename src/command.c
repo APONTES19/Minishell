@@ -6,20 +6,11 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 04:03:48 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/14 20:19:12 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp)
-{
-
-	if(ft_get_path(ms, cmd[ms->p].arg_cmd[0], envp) == 0)
-		ft_error_2(07, cmd, ms);
-	else
-		ft_execve(ms, cmd[ms->p].arg_cmd, cmd);
-}
 
 int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 {
@@ -54,9 +45,16 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 		ft_error(8, ms);
 		return(0);
 	}
-	printf("ARG:|%s|\n",cmd[0].arg_cmd[0]);
 	ft_select(ms, cmd, envp);
 	return(1);
+}
+
+void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp)
+{
+	if(ft_get_path(ms, cmd[ms->p].arg_cmd[0], envp) == 0)
+		ft_error_2(07, cmd, ms);
+	else
+		ft_execve(ms, cmd[ms->p].arg_cmd, cmd);
 }
 
 int	ft_get_path(t_ms *ms, char *cmd, char **envp)
@@ -119,19 +117,36 @@ void	ft_aux_path(t_ms *ms, int number)
 void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 {
 	printf("Execve ! \n");
-	(void)cm->base_list_cmd;
 	ms->pid = fork();
 	if (ms->pid < 0)
 		ft_error (2, ms);
 	if (ms->pid == 0)
 	{
+		printf("processo filho : |%d|\n", ms->p);
+		if(ms->p == 0)
+			dup2(ms->fd[1],ms->fd[2]);
+		if(ms->p == (ms->n_pipe - 1))
+		{
+			dup2(ms->fd[3],1);
+		}
+		// if(ms->p < (ms->n_pipe - 1))
+		// {
+		// 	dup2(ms->fd[1],0);
+		// 	dup2(ms->fd[1],1);
+		// }
 		if ((execve(ms->path_cmd, cmd, NULL)) == -1)
 			ft_error (3, ms);
 	}
 	if (ms->pid > 0)
 	{
 		wait(&ms->pid);
-		if (ms->p == (ms->n_pipe -1))
+		printf("processo pai : |%d|\n", ms->p);
+
+		if (ms->p == (ms->n_pipe - 1))
+		{
+			//close(ms->fd[0]);
+			//close(ms->fd[1]);
 			ft_exit(ms, cm);
+		}
 	}
 }

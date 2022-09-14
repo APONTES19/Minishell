@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 04:16:07 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:10:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_select(t_ms *ms, t_cmd *cmd, char **envp)
 {
+	if(ms->n_pipe > 1)
+		ft_creat_pipe(ms);
 	ms->p = 0;
 	while(ms->n_pipe > ms->p)
 	{
-		pipe(ms->fd);
-		
 		printf("while ! \n");
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
@@ -69,4 +69,18 @@ void	ft_clean_quote(t_cmd *cmd)
 	cmd[0].arg_cmd[0] = ft_strdup(c);
 	free(c);
 	c = NULL;
+}
+
+void	ft_creat_pipe(t_ms *ms)
+{
+	int	i;
+
+	i = 0;
+	while(i < ms->n_pipe - 1)
+	{
+		ms->pipe = pipe(ms->fd + (2 * i));
+		if (ms->pipe == -1)
+			ft_error(9, ms);
+		i++;
+	}
 }

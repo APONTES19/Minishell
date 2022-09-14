@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/13 04:14:18 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:35:54 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@
 
 void	ft_error(int number, t_ms *ms)
 {
-	if (number == 00)
+	if (number == 0)
 		ft_printf("Invalid arguments\n");
-	if (number == 01)
+	if (number == 1)
 		ft_printf("quote is missing\n");
-	if (number == 02)
+	if (number == 2)
 		ft_printf("invalid character: %c\n", ms->line[ms->i]);
-	if (number == 03)
+	if (number == 3)
 		ft_printf("syntax error near "
 			"unexpected token `%c'\n", ms->line[ms->i]);
-	if (number == 04)
+	if (number == 4)
 		ft_printf("syntax error near "
 			"unexpected token `%c%c'\n", ms->line[ms->i], ms->line[ms->i + 1]);
-	if (number == 05)
+	if (number == 5)
 		ft_printf("malloc error\n");
-	if (number == 06)
+	if (number == 6)
 		ft_printf("envp error\n");
 	if (number == 8)
 		ft_printf("split error\n");
+	if (number == 9)
+		ft_printf("pipe error\n");
 	if (number == 12)
 		ft_printf("Erro no PID arguments\n");
 	if (number == 13)
