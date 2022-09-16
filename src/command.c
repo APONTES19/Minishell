@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/14 20:19:12 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:07:45 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 	{
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd->base_list_cmd = ft_split_ms(ms->line, '|');
-		//excluir debug
-        ms->i = 0;
-        printf("\n__________Base list__________\n");
-        while(ms->i != ms->n_pipe)
-        {
-            printf("arg[%d]%s\n",ms->i,cmd->base_list_cmd[ms->i]);
-            ms->i++;
-        }
-        printf("\n__________Fim Base list__________\n");
 		ms->i = 0;
 		while(ms->i != ms->n_pipe)
 		{
@@ -59,7 +50,6 @@ void	ft_execve_cmd(t_ms *ms, t_cmd *cmd, char **envp)
 
 int	ft_get_path(t_ms *ms, char *cmd, char **envp)
 {
-	printf("Path ! \n");
 	ms->i = 0;
 	while (envp[ms->i++])
 	{
@@ -116,37 +106,41 @@ void	ft_aux_path(t_ms *ms, int number)
 
 void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 {
-	printf("Execve ! \n");
 	ms->pid = fork();
 	if (ms->pid < 0)
 		ft_error (2, ms);
 	if (ms->pid == 0)
 	{
-		printf("processo filho : |%d|\n", ms->p);
-		if(ms->p == 0)
-			dup2(ms->fd[1],ms->fd[2]);
-		if(ms->p == (ms->n_pipe - 1))
+		if (ms->n_pipe > 1)
 		{
-			dup2(ms->fd[3],1);
+		if(ms->p == 0)
+			dup2(ms->fd[1],1);
+		if(ms->p == (ms->n_pipe - 1))
+			dup2(ms->fd[0], 0);
+		close(ms->fd[1]);
+		close(ms->fd[0]);
 		}
-		// if(ms->p < (ms->n_pipe - 1))
-		// {
-		// 	dup2(ms->fd[1],0);
-		// 	dup2(ms->fd[1],1);
-		// }
 		if ((execve(ms->path_cmd, cmd, NULL)) == -1)
 			ft_error (3, ms);
 	}
 	if (ms->pid > 0)
 	{
-		wait(&ms->pid);
-		printf("processo pai : |%d|\n", ms->p);
-
 		if (ms->p == (ms->n_pipe - 1))
 		{
-			//close(ms->fd[0]);
-			//close(ms->fd[1]);
+			if (ms->n_pipe > 1)
+			{
+				close(ms->fd[0]);
+				close(ms->fd[1]);
+			}
 			ft_exit(ms, cm);
 		}
 	}
+}
+
+void	ft_change_fd(int input, int output, t_ms *ms)
+{
+	if (dup2(input,0) == -1)
+		ft_error(10, ms);
+	if (dup2(output, 1) == -1)
+		ft_error(10, ms);
 }

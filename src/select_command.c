@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 22:10:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:39:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ void	ft_select(t_ms *ms, t_cmd *cmd, char **envp)
 	if(ms->n_pipe > 1)
 		ft_creat_pipe(ms);
 	ms->p = 0;
-	while(ms->n_pipe > ms->p)
+	while(ms->p < ms->n_pipe)
 	{
-		printf("while ! \n");
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
-		ft_arg(ms, cmd, envp);
+		ft_select_arg(ms, cmd, envp);
 		ms->p++;
 	}
+	waitpid(ms->pid, &ms->exit_s, 0);
 }
 
-void	ft_arg(t_ms *ms, t_cmd *cmd, char **envp)
+void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	printf("ARG:|%s|\n",cmd[ms->p].arg_cmd[0]);
 	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
 		ft_printf("ENV\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
@@ -76,6 +75,7 @@ void	ft_creat_pipe(t_ms *ms)
 	int	i;
 
 	i = 0;
+	ms->fd = malloc(2 * (ms->n_pipe - 1) * sizeof(ms->pipe));
 	while(i < ms->n_pipe - 1)
 	{
 		ms->pipe = pipe(ms->fd + (2 * i));

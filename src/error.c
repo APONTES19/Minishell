@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/13 15:35:54 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:54:32 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd)
 {
-	printf ("limpando a base\n");
 	int i;
 	int j;
 
@@ -91,4 +90,13 @@ void	ft_exit(t_ms *ms, t_cmd *cmd)
 	ft_base_free(ms, cmd);
 	free (ms->path_cmd);
 	ms->path_cmd = NULL;
+	if (ms->n_pipe > 1)
+		{
+			ms->i = 0;
+			while(ms->fd[ms->i])
+			{
+				free(&ms->fd[ms->i]);
+				ms->i++;
+			}
+		}
 }
