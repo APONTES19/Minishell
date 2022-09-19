@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/15 21:07:45 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:45:40 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,10 @@ void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 		if (ms->n_pipe > 1)
 		{
 		if(ms->p == 0)
-			dup2(ms->fd[1],1);
+			ft_change_fd(0, ms->fd[1], ms);
 		if(ms->p == (ms->n_pipe - 1))
-			dup2(ms->fd[0], 0);
-		close(ms->fd[1]);
-		close(ms->fd[0]);
+			ft_change_fd(ms->fd[0] , 1, ms);
+		ft_close_fds(ms);
 		}
 		if ((execve(ms->path_cmd, cmd, NULL)) == -1)
 			ft_error (3, ms);
@@ -139,8 +138,14 @@ void	ft_execve(t_ms *ms, char **cmd, t_cmd *cm)
 
 void	ft_change_fd(int input, int output, t_ms *ms)
 {
-	if (dup2(input,0) == -1)
+	if (dup2(input, 0) == -1)
 		ft_error(10, ms);
 	if (dup2(output, 1) == -1)
 		ft_error(10, ms);
+}
+
+void	ft_close_fds(t_ms *ms)
+{
+		close(ms->fd[1]);
+		close(ms->fd[0]);
 }
