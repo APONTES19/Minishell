@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:18 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 04:06:07 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:37:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 	}
 	if (flag == 0)
 		printf("\n");
-	if (ms->p == (ms->n_pipe -1))
-		ft_exit(ms, cmd);
+	exit(3);
 }
 
 void	ft_quote_echo(t_ms *ms, t_cmd *cmd)

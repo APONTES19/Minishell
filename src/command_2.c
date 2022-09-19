@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/19 19:23:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:33:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,58 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 	return(1);
 }
 
-void	ft_change_fd(int input, int output, t_ms *ms)
+int	ft_get_path(t_ms *ms, char *cmd, char **envp)
 {
-	if (dup2(input, 0) == -1)
-		ft_error(10, ms);
-	if (dup2(output, 1) == -1)
-		ft_error(10, ms);
+	ms->i = 0;
+	while (envp[ms->i++])
+	{
+		if (!ft_strncmp(envp[ms->i], "PATH=", 5))
+		{
+			ms->path_list = ft_split(envp[ms->i], ':');
+			ms->j = 0;
+			while (ms->path_list[ms->j])
+			{
+				ms->temp = ft_strjoin(ms->path_list[ms->j], "/");
+				ms->path_cmd = ft_strjoin(ms->temp, cmd);
+				if (!access(ms->path_cmd, F_OK | X_OK))
+				{
+					ft_aux_path(ms, 0);
+					return (1);
+				}
+				ft_aux_path(ms, 1);
+				ms->j++;
+			}
+			ft_aux_path(ms, 2);
+			return (0);
+		}
+	}
+	return (0);
 }
 
-void	ft_close_fds(t_ms *ms)
+void	ft_aux_path(t_ms *ms, int number)
 {
-		int	i;
-		i = (((ms->n_pipe - 1) * 2) - 1 );
-		while (i != -1)
+	free (ms->temp);
+	ms->temp = NULL;
+	if (number == 1)
+	{
+		free (ms->path_cmd);
+		ms->path_cmd = NULL;
+	}
+	if (number == 0 || number == 2)
+	{
+		ms->k = 0;
+		while (ms->path_list[ms->k])
 		{
-			close(ms->fd[i]);
-			i--;
+			free (ms->path_list[ms->k]);
+			ms->path_list[ms->k] = NULL;
+			ms->k++;
 		}
+		free(ms->path_list);
+		ms->path_list = NULL;
+	}
+	if (number == 2)
+	{
+		free (ms->path_cmd);
+		ms->path_cmd = NULL;
+	}
 }
