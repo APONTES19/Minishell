@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/09/19 19:23:24 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/09/19 21:52:11 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_FILES=minishell.c\
 		  check_input.c\
 		  check_input_2.c\
 		  select_command.c\
+		  redirection.c\
 		  echo.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))

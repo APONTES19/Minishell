@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/15 21:35:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:32:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct minishell
 	int		pipe_d;
 	char	*line;
 	int		n_$;
+	int		redirection;
 	int		i;
 	int		j;
 	int		k;
