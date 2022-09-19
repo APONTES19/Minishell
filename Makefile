@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/09/13 01:23:18 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/09/19 19:23:24 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_FILES=minishell.c\
 		  error.c\
 		  ft_split_ms.c\
 		  command.c\
+		  command_2.c\
 		  check_input.c\
 		  check_input_2.c\
 		  select_command.c\
