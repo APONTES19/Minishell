@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/19 21:32:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:38:59 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ typedef struct minishell
 	int		k;
 	char	**path_list;
 	char	*path_cmd;
+	char	*path_outfile;
+	char	*path_infile;
+	int		fd_out;
+	int		fd_in;
 	char	*temp;
 	int		pid;
 	char	**envp;

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/19 22:19:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:03:24 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_select(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	if(ms->redirection > 0 )
-		ft_redirection(ms, cmd);
 	if(ms->n_pipe > 1)
 		ft_creat_pipe(ms);
 	ms->p = 0;
