@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/20 22:30:49 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:58:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	ft_change_fd(int input, int output, t_ms *ms);
 void	ft_execve_parent(t_ms *ms, t_cmd *cm);
 void	ft_select_fd(t_ms *ms);
 int		ft_check_redirection(t_ms *ms);
-void	ft_redirection(t_ms *ms);
+int		ft_redirection(t_ms *ms);
 int		ft_path_output(t_ms *ms);
-void	ft_dup_path(int end, int start, t_ms *ms);
+void	ft_dup_path(int end, int start, char *path, t_ms *ms);
+int		ft_set_out_in(t_ms *ms);
+void	ft_aux_dup_path(t_ms *ms, int start, int end);
 #endif
