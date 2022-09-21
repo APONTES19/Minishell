@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/21 15:19:12 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/21 22:05:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_error(int number, t_ms *ms)
 		ft_printf("Erro no PID arguments\n");
 	if (number == 13)
 	{
-		ft_printf("Erro na Execução do comando com a execve\n");
+		ft_putstr_fd("Erro na Execução do comando com a execve\n",2);
 		exit(3);
 	}
 	if (number == 14)

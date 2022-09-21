@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/21 20:58:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/21 22:14:58 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 
 void	ft_get_line(t_ms *ms);
+void	ft_check_space(t_ms *ms);
 void	ft_error(int number, t_ms *ms);
 void	ft_error_2(int number, t_cmd *cmd, t_ms *ms);
 int		ft_special(t_ms *ms);
