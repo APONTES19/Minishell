@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/21 22:33:17 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:06:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,16 @@ int main(int argc, char **argv, char **envp)
 			add_history(ms.line);
 			if (ft_check_input(&ms) != 0)
 			{
-				ft_command_split(&ms, &cmd, envp);
+				ms.pid1 = fork();
+				if (ms.pid1 == -1)
+					ft_error(10, &ms);
+				else if (ms.pid1 == 0)
+				{
+					ft_command_split(&ms, &cmd, envp);
+					exit(1);
+				}
+				else
+					wait(&ms.pid1);
 			}
 		}
 	}
@@ -42,8 +51,8 @@ int main(int argc, char **argv, char **envp)
 void ft_get_line(t_ms * ms)
 {
 	ms->line = readline("Minishell~$ ");
-	ft_check_space(ms);
-	//printf("%s\n", ms->line);
+	if (ms->line[0] == ' ')
+		ft_check_space(ms);
 	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
 		ft_get_line(ms);
 	if (ft_strncmp(ms->line, "exit", 4) == 0)
