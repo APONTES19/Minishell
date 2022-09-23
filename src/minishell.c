@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/22 22:06:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:15:54 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int main(int argc, char **argv, char **envp)
 			add_history(ms.line);
 			if (ft_check_input(&ms) != 0)
 			{
-				ms.pid1 = fork();
-				if (ms.pid1 == -1)
-					ft_error(10, &ms);
-				else if (ms.pid1 == 0)
-				{
-					ft_command_split(&ms, &cmd, envp);
-					exit(1);
-				}
-				else
-					wait(&ms.pid1);
+				// ms.pid1 = fork();
+				// if (ms.pid1 == -1)
+				// 	ft_error(10, &ms);
+				// else if (ms.pid1 == 0)
+				// {
+				ft_command_split(&ms, &cmd, envp);
+				// 	exit(1);
+				// }
+				// else
+				// 	wait(&ms.pid1);
 			}
 		}
 	}

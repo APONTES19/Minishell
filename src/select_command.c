@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/20 19:03:24 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:33:41 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
 		ft_printf("EXPORT\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
-		ft_printf("CD\n");
+		ft_cd(ms, cmd);
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
 		ft_printf("PWD\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "unset", 5))

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/21 22:14:58 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:20:53 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ int		ft_path_output(t_ms *ms);
 void	ft_dup_path(int end, int start, char *path, t_ms *ms);
 int		ft_set_out_in(t_ms *ms);
 void	ft_aux_dup_path(t_ms *ms, int start, int end);
+void	ft_cd(t_ms *ms, t_cmd *cmd);
 #endif
