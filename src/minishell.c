@@ -6,16 +6,19 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/23 19:15:54 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/23 23:16:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+char **g_envp;
+
 int main(int argc, char **argv, char **envp)
 {
 	t_ms	ms;
 	t_cmd	cmd;
+
 
 	(void )argv;
 	if(argc == 1)
@@ -24,6 +27,7 @@ int main(int argc, char **argv, char **envp)
 			ft_error(06, &ms);
 		ft_memset(&ms, '0', sizeof(ms));
 		ft_memset(&cmd, '0', sizeof(cmd));
+		ft_copy_envp(envp);
 		while(1)
 		{
 			ft_get_line(&ms);
@@ -41,6 +45,11 @@ int main(int argc, char **argv, char **envp)
 				// else
 				// 	wait(&ms.pid1);
 			}
+			//int i;
+
+			//i = 0;
+			//while(g_envp[i++])
+			//	printf("|%s|\n",g_envp[i]);
 		}
 	}
 	else

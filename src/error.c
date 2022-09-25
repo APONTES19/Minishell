@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/21 22:05:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 00:15:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void	ft_error(int number, t_ms *ms)
 		ft_printf("%s: No such file or directory\n",ms->path_infile);
 	if (number == 15)
 		ft_printf("%s:  Permission denied\n",ms->path_outfile);
-
+	if (number == 16)
+		ft_putstr_fd("cd: too many arguments\n", 2);
+	if (number == 17)
+		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 }
 
 void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
@@ -103,4 +106,14 @@ void	ft_exit(t_ms *ms, t_cmd *cmd)
 				ms->i++;
 			}
 		}
+}
+
+void	ft_cd_error(t_ms *ms, t_cmd *cmd)
+{
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(cmd[ms->p].arg_cmd[1], 2);
+	if (access(cmd[ms->p].arg_cmd[1], F_OK) == 0)
+		ft_putstr_fd(": Not a directory\n", 2);
+	else
+		ft_putstr_fd(": No such file or directory\n", 2);
 }
