@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/23 23:16:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 20:04:41 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char **g_envp;
+t_ms	g_ms;
 
 int main(int argc, char **argv, char **envp)
 {
@@ -21,13 +21,14 @@ int main(int argc, char **argv, char **envp)
 
 
 	(void )argv;
+	g_ms.cd = 0;
 	if(argc == 1)
 	{
 		if (envp == NULL)
 			ft_error(06, &ms);
 		ft_memset(&ms, '0', sizeof(ms));
 		ft_memset(&cmd, '0', sizeof(cmd));
-		ft_copy_envp(envp);
+		//ft_copy_envp(envp);
 		while(1)
 		{
 			ft_get_line(&ms);

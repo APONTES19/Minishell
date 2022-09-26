@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 00:14:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 01:05:24 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ typedef struct comand
 	char	**base_list_cmd;
 }	t_cmd;
 
-extern	char **g_envp;
+extern	t_ms g_ms;
 #endif

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/26 00:15:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 20:19:33 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	ft_exit(t_ms *ms, t_cmd *cmd)
 				ms->i++;
 			}
 		}
+	free(ms->oldpwd);
+	ms->oldpwd = NULL;
 }
 
 void	ft_cd_error(t_ms *ms, t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/23 22:52:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 01:06:23 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,19 @@ void	ft_check_space(t_ms *ms)
 	ms->line[i] = '\0';
 }
 
-void	ft_copy_envp(char **envp)
-{
-	int	i;
+// void	ft_copy_envp(char **envp)
+// {
+// 	int	i;
 
-	i = 0;
-	while (envp[i])
-		i++;
-	g_envp = (char **) malloc(i * sizeof(char **));
-	i = 0;
-	while (envp[i])
-	{
-		g_envp[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	g_envp[i] = NULL;
-}
+// 	i = 0;
+// 	while (envp[i])
+// 		i++;
+// 	g_envp = (char **) malloc(i * sizeof(char **));
+// 	i = 0;
+// 	while (envp[i])
+// 	{
+// 		g_envp[i] = ft_strdup(envp[i]);
+// 		i++;
+// 	}
+// 	g_envp[i] = NULL;
+// }
