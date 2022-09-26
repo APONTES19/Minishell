@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 20:39:19 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:57:07 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 		else
 			ft_cd_error(ms, cmd);
 	}
-	ft_printf("");
+	return ;
 }
 
 int	ft_valid_dir(char *path)

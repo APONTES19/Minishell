@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/23 23:21:18 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 23:20:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,12 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 4) == 0)
+	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
 		ft_printf("ENV\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
 		ft_printf("EXPORT\n");
-	//else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
-	//	ft_cd(ms, cmd);
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
-		ft_printf("PWD\n");
+		ft_pwd();
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "unset", 5))
 		ft_printf("UNSET\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 4))

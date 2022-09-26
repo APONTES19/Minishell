@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 20:29:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:20:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int		ft_valid_dir(char *path);
 //void	ft_copy_envp(char **envp);
 void	ft_minus_cd(t_ms *ms);
 void	ft_change_cd(t_ms *ms, char *change);
-
+void	ft_pwd(void);
+void	ft_get_head_line(t_ms *ms);
 #endif
