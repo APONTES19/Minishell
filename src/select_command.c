@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 23:20:50 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 23:34:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_clean_quote(t_cmd *cmd)
 void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 {
 	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
-		ft_printf("ENV\n");
+		ft_env(ms, envp);
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
 		ft_printf("EXPORT\n");
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))

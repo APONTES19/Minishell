@@ -6,17 +6,25 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 23:22:38 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/26 23:40:34 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_env(t_ms *ms)
+void	ft_env(t_ms *ms, char **envp)
 {
+	ms->i = 0;
+
 	char *teste;
 
-	//teste = malloc (1024);
 	teste = getenv("LOGNAME");
-	ft_strcpy(teste, "LUCAS", 5);
+	ft_strlcpy(teste, "LUCAS", 6);
+
+	while(envp[ms->i])
+	{
+		printf("%s\n", envp[ms->i]);
+		ms->i++;
+	}
+	//exit(3);
 }
