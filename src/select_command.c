@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 23:34:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/27 23:58:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	ft_select(t_ms *ms, t_cmd *cmd, char **envp)
 	{
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
-		if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
-			ft_cd(ms, cmd);
-		else
+		if (ft_select_arg_2(ms, cmd, envp) == 1)
 			ft_command(ms, cmd, envp);
 		ms->p++;
 	}
@@ -70,11 +68,7 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
-		ft_env(ms, envp);
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
-		ft_printf("EXPORT\n");
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
+	if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
 		ft_pwd();
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "unset", 5))
 		ft_printf("UNSET\n");
@@ -88,4 +82,36 @@ void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 			if ((execve(ms->path_cmd, cmd[ms->p].arg_cmd, NULL)) == -1)
 				ft_error (3, ms);
 	}
+}
+
+int	ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp)
+{
+	if (ms->n_pipe > 1)
+	{
+		ft_select_fd(ms);
+		ft_close_fds(ms);
+	}
+	else
+	{
+		if (dup2(ms->fd_in, 0) == -1)
+			ft_error(10, ms);
+		if (dup2(ms->fd_out, 1) == -1)
+			ft_error(10, ms);
+	}
+	if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
+	{
+		ft_cd(ms, cmd);
+		return (0);
+	}
+	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
+	{
+		ft_env(ms, cmd, envp);
+		return (0);
+	}
+	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
+	{
+		ft_export(ms, cmd, envp);
+		return (0);
+	}
+	return (1);
 }

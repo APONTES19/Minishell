@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 22:58:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:45:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_pwd(void)
 	getcwd(s, 1024);
 	ft_printf("%s\n", s);
 	free(s);
-
-	return ;
+	s = NULL;
+	exit (3);
 }
 

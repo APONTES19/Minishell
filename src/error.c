@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/26 20:19:33 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:00:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 		ft_printf("%s: command not found\n", cmd[0].arg_cmd[0]);
 		if (ms->p == (ms->n_pipe -1))
 			ft_base_free(ms, cmd);
+	}
+	if (number == 18)
+	{
+		dup2(1, 2);
+		printf ("env: ‘%s’: we don't configure for arguments\n",
+			cmd[ms->p].arg_cmd[1]);
 	}
 }
 

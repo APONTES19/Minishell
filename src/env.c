@@ -6,25 +6,30 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 23:40:34 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:27:15 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_env(t_ms *ms, char **envp)
+void	ft_env(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	ms->i = 0;
-
-	char *teste;
-
-	teste = getenv("LOGNAME");
-	ft_strlcpy(teste, "LUCAS", 6);
-
-	while(envp[ms->i])
+	if (cmd[ms->p].arg_cmd[1] != NULL)
+		ft_error_2(18, cmd, ms);
+	else
 	{
-		printf("%s\n", envp[ms->i]);
-		ms->i++;
+		ms->i = 0;
+		while(envp[ms->i])
+		{
+			printf("%s\n", envp[ms->i]);
+			ms->i++;
+			if (envp[ms->i] == NULL)
+			{
+				envp[ms->i] = ft_strdup("NOME=lUCAS");
+				envp[ms->i + 1] = NULL;
+				break;
+			}
+		}
 	}
-	//exit(3);
+	return ;
 }

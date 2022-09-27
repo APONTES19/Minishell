@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 22:57:07 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:39:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int	ft_valid_dir(char *path)
 
 void	ft_change_cd(t_ms *ms, char *change)
 {
+	char	*temp;
+
 	getcwd(ms->oldpwd, 1024);
+	temp = getenv("OLDPWD");
+	ft_strlcpy(temp, ms->oldpwd, ft_strlen(ms->oldpwd));
 	if (ft_strncmp(change, "HOME", 4) == 0)
 		chdir(getenv(change));
 	else
@@ -56,6 +60,7 @@ void	ft_change_cd(t_ms *ms, char *change)
 void	ft_minus_cd(t_ms *ms)
 {
 	char	*temp;
+	char	*temp1;
 
 	if (g_ms.cd == 0)
 		ft_error(17, ms);
@@ -63,6 +68,8 @@ void	ft_minus_cd(t_ms *ms)
 	{
 		temp = ft_strdup(ms->oldpwd);
 		getcwd(ms->oldpwd, 1024);
+		temp1 = getenv("OLDPWD");
+		ft_strlcpy(temp1, ms->oldpwd, ft_strlen(ms->oldpwd));
 		ft_printf("%s\n", temp);
 		chdir(temp);
 		free(temp);
