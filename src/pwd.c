@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 11:38:20 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/15 20:55:53 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/09/12 19:50:30 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/09/27 18:45:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#include "../includes/minishell.h"
+void	ft_pwd(void)
+{
+	char	*s;
 
-# define SPECIAL_CH "&\\();"
+	s = (char *) malloc(1024 * sizeof(char));
+	getcwd(s, 1024);
+	ft_printf("%s\n", s);
+	free(s);
+	s = NULL;
+	exit (3);
+}
 
-#endif

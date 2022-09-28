@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
+#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/08/19 21:22:50 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/09/27 23:53:56 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,27 @@ NAME=minishell
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=minishell.c error.c
+SRC_FILES=minishell.c\
+		  error.c\
+		  ft_split_ms.c\
+		  command.c\
+		  command_2.c\
+		  check_input.c\
+		  check_input_2.c\
+		  select_command.c\
+		  redirection.c\
+		  echo.c\
+		  cd.c\
+		  pwd.c\
+		  env.c\
+		  export.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 # compilation **************************************************************** #
 CC=cc
-FLAG=-Wall -Werror -Wextra #-fsanitize=address -g3
+FLAG=-Wall -Werror -Wextra
 GNL_FLAGS= -D BUFFER_SIZE=6000
 # clean ********************************************************************** #
 RM=-rm -f
@@ -54,8 +67,8 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "\033[0m"
 		@echo "\033[0;33m	Welcome to Minishell by Lucasmar and ryoshio-'s 42sp \033[0m"
 		@echo "\033[0;39m"
-		@echo "	run ./Minishell in the terminal + comand of your choice !"
-		@echo "	ex: ./Minishell ls -la"
+		@echo "	run ./Minishell in the terminal !"
+		@echo "	ex: ls -la "
 		@echo "\033[0m"
 
 #running

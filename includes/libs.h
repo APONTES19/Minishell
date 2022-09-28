@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 11:55:28 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/20 16:43:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:33:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,7 @@
 #include <stdio.h> // fget
 #include <string.h>//readline
 #include <unistd.h>// read
+#include <sys/types.h>//wait
+#include <sys/wait.h>//wait
+
 #endif
