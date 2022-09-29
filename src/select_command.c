@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/27 23:58:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:55:18 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp)
 	}
 	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
 	{
-		ft_env(ms, cmd, envp);
+		ft_env(ms, cmd, ms->cpy_envp);
 		return (0);
 	}
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))

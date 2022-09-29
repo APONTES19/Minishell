@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/27 20:27:15 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:33:59 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,41 @@ void	ft_env(t_ms *ms, t_cmd *cmd, char **envp)
 		}
 	}
 	return ;
+}
+
+
+void	ft_copy_envp(t_ms *ms, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	ms->cpy_envp = (char **) malloc(i * sizeof(char **));
+	i = 0;
+	while (envp[i])
+	{
+		ms->cpy_envp[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	ms->cpy_envp[i] = NULL;
+}
+
+int	seach_variable_env(t_ms *ms, char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (ms->cpy_envp[i])
+	{
+		j = ft_strlen(ms->cpy_envp[i]) - ft_strlen(ft_strchr(ms->cpy_envp[i], '='));
+		if(j == ft_strlen(s))
+		{
+			if (ft_strncmp(ms->cpy_envp[i], s, j)== 0)
+				return (i);
+		}
+		i ++;
+	}
+	return (-1);
 }

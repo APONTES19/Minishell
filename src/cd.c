@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/27 18:39:44 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:09:49 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_cd(t_ms *ms, t_cmd *cmd)
 {
-	if ( ms->n_pipe == 1)
+	if (ms->n_pipe == 1)
 	{
 		if (g_ms.cd == 0)
 			ms->oldpwd = (char *) malloc(1024 * sizeof(char));
 		if (cmd[ms->p].arg_cmd[2] != NULL && cmd[ms->p].arg_cmd[1] != NULL)
 			ft_error(16, ms);
-		else if (cmd[ms->p].arg_cmd[1] == NULL ||
-			ft_strncmp(cmd[ms->p].arg_cmd[1], "~", 1) == 0)
+		else if (cmd[ms->p].arg_cmd[1] == NULL
+			|| ft_strncmp(cmd[ms->p].arg_cmd[1], "~", 1) == 0)
 			ft_change_cd(ms, "HOME");
 		else if (ft_strncmp(cmd[ms->p].arg_cmd[1], "-", 1) == 0)
 			ft_minus_cd(ms);

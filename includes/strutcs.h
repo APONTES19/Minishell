@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strutcs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 22:18:41 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:30:03 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct minishell
 	char	*temp;
 	int		pid;
 	int		pid1;
-	char	**envp;
+	char	**cpy_envp;
 	int		quote;
 	int		std_out;
 	int		std_in;
@@ -51,5 +51,5 @@ typedef struct comand
 	char	**base_list_cmd;
 }	t_cmd;
 
-extern	t_ms g_ms;
+extern t_ms	g_ms;
 #endif

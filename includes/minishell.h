@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/27 23:54:34 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:40:26 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_aux_dup_path(t_ms *ms, int start, int end);
 void	ft_cd(t_ms *ms, t_cmd *cmd);
 void	ft_cd_error(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
-//void	ft_copy_envp(char **envp);
+void	ft_copy_envp(t_ms *ms, char **envp);
 void	ft_minus_cd(t_ms *ms);
 void	ft_change_cd(t_ms *ms, char *change);
 void	ft_pwd(void);
