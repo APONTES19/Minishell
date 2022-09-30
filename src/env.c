@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/30 16:47:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:07:55 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ void	ft_copy_envp(char **envp)
 		i++;
 	}
 	g_ms.envp[i] = NULL;
-
-	// i = 0;
-	// while(g_ms.envp[i] != NULL)
-	// {
-	// 	free(g_ms.envp[i]);
-	// 	g_ms.envp[i] = NULL;
-	// 	i++;
-	// }
 }
 
 char	*ft_getenv(char *s)

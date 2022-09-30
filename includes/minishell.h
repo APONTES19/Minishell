@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/30 14:55:16 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:07:08 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	ft_pwd(void);
 void	ft_get_head_line(t_ms *ms);
 void	ft_env(t_ms *ms, t_cmd *cmd);
 int		ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp);
-void	ft_export(t_ms *ms, t_cmd *cmd, char **envp);
+void	ft_export(t_ms *ms, t_cmd *cmd);
 int		ft_export_special(t_ms *ms, t_cmd *cmd);
-void	ft_print_export(t_ms *ms, char **envp);
+void	ft_print_export(void);
 void	ft_copy_envp(char **envp);
 char	*ft_getenv(char *s);
 void	ft_change_envp(char *variable, char *value);

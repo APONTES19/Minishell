@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/29 16:38:45 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:52:46 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ typedef struct comand
 	char	**arg_cmd;
 	char	**base_list_cmd;
 }	t_cmd;
+
+
+
+typedef struct sort
+{
+	int	*sort;
+	int	*catch;
+	int	i;
+	int	j;
+	int k;
+}	t_sort;
+
+
 
 extern t_ms	g_ms;
 #endif
