@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/28 15:40:26 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:26:08 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,17 @@ void	ft_aux_dup_path(t_ms *ms, int start, int end);
 void	ft_cd(t_ms *ms, t_cmd *cmd);
 void	ft_cd_error(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
-void	ft_copy_envp(t_ms *ms, char **envp);
 void	ft_minus_cd(t_ms *ms);
 void	ft_change_cd(t_ms *ms, char *change);
 void	ft_pwd(void);
 void	ft_get_head_line(t_ms *ms);
-void	ft_env(t_ms *ms, t_cmd *cmd, char **envp);
+void	ft_env(t_ms *ms, t_cmd *cmd);
 int		ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp);
 void	ft_export(t_ms *ms, t_cmd *cmd, char **envp);
 int		ft_export_special(t_ms *ms, t_cmd *cmd);
 void	ft_print_export(t_ms *ms, char **envp);
+void	ft_copy_envp(char **envp);
+char	*ft_getenv(char *s);
+void	ft_change_envp(t_ms *ms, char *variable, char *value);
+void	ft_add_envp (char *variable);
 #endif

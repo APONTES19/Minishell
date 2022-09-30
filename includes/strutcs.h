@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/28 15:30:03 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:38:45 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct minishell
 	char	*temp;
 	int		pid;
 	int		pid1;
-	char	**cpy_envp;
 	int		quote;
 	int		std_out;
 	int		std_in;
@@ -43,6 +42,7 @@ typedef struct minishell
 	int		cd;
 	char	*oldpwd;
 	char	*head;
+	char	**envp;
 }	t_ms;
 
 typedef struct comand
