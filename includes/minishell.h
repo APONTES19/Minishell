@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:08 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:55:16 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int		ft_export_special(t_ms *ms, t_cmd *cmd);
 void	ft_print_export(t_ms *ms, char **envp);
 void	ft_copy_envp(char **envp);
 char	*ft_getenv(char *s);
-void	ft_change_envp(t_ms *ms, char *variable, char *value);
+void	ft_change_envp(char *variable, char *value);
 void	ft_add_envp (char *variable);
 #endif

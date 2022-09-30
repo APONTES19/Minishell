@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:02 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:47:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ void	ft_env(t_ms *ms, t_cmd *cmd)
 	else
 	{
 		ms->i = 0;
-		while(	g_ms.envp[ms->i])
+		while (g_ms.envp[ms->i])
 		{
-			printf("%s\n", 	g_ms.envp[ms->i]);
+			ft_printf ("%s\n", g_ms.envp[ms->i]);
 			ms->i++;
-
 		}
 	}
 	return ;
 }
-
 
 void	ft_copy_envp(char **envp)
 {
@@ -45,50 +43,35 @@ void	ft_copy_envp(char **envp)
 		i++;
 	}
 	g_ms.envp[i] = NULL;
+
+	// i = 0;
+	// while(g_ms.envp[i] != NULL)
+	// {
+	// 	free(g_ms.envp[i]);
+	// 	g_ms.envp[i] = NULL;
+	// 	i++;
+	// }
 }
 
-int	seach_variable_env(char *s)
+char	*ft_getenv(char *s)
 {
 	int	i;
 	size_t	j;
+	int	k;
 
 	i = 0;
 	while (g_ms.envp[i])
 	{
 		j = ft_strlen(g_ms.envp[i]) - ft_strlen(ft_strchr(g_ms.envp[i], '='));
-		if(j == ft_strlen(s))
+		if (j == ft_strlen(s))
 		{
-			if (ft_strncmp(g_ms.envp[i], s, j)== 0)
-				return (i);
-		}
-		i ++;
-	}
-	return (-1);
-}
-
-
-
-
-char	*ft_getenv(char *s)
-{
-	int	i;
-	size_t j;
-	int	k;
-
-	i = 0;
-	while(g_ms.envp[i])
-	{
-
-		j = ft_strlen(g_ms.envp[i]) - ft_strlen(ft_strchr(g_ms.envp[i], '='));
-		if(j == ft_strlen(s))
-		{
-			if (ft_strncmp(g_ms.envp[i], s, j)== 0)
+			if (ft_strncmp(g_ms.envp[i], s, j) == 0)
 			{
 				k = 0;
-				while(g_ms.envp[i][k])
+				while (g_ms.envp[i][k])
 				{
 					if (g_ms.envp[i][k] == '=')
-						return(&g_ms.envp[i][k+1]);
+						return (&g_ms.envp[i][k + 1]);
 					k++;
 				}
 			}
@@ -98,39 +81,26 @@ char	*ft_getenv(char *s)
 	return (NULL);
 }
 
-
-
-void ft_change_envp(t_ms *ms, char *variable, char *value)
+void	ft_change_envp(char *variable, char *value)
 {
 	int	i;
 	size_t	j;
-	char *tmp;
-	char *temp_2;
-	ms->i =0;
+	char	*tmp;
+	char	*temp_2;
 
 	i = 0;
-	while(g_ms.envp[i])
+	while (g_ms.envp[i++])
 	{
 		j = ft_strlen(g_ms.envp[i]) - ft_strlen(ft_strchr(g_ms.envp[i], '='));
-		if(j == ft_strlen(variable))
+		if (j == ft_strlen(variable))
 		{
-			if (ft_strncmp(g_ms.envp[i], variable, j)== 0)
-				break;
+			if (ft_strncmp(g_ms.envp[i], variable, j) == 0)
+				break ;
 		}
-		i ++;
 	}
 	tmp = ft_strjoin(variable, "=");
-	if(value)
-		temp_2 = ft_strjoin(tmp, value);
-	else
-		temp_2 = ft_strjoin(tmp, ft_strdup(" "));
-	if(g_ms.envp[i] == NULL)
-		ft_add_envp (temp_2);
-	else
-	{
-		free(g_ms.envp[i]);
-		g_ms.envp[i] = ft_strjoin(temp_2, value);
-	}
+	temp_2 = ft_strjoin(tmp, value);
+	g_ms.envp[i] = ft_strjoin(temp_2, value);
 	free(tmp);
 	free(temp_2);
 }
@@ -155,12 +125,13 @@ void	ft_add_envp (char *variable)
 	temp_envp[i+1] = NULL;
 	j = i+1;
 	i = 0;
-	while(g_ms.envp[i])
-	{
-		free(g_ms.envp[i]);
-		g_ms.envp[i] = NULL;
-		i++;
-	}
+	printf("passei\n");
+	//while(g_ms.envp[i] != NULL)
+	//{
+		free(g_ms.envp);
+		g_ms.envp = NULL;
+	//	i++;
+	//}
 	g_ms.envp = (char **) malloc(j * sizeof(char **));
 	i = 0;
 	while (g_ms.envp[i])
@@ -168,12 +139,10 @@ void	ft_add_envp (char *variable)
 		g_ms.envp[i] = ft_strdup(temp_envp[i]);
 		i++;
 	}
-	while(g_ms.envp[i])
+	while(temp_envp[i])
 	{
 		free(temp_envp[i]);
 		temp_envp[i] = NULL;
 		i++;
 	}
 }
-
-
