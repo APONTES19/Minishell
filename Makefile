@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/09/27 23:53:56 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/04 17:35:40 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_FILES=minishell.c\
 		  cd.c\
 		  pwd.c\
 		  env.c\
+		  env_2.c\
 		  export.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))

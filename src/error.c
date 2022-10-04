@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/09/29 17:15:38 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:32:53 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,18 @@ void	ft_cd_error(t_ms *ms, t_cmd *cmd)
 		ft_putstr_fd(": Not a directory\n", 2);
 	else
 		ft_putstr_fd(": No such file or directory\n", 2);
+}
+
+
+void	ft_free_two_point(char **str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		free(str[i]);
+		str[i] = NULL;
+		i++;
+	}
 }

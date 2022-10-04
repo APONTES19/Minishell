@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/30 14:12:46 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:02:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_select(t_ms *ms, t_cmd *cmd, char **envp)
 	{
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
-		if (ft_select_arg_2(ms, cmd, envp) == 1)
+		if (ft_select_arg_2(ms, cmd) == 1)
 			ft_command(ms, cmd, envp);
 		ms->p++;
 	}
@@ -84,7 +84,7 @@ void	ft_select_arg(t_ms *ms, t_cmd *cmd, char **envp)
 	}
 }
 
-int	ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp)
+int	ft_select_arg_2(t_ms *ms, t_cmd *cmd)
 {
 	if (ms->n_pipe > 1)
 	{
@@ -110,7 +110,7 @@ int	ft_select_arg_2(t_ms *ms, t_cmd *cmd, char **envp)
 	}
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
 	{
-		ft_export(ms, cmd, envp);
+		ft_export(ms, cmd);
 		return (0);
 	}
 	return (1);

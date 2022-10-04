@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/29 16:13:10 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:22:52 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int main(int argc, char **argv, char **envp)
 	{
 		if (envp == NULL)
 			ft_error(06, &ms);
+		ft_copy_envp(envp);
 		ft_memset(&ms, '0', sizeof(ms));
 		ft_memset(&cmd, '0', sizeof(cmd));
 		g_ms.cd = 0;
-		ft_copy_envp(envp);
 		while(1)
 		{
 			ft_get_line(&ms);

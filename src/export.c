@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/30 19:10:19 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:48:01 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void initializing_sort(t_sort *sort);
 
 void	ft_export(t_ms *ms, t_cmd *cmd)
 {
+	ft_teste_add();
 	if (cmd[ms->p].arg_cmd[1] == NULL || ft_strncmp(cmd[ms->p].arg_cmd[1], "#", 1) == 0)
 		ft_print_export( );
 	else if (ft_strchr(cmd[ms->p].arg_cmd[1], '=') != 0)
@@ -119,3 +120,10 @@ void initializing_sort(t_sort *sort)
 	}
 }
 
+void	ft_teste_add()
+{
+	printf ("\n\n\n\n\n\n______________inicio\n\n");
+	ft_add_envp("LUCAS->>>>=MARTINS_APONTES!!!!!!!!");
+	printf ("\n\n\n\n\n\n______________fim\n\n");
+
+}
