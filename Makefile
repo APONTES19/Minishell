@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/04 21:17:16 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/05 14:34:01 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ SRC_FILES=minishell.c\
 		  env.c\
 		  env_2.c\
 		  export.c\
-		  export_2.c
+		  export_2.c\
+		  libft_evolution.c\
+		  unset.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)

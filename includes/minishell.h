@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 09:51:50 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:33:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,13 @@ void	ft_free_two_point(char **str);
 void	ft_set_export(t_cmd *cmd, t_ms *ms);
 int		*ft_sort_envp(void);
 void	ft_initializing_sort(t_sort *sort);
-void	ft_initializing_sort(t_sort *sort);
 void	ft_print_var(t_ms *ms, t_cmd *cmd);
 void	ft_free_point(char *str);
+void	ft_unset(t_ms *ms, t_cmd *cmd);
+void	ft_unset2(char *src);
+int		ft_index_envp(char *src);
+char	**ft_strstrdup(char **src);
+size_t	ft_strstrlen(char **src);
+void	ft_strstrfree(char **src);
+
 #endif
