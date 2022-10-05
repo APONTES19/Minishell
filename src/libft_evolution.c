@@ -51,6 +51,8 @@ void ft_strstrfree(char **src)
     while(src[i])
     {
         free(src[i]);
+        src[i] = NULL;
         i ++;
     }
+    free(src);
 }
