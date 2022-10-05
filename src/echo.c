@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 09:46:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:58:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 
 	flag = 0;
 	ms->k = 1;
-	if(cmd[ms->p].arg_cmd[1] == NULL)
+	if (cmd[ms->p].arg_cmd[1] == NULL)
 		ft_printf("\n");
-	if (cmd[ms->p].arg_cmd[1][0] == '$')
+	else if (cmd[ms->p].arg_cmd[1][0] == '$')
+	{
 		ft_print_var(ms, cmd);
+	}
 	else
 	{
 		while (cmd[ms->p].arg_cmd[ms->k])
@@ -32,7 +34,7 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 			{
 				ms->k++;
 				if (cmd[ms->p].arg_cmd[ms->k] == NULL)
-					exit(3);
+					return;
 				flag++;
 			}
 			if(cmd[ms->p].arg_cmd[ms->k + 1])
@@ -44,7 +46,7 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 		if (flag == 0)
 			ft_printf("\n");
 	}
-	exit(3);
+	return ;
 }
 
 void	ft_quote_echo(t_ms *ms, t_cmd *cmd)

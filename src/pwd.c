@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/27 18:45:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:31:08 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_pwd(void)
 	s = (char *) malloc(1024 * sizeof(char));
 	getcwd(s, 1024);
 	ft_printf("%s\n", s);
-	free(s);
-	s = NULL;
-	exit (3);
+	ft_free_point(s);
+	return ;
 }
 

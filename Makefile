@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/05 14:34:01 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/05 16:23:15 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_FILES=minishell.c\
 		  check_input_2.c\
 		  select_command.c\
 		  redirection.c\
+		  redirection_2.c\
 		  echo.c\
 		  cd.c\
 		  pwd.c\
