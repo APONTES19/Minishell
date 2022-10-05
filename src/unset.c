@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:33 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 17:18:41 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:21:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    ft_unset2(char *src)
     char    **temp;
     size_t   index;
     size_t    i;
+    size_t     j;
 
     if(!ft_index_envp(src))
         return ;
@@ -38,6 +39,7 @@ void    ft_unset2(char *src)
     ft_strstrfree(g_ms.envp);
     g_ms.envp = (char **) malloc((ft_strstrlen(temp)) * sizeof(char **));
     i = 0;
+    j = 0;
     while(temp[i])
     {
         if(i != index)
@@ -46,9 +48,8 @@ void    ft_unset2(char *src)
             j++;
         }
         i ++;
-
     }
-    g_ms.envp[i] = NULL;
+    g_ms.envp[j] = NULL;
     ft_strstrfree(temp);
 }
 
