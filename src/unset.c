@@ -30,6 +30,7 @@ void	ft_unset2(char *src)
     char    **temp;
     size_t   index;
     size_t    i;
+    size_t     j;
 
     if(!ft_index_envp(src))
         return ;
@@ -38,13 +39,19 @@ void	ft_unset2(char *src)
     ft_strstrfree(g_ms.envp);
     g_ms.envp = (char **) malloc((ft_strstrlen(temp)) * sizeof(char **));
     i = 0;
+    j = 0;
     while(temp[i])
     {
         if(i != index)
-            g_ms.envp[i] =  ft_strdup(temp[i]);
+        {
+            g_ms.envp[j] =  ft_strdup(temp[i]);
+            j++;
+        }
+        
         i ++;
+    
     }
-    g_ms.envp[i] = NULL;
+    g_ms.envp[j] = NULL;
     ft_strstrfree(temp);
 }
 
