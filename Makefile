@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/04 17:35:40 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/04 21:17:16 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC_FILES=minishell.c\
 		  pwd.c\
 		  env.c\
 		  env_2.c\
-		  export.c
+		  export.c\
+		  export_2.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
@@ -66,7 +67,7 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "\033[1;32m"
 		@echo "	Minishell created ✓"
 		@echo "\033[0m"
-		@echo "\033[0;33m	Welcome to Minishell by Lucasmar and ryoshio-'s 42sp \033[0m"
+		@echo "\033[0;33m	Welcome to Minishell by lucasmar and ryoshio-'s 42sp \033[0m"
 		@echo "\033[0;39m"
 		@echo "	run ./Minishell in the terminal !"
 		@echo "	ex: ls -la "

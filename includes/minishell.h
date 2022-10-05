@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:48:14 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 22:16:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void	ft_change_envp(char *variable, char *value);
 void	ft_add_envp (char *variable);
 char	**ft_copy_temp_envp(char **base, char *variable);
 void	ft_free_two_point(char **str);
-void	ft_teste_add();
-
+void	ft_set_export(t_cmd *cmd, t_ms *ms);
+int		*ft_sort_envp(void);
+void	ft_initializing_sort(t_sort *sort);
+void	ft_initializing_sort(t_sort *sort);
+void	ft_print_var(t_ms *ms, t_cmd *cmd);
 #endif

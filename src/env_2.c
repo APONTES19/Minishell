@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:34:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:49:33 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:56:02 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_change_envp(char *variable, char *value)
 {
 	int	i;
 	size_t	j;
-	char	*tmp;
-	char	*temp_2;
 
 	i = 0;
 	while (g_ms.envp[i++])
@@ -29,13 +27,9 @@ void	ft_change_envp(char *variable, char *value)
 				break ;
 		}
 	}
-	tmp = ft_strjoin(variable, "=");
-	temp_2 = ft_strjoin(tmp, value);
 	free(g_ms.envp[i]);
 	g_ms.envp[i] = NULL;
-	g_ms.envp[i] = ft_strdup(temp_2);
-	free(tmp);
-	free(temp_2);
+	g_ms.envp[i] = ft_strdup(value);
 }
 
 void	ft_add_envp (char *variable)

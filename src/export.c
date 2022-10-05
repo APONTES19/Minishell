@@ -6,45 +6,25 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:48:01 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:16:46 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	*sort_emvp(void);
-void initializing_sort(t_sort *sort);
-
-
-//verificar se o segundo argumento é == null ou começa com # se for fazer declare -x
-
-//vericar se tem o  =
-
-//verificar se começa com alfa e ou se tem caracter não valido no nome
-//export: `n#ome=l': not a valid identifier
-//export: `&': not a valid identifier
-
-//pegar palavra depois até o igual ex nome=lucas ficaria nome
-//chamar a função getenv assim verifica se já existe esse nome
-//se existir, ele deve retornar o ponteiro com o conteudo.
-//então simplesmente subistituimos o nosso cmd depois do =;
-// se não existir percorremos o enve e usamos a dup para adicionar a linha completa com o =
-
 void	ft_export(t_ms *ms, t_cmd *cmd)
 {
-	ft_teste_add();
-	if (cmd[ms->p].arg_cmd[1] == NULL || ft_strncmp(cmd[ms->p].arg_cmd[1], "#", 1) == 0)
+	if (cmd[ms->p].arg_cmd[1] == NULL ||
+		ft_strncmp(cmd[ms->p].arg_cmd[1], "#", 1) == 0)
 		ft_print_export( );
 	else if (ft_strchr(cmd[ms->p].arg_cmd[1], '=') != 0)
 	{
-		if (ft_isalpha(cmd[ms->p].arg_cmd[1][1]) == 0 ||
+		if (ft_isalpha(cmd[ms->p].arg_cmd[1][0]) == 0 ||
 			ft_export_special(ms, cmd) == 1)
-			ft_printf("error\n");
-			//retorna mensagem de erro export: `&': not a valid identifier
+			ft_error_2(20, cmd, ms);
 		else
-			printf("fazer o processo\n");
+			ft_set_export(cmd, ms);
 	}
-	// não tem o igual não faz nada;
 	return ;
 }
 
@@ -62,68 +42,19 @@ int	ft_export_special(t_ms *ms, t_cmd *cmd)
 	return (0);
 }
 
-
-
-
-void	ft_print_export(void)
+void	ft_set_export(t_cmd *cmd, t_ms *ms)
 {
-	int	*sort;
-	int i;
+	char	*s;
 
-	sort= sort_emvp();
-	i = 0;
-	while(g_ms.envp[i])
+	s = ft_substr(cmd[ms->p].arg_cmd[1], 0,
+		ft_strlen(cmd[ms->p].arg_cmd[1]) -
+			ft_strlen(ft_strchr(cmd[ms->p].arg_cmd[1], '=')));
+	if (ft_getenv(s) == NULL)
 	{
-		ft_printf("declare -x ");
-		ft_printf("%s\n", g_ms.envp[sort[i]]);
-		i ++;
+		ft_add_envp(cmd[ms->p].arg_cmd[1]);
 	}
-	free(sort);
-
-}
-
-int	*sort_emvp(void)
-{
-	t_sort sort;
-
-	initializing_sort(&sort);
-	sort.i = 0;
-	while (g_ms.envp[sort.i])
+	else
 	{
-		sort.k=0;
-		while(sort.catch[sort.k]==0 && g_ms.envp[sort.k])
-			sort.k++;
-		sort.j = -1;
-		while(g_ms.envp[++sort.j])
-			if(ft_strncmp(g_ms.envp[sort.k], g_ms.envp[sort.j], ft_strlen(g_ms.envp[sort.k])) > 0 && sort.catch[sort.j] == 1)
-				sort.k = sort.j;
-		sort.sort[sort.i] = sort.k;
-		sort.catch[sort.k] = 0;
-		sort.i ++;
+		ft_change_envp(s, cmd[ms->p].arg_cmd[1]);
 	}
-	free(sort.catch);
-	return(sort.sort);
-}
-
-void initializing_sort(t_sort *sort)
-{
-	sort->i = 0;
-	while(g_ms.envp[sort->i])
-		sort->i++;
-	sort->sort = malloc(sizeof(int) * sort->i);
-	sort->catch = malloc(sizeof(int) * sort->i);
-	sort->i = 0;
-	while(g_ms.envp[sort->i])
-	{
-		sort->catch[sort->i] = 1;
-		sort->i ++;
-	}
-}
-
-void	ft_teste_add()
-{
-	printf ("\n\n\n\n\n\n______________inicio\n\n");
-	ft_add_envp("LUCAS->>>>=MARTINS_APONTES!!!!!!!!");
-	printf ("\n\n\n\n\n\n______________fim\n\n");
-
 }

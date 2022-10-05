@@ -6,13 +6,11 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/04 17:32:53 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:18:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/minishell.h"
-
 
 void	ft_error(int number, t_ms *ms)
 {
@@ -69,6 +67,9 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 		printf ("env: ‘%s’: we don't configure for arguments\n",
 			cmd[ms->p].arg_cmd[1]);
 	}
+	if (number == 20)
+		ft_printf("export: '%s': não é um identificador válido\n",
+			cmd[ms->p].arg_cmd[1]);
 }
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd)

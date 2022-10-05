@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:42:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:56:33 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,28 @@ int	ft_valid_dir(char *path)
 void	ft_change_cd(t_ms *ms, char *change)
 {
 	char	*temp;
+	char	*temp2;
 
 	getcwd(ms->oldpwd, 1024);
 	temp = ft_getenv("OLDPWD");
 	if (temp == NULL)
 	{
-		temp = ft_strjoin (ft_strdup("PINNNNK="), ms->oldpwd);
+		temp = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
 		ft_add_envp(temp);
 		free(temp);
-		ft_change_cd(ms, change);
+		chdir(change);
 	}
 	else
 	{
-		ft_change_envp("OLDPWD", ms->oldpwd);
+		temp2 = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
+		ft_change_envp("OLDPWD", temp2);
 		if (ft_strncmp(change, "HOME", 4) == 0)
 			chdir(getenv(change));
 		else
 			chdir(change);
-		g_ms.cd++;
+		free(temp2);
 	}
-
+	g_ms.cd++;
 }
 
 void	ft_minus_cd(t_ms *ms)
