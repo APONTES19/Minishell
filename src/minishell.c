@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:22:52 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:16:13 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,28 @@ void	ft_get_head_line(t_ms *ms)
 {
 	char *temp;
 	char *temp1;
+	char *temp2;
+	char *temp3;
 	char *path;
 
+		temp = ft_strjoin("\x1b[38;2;255;255;0m", getenv("USER"));
+		temp1 = ft_strjoin(temp, "@");
+		temp = ft_strchr(getenv("SESSION_MANAGER"), '/') + 1;
+		temp2 = ft_substr(temp, 0, ((ft_strchr(temp, ':')) - temp));
+		temp = ft_strjoin (temp1, temp2);
+		temp3 = ft_strjoin(temp, "\x1b[0m:");
+		ft_free_point(temp);
+		ft_free_point(temp1);
+		ft_free_point(temp2);
 	temp = (char *) malloc (1024 * sizeof(char));
 	getcwd(temp, 1024);
 	temp1 = ft_strchr(ft_strchr(temp + 1 , '/') + 1, '/');
 	if(!temp1)
-		path = ft_strdup("$ ");
+		temp = ft_strdup("~");
 	else
-		path= ft_strjoin(temp1, "$ ");
-
-
-	temp =ft_strjoin(getenv("USER"),"@" );
-	temp1 =ft_strjoin(temp, getenv("LOGNAME"));
-
-	temp = ft_strjoin(temp1,":~" );
-	ms->head = ft_strjoin(temp, path);
-	free(temp);
-	free(temp1);
-// printf ("\x1b[38;2;32;209;139m a menssagem \x1b[0m\n")
+		temp = ft_strjoin("~", temp1);
+	temp1 = ft_strjoin("\x1b[38;2;255;69;0m", temp);
+	temp = ft_strjoin(temp1, "\x1b[0m\n% ");
+	path = ft_strjoin(temp3, temp);
+	ms->head = path;
 }

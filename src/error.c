@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/04 21:18:44 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:28:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 	if (number == 18)
 	{
 		dup2(1, 2);
-		printf ("env: ‘%s’: we don't configure for arguments\n",
+		printf ("env: '%s': we don't configure for arguments\n",
 			cmd[ms->p].arg_cmd[1]);
 	}
 	if (number == 20)
@@ -141,4 +141,10 @@ void	ft_free_two_point(char **str)
 		str[i] = NULL;
 		i++;
 	}
+}
+
+void	ft_free_point(char *str)
+{
+	free(str);
+	str = NULL;
 }

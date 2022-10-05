@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 20:56:33 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:23:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,33 @@ void	ft_change_cd(t_ms *ms, char *change)
 	{
 		temp = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
 		ft_add_envp(temp);
-		free(temp);
-		chdir(change);
+		ft_free_point(temp);
 	}
+	temp2 = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
+	ft_change_envp("OLDPWD", temp2);
+	if (ft_strncmp(change, "HOME", 4) == 0)
+		chdir(getenv(change));
 	else
-	{
-		temp2 = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
-		ft_change_envp("OLDPWD", temp2);
-		if (ft_strncmp(change, "HOME", 4) == 0)
-			chdir(getenv(change));
-		else
-			chdir(change);
-		free(temp2);
-	}
+		chdir(change);
+	ft_free_point(temp2);
 	g_ms.cd++;
 }
 
 void	ft_minus_cd(t_ms *ms)
 {
 	char	*temp;
-	//char	*temp1;
+	char	*temp2;
 
 	if (g_ms.cd == 0)
 		ft_error(17, ms);
 	{
 		temp = ft_strdup(ms->oldpwd);
 		getcwd(ms->oldpwd, 1024);
-		//temp1 = ft_getenv("OLDPWD");
-		ft_change_envp("OLDPWD", ms->oldpwd);
+		temp2 = ft_strjoin("OLDPWD=",ms->oldpwd);
+		ft_change_envp("OLDPWD", temp2);
 		ft_printf("%s\n", temp);
 		chdir(temp);
-		free(temp);
-		temp = NULL;
+		ft_free_point(temp);
+		ft_free_point(temp2);
 	}
 }

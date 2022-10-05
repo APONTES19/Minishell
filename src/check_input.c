@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/26 01:01:15 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:26:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ int	next_pipe(t_ms *ms)
 	}
 	else if (ms->line[ms->i + 1] == '|')
 	{
-		//ms->pipe_d = 1;
-		//ms->line[ms->i + 1] = ' ';
 		ft_error(04, ms);
 		return (0);
 	}
