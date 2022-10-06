@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/19 19:33:29 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/06 20:46:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,29 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 		ft_error(8, ms);
 		return(0);
 	}
-	ft_select(ms, cmd, envp);
+
+	// printf("\n_________Aqui começa o split do pipe __________\n");
+	// ms->i = 0;
+	// while(ms->i != ms->n_pipe)
+	// {
+	// 	printf("Struc cmd[%d]\n",ms->i);
+	// 	ms->j = 0;
+	// 	while(cmd[ms->i].arg_cmd[ms->j])
+	// 	{
+	// 		if (cmd[ms->i].arg_cmd[ms->j][0] == '>')
+	// 		{
+	// 			if(cmd[ms->i].arg_cmd[ms->j][1] =='/0')
+	// 				printf("lucas\n");
+	// 		}
+	// 		if (ft_strncmp(cmd[ms->i].arg_cmd[ms->j], "<", 1) == 0)
+	// 			printf("porra\n");
+	// 		printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
+	// 		ms->j++;
+	// 	}
+	// 	ms->i++;
+	// }
+	// printf("_________Aqui termina o split do pipe __________\n\n");
+	ft_main_while(ms, cmd, envp);
 	return(1);
 }
 

@@ -6,15 +6,14 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 15:16:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:50:16 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 t_ms	g_ms;
-void	ft_get_head_line(t_ms *ms);
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_ms	ms;
 	t_cmd	cmd;
@@ -28,12 +27,16 @@ int main(int argc, char **argv, char **envp)
 		ft_memset(&ms, '0', sizeof(ms));
 		ft_memset(&cmd, '0', sizeof(cmd));
 		g_ms.cd = 0;
+		g_ms.stdin = dup(STDIN);
+		g_ms.stdout = dup(STDOUT);
 		while(1)
 		{
 			ft_get_line(&ms);
 			add_history(ms.line);
 			if (ft_check_input(&ms) != 0)
 				ft_command_split(&ms, &cmd, envp);
+			dup2(g_ms.stdin, STDIN);
+			dup2(g_ms.stdout, STDOUT);
 		}
 	}
 	else

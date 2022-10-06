@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 15:33:13 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:04:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct minishell
 {
 	int		*fd;
-	int		pipe;
+	int		pipe[2];
 	int		p;
 	int		n_pipe;
 	int		pipe_d;
@@ -37,13 +37,15 @@ typedef struct minishell
 	int		pid;
 	int		pid1;
 	int		quote;
-	int		std_out;
-	int		std_in;
+	int		stdout;
+	int		stdin;
 	int		exit_s;
 	int		cd;
 	char	*oldpwd;
 	char	*head;
 	char	**envp;
+	int		fileout;
+	int		filein;
 }	t_ms;
 
 typedef struct comand

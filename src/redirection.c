@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 14:25:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:45:08 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ int	ft_redirection(t_ms *ms)
 	return(ft_set_out_in(ms));
 }
 
+//o inicio é ele mais um >    txt.txt  pwd
+//    txt.txt  pwd começo analisar o espaço até que seja diferente de espaço
+// txt.txt  pwd achei atualizo o inicio para a copia.
+// percorro até achar um espaço e ou \0 ou | fazer isso com strncmp
+// se achar paro.
+// saio com o inicio - fim e mais quanto tenho que maloccar
+
+void	ft_set_red_file(t_ms *ms)
+{
+	int	start;
+	int	i;
+	int	j;
+
+	start = (ms->i + 1);
+	i = start;
+	j = 0;
+	while (ms->line[ms->i] != '\0')
+	{
+		while (ms->line[i] == ' ' && ms->line[i + 1] == ' ')
+			i++;
+		if (ms->line[i] == ' ' && j > 1)
+		i++;
+		j++;
+	}
+}
+
 int	ft_path_output(t_ms *ms)
 {
 	int	start;
@@ -40,6 +66,11 @@ int	ft_path_output(t_ms *ms)
 	j = 0;
 	while (ms->line[i] != '\0')
 	{
+		while(ms->line[i] == ' ' && ms->line[i+1] == ' ')
+		{
+			i++;
+			start++;
+		}
 		if ((ms->line[i] == ' ' && j > 1) || ms->line[i] == '|')
 			break;
 		j++;
@@ -59,6 +90,9 @@ int	ft_path_output(t_ms *ms)
 	}
 	return(0);
 }
+
+
+
 
 void	ft_dup_path(int end, int start, char *path, t_ms *ms)
 {
@@ -110,8 +144,8 @@ int	ft_set_out_in(t_ms *ms)
 	if(ms->path_infile != NULL)
 	{
 		printf("|%s|\n", ms->path_infile);
-		ms->fd_in = open(ms->path_infile, O_RDONLY, 644);
-		if (ms->fd_in == -1)
+		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
+		if (g_ms.filein == -1)
 		{
 			ft_error(14, ms);
 			return(1);
@@ -120,8 +154,8 @@ int	ft_set_out_in(t_ms *ms)
 	if(ms->path_outfile != NULL)
 	{
 		printf("|%s|\n", ms->path_outfile);
-		ms->fd_out = open(ms->path_outfile,O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (ms->fd_out == -1)
+		g_ms.fileout = open(ms->path_outfile,O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (g_ms.fileout == -1)
 		{
 			ft_error(15, ms);
 			return(1);
