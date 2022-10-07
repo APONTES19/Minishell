@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/06 11:50:16 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:05:13 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv, char **envp)
 void ft_get_line(t_ms * ms)
 {
 	ft_get_head_line(ms);
-	ms->line = readline(ms->head);
+	ms->line = readline("MINISHELL: ");
 	if (ms->line[0] == ' ')
 		ft_check_space(ms);
 	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
