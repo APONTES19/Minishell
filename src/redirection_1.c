@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:44:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:49:45 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,16 @@ int	ft_set_out(t_ms *ms, int type)
 
 int	ft_set_in(t_ms *ms)
 {
-	g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
-	if (g_ms.filein == -1)
+	if (type == 1)
 	{
-		ft_error(14, ms);
-		return(1);
+		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
+		if (g_ms.filein == -1)
+		{
+			ft_error(14, ms);
+			return(1);
+		}
 	}
+	else
+		// chamar função de herodoc
 	return(0);
 }
