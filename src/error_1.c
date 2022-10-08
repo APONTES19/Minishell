@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/05 10:28:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:42:26 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,21 +130,23 @@ void	ft_cd_error(t_ms *ms, t_cmd *cmd)
 }
 
 
-void	ft_free_two_point(char **str)
+void	ft_free_two_point(char **point)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while(point[i])
 	{
-		free(str[i]);
-		str[i] = NULL;
+		free(point[i]);
+		point[i] = NULL;
 		i++;
 	}
+	free(point);
+	point = NULL;
 }
 
-void	ft_free_point(char *str)
+void	ft_free_point(char *point)
 {
-	free(str);
-	str = NULL;
+	free(point);
+	point = NULL;
 }

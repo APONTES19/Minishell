@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:08:18 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 21:18:02 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:30:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	*ft_sort_envp(void)
 	return(sort.sort);
 }
 
-void ft_initializing_sort(t_sort *sort)
+void	ft_initializing_sort(t_sort *sort)
 {
 	sort->i = 0;
 	while(g_ms.envp[sort->i])

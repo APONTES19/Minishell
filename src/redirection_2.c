@@ -6,66 +6,111 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/06 11:44:41 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:33:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_select_fd(t_ms *ms)
+void	ft_red_temp(t_ms *ms, int start, int end, char **path)
 {
-	if (ms->n_pipe == 1)
-		ft_change_fd(ms->fd_in, ms->fd_out, ms);
-	else
+	ms->k = start;
+	ms->m = 0;
+	ms->t = '\'';
+	while (ms->k <= end)
 	{
-		if(ms->p == 0)
-			ft_change_fd(ms->fd_in, ms->fd[1], ms);
-		if(ms->p > 0 && ms->p < (ms->n_pipe - 1))
-			ft_change_fd(ms->fd[(2 * ms->p) - 2],
-				ms->fd[(2 * ms->p) + 1], ms);
-		if(ms->p == (ms->n_pipe - 1))
-			ft_change_fd(ms->fd[(2 * ms->p) - 2] , ms->fd_out, ms);
+		if (ms->line[ms->k] == '\'')
+			ft_red_temp_aux1(ms);
+		if (ms->line[ms->k] == '\"')
+		{
+			ms->t = '\"';
+			ft_red_temp_aux1(ms);
+		}
+		if (ft_strchr("| ><", ms->line[ms->k]) == NULL)
+			ms->m++;
+		ms->k++;
+	}
+	ft_red_temp_aux2(ms, start, end, path);
+}
+
+void	ft_red_temp_aux1(t_ms *ms)
+{
+	ms->k++;
+	ms->m++;
+	while(ms->line[ms->k] != ms->t)
+	{
+		ms->m++;
+		ms->k++;
 	}
 }
 
-void	ft_change_fd(int input, int output, t_ms *ms)
+void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 {
-	(void)input;
-	//if (dup2(input, 0) == -1)
-	//	ft_error(10, ms);
-	if (dup2(output, 1) == -1)
-		ft_error(10, ms);
+	ms->t = '\'';
+	*path = (char *) malloc(ms->m * sizeof(char*));
+	ms->k = start;
+	ms->m = 0;
+	while (ms->k <= end)
+	{
+		if (ms->line[ms->k] == '\'')
+			ft_red_temp_aux3(ms, path);
+		if (ms->line[ms->k] == '\"')
+		{
+			ms->t = '\"';
+			ft_red_temp_aux3(ms, path);
+		}
+		if (ft_strchr("| ><", ms->line[ms->k]) == NULL)
+		{
+			(*path)[ms->m] = ms->line[ms->k];
+			ms->m++;
+		}
+		ms->k++;
+	}
+	(*path)[ms->m] = '\0';
+	ft_red_copy_line(ms, start, end);
 }
 
-// void	ft_creat_pipe(t_ms *ms)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	ms->fd = malloc(2 * (ms->n_pipe - 1) * sizeof(ms->pipe));
-// 	while(i < (ms->n_pipe - 1))
-// 	{
-// 		ms->pipe = pipe(ms->fd + (2 * i));
-// 		if (ms->pipe == -1)
-// 			ft_error(9, ms);
-// 		i++;
-// 	}
-// }
-
-void	ft_close_fds(t_ms *ms)
+void	ft_red_temp_aux3(t_ms *ms, char **path)
 {
-		int	i;
-		if(ms->n_pipe == 1)
+	(*path)[ms->m] = ms->line[ms->k];
+	ms->m++;
+	ms->k++;
+	while(ms->line[ms->k] != ms->t)
+	{
+		(*path)[ms->m] = ms->line[ms->k];
+		ms->m++;
+		ms->k++;
+	}
+}
+
+void	ft_red_copy_line(t_ms *ms, int start, int end)
+{
+	ms->k = 0;
+	ms->m= 0;
+	while(ms->line[ms->k])
+	{
+		if (!(ms->k <= end && ms->k >= start))
+			ms->m++;
+		ms->k++;
+	}
+	ms->temp = (char *) malloc (ms->m * sizeof(char *));
+	ms->k = 0;
+	ms->m = 0;
+	while(ms->line[ms->k])
+	{
+		if (!(ms->k <= end && ms->k >= start))
 		{
-			close(ms->fd_out);
+			if(ms->m == 0 && ms->line[ms->k] == '|')
+				ms->k++;
+			ms->temp[ms->m] = ms->line[ms->k];
+			ms->m++;
+	
 		}
-		else
-		{
-			i = (((ms->n_pipe - 1) * 2) - 1 );
-			while (i != -1)
-			{
-				close(ms->fd[i]);
-				i--;
-			}
-		}
+		ms->k++;
+	}
+	ms->temp[ms->m] = '\0';
+	ft_free_point(ms->line);
+	ms->line = ft_strdup(ms->temp);
+	ft_free_point(ms->temp);
+	printf("%s\n", ms->line);
 }

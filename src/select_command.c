@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/06 18:40:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:22:05 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 	ms->p = 0;
 	while(ms->p < ms->n_pipe)
 	{
+		if(cmd[ms->p].arg_cmd == NULL)
+			ms->p++;
 		if (pipe(ms->pipe) == -1)
 			ft_error(21,ms);
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
-		if (ft_check_build(ms, cmd) == 1)
-			ft_command(ms, cmd, envp);
-		else
+		if (ft_check_build(ms, cmd) != 1)
 			ft_select_build(ms, cmd);
+		else
+			ft_execve(ms, cmd, envp);
 		ms->p++;
 	}
-	//ft_close_fds(ms);
 	waitpid(ms->pid, &ms->exit_s, 0);
+	if (ms->path_outfile != NULL)
+		close(g_ms.fileout);
 }
 
 void	ft_clean_quote(t_cmd *cmd)
@@ -78,7 +81,7 @@ void	ft_select_build(t_ms *ms, t_cmd *cmd)
 
 
 	dup2(ms->pipe[0], STDIN);
-	dup2(g_ms.fileout, STDOUT);
+	dup2(g_ms.stdout, 1);
 	close(ms->pipe[0]);
 	close(ms->pipe[1]);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   unset_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:33 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 17:21:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:45:52 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    ft_unset2(char *src)
         return ;
     index = ft_index_envp(src);
     temp = ft_strstrdup(g_ms.envp);
-    ft_strstrfree(g_ms.envp);
+    ft_free_two_point(g_ms.envp);
     g_ms.envp = (char **) malloc((ft_strstrlen(temp)) * sizeof(char **));
     i = 0;
     j = 0;
@@ -50,9 +50,8 @@ void    ft_unset2(char *src)
         i ++;
     }
     g_ms.envp[j] = NULL;
-    ft_strstrfree(temp);
+    ft_free_two_point(temp);
 }
-
 
 int	ft_index_envp(char *src)
 {
@@ -73,3 +72,31 @@ int	ft_index_envp(char *src)
     return(-1);
 }
 
+size_t  ft_strstrlen(char **src)
+{
+    size_t i;
+
+    i  = 0;
+    while(src[i])
+        i ++;
+    return(i);
+}
+
+char	**ft_strstrdup(char **src)
+{
+	char	**dst;
+    int     i;
+
+	dst =  (char **) malloc((ft_strstrlen(src) + 1)*sizeof(char **) );
+	if (dst == NULL)
+		return (NULL);
+
+    i = 0;
+    while(src[i])
+    {
+        dst[i] = ft_strdup(src[i]);
+        i ++;
+    }
+	dst[i] = NULL;
+	return (dst);
+}

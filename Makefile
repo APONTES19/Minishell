@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/05 16:23:15 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/08 15:06:37 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,24 +26,24 @@ SRC_PATH=./src
 OBJ_PATH=./obj
 
 SRC_FILES=minishell.c\
-		  error.c\
-		  ft_split_ms.c\
-		  command.c\
-		  command_2.c\
-		  check_input.c\
+		  check_input_1.c\
 		  check_input_2.c\
+		  ft_split_ms.c\
+		  command_1.c\
+		  command_2.c\
 		  select_command.c\
-		  redirection.c\
+		  redirection_1.c\
 		  redirection_2.c\
+		  redirection_3.c\
 		  echo.c\
 		  cd.c\
 		  pwd.c\
-		  env.c\
+		  env_1.c\
 		  env_2.c\
-		  export.c\
+		  export_1.c\
 		  export_2.c\
-		  libft_evolution.c\
-		  unset.c
+		  unset_1.c\
+		  error_1.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
@@ -88,19 +88,19 @@ $(PRINTF):
 
 clean:
 		@$(RM_DIR) $(OBJ_PATH)
-		@echo "\033[0;31m ▥ Minishell objects clean ✓ \033[0m"
+		@echo "\033[0;31m       ▥ Minishell objects clean ✓ \033[0m"
 
 fclean:		clean
 		@$(RM) $(NAME)
-		@echo "\033[0;31m ▥ Minishell clean ✓ \033[0m"
+		@echo "\033[0;31m       ▥ Minishell clean ✓ \033[0m"
 
 fcleanlib:
 	@cd $(PRINTF_PATH) && $(MAKE) fclean
 	@cd $(LIBFT_PATH) && $(MAKE) fclean
-	@echo "\033[0;31m ▥ libs clean ✓ \033[0m"
+	@echo "\033[0;31m       ▥ libs clean ✓ \033[0m"
 
 fcleall: fcleanlib fclean
-		 @echo "\033[0;31m ▥ libs and Minishell clean ✓ \033[0m"
+		 @echo "\033[0;31m       ▥ libs and Minishell clean ✓ \033[0m"
 
 re:			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/09/13 04:17:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:33:32 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct _var
 static int		set_size(const char *str, char c);
 static char		*duplicate(const char *str, int start, int end);
 static void		next_quote(const char *s, t_var *var);
-
 static int		init_var(t_var *var, char const *s, char c);
 
 char	**ft_split_ms(char const *s, char c)
