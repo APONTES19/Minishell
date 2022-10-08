@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:49:45 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:52:53 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_redirection(t_ms *ms)
 	}
 	printf("|%s| -> |%s|\n", ms->path_infile,ms->path_outfile);
 	if (ms->path_infile != NULL)
-		ft_set_in(ms);
+		ft_set_in(ms, type);
 	if (ms->path_outfile != NULL)
 		ft_set_out(ms, type);
 }
@@ -117,7 +117,7 @@ int	ft_set_out(t_ms *ms, int type)
 	return(0);
 }
 
-int	ft_set_in(t_ms *ms)
+int	ft_set_in(t_ms *ms, int type)
 {
 	if (type == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 15:54:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:52:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_redirection(t_ms *ms);
 void	ft_red_point(t_ms *ms, int type, char **path);
 void	ft_red_point_aux(t_ms *ms, char f, int type);
 int		ft_set_out(t_ms *ms, int type);
-int		ft_set_in(t_ms *ms);
+int		ft_set_in(t_ms *ms, int type);
 
 //REDIRECTION2
 void	ft_red_temp(t_ms *ms, int start, int end, char **path);
