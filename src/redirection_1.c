@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:52:53 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/08 20:52:06 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	here_doc_open(char *str);
 void	ft_redirection(t_ms *ms)
 {
 	int	type;
@@ -129,6 +130,37 @@ int	ft_set_in(t_ms *ms, int type)
 		}
 	}
 	else
-		// chamar função de herodoc
+	{
+	
+	    g_ms.filein =here_doc_open(ms->path_infile);
+		unlink(".here_doc");
+		return(1);
+	}
+		
+
 	return(0);
+}
+
+
+int	here_doc_open(char *str)
+{
+	char	*line;
+	int		fd;
+
+	if (access(".here_doc", F_OK))
+		unlink(".here_doc");
+	fd = open(".here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	while (1)
+	{
+		line = readline(">");;
+		if (ft_strncmp(line, str, ft_strlen(str)) != 0)
+			write (fd, line, ft_strlen(line));
+		else
+		{
+			free (line);
+			close(fd);
+			return (open(".here_doc", O_RDONLY));
+		}
+		free(line);
+	}
 }

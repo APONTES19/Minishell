@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
+#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 16:18:34 by lucasmar          #+#    #+#              #
-#    Updated: 2022/07/09 09:35:49 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/08 20:27:21 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ FILES =	ft_isdigit.c\
 		ft_putchar_fd.c\
 		ft_putstr_fd.c\
 		ft_putendl_fd.c\
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c\
+		get_next_line.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
