@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 18:31:46 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:39:34 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 		ms->k++;
 	}
 	printf("\n VALOR de m final = |%d|", ms->m);
-	ms->temp = (char *) malloc (ms->m * sizeof(char *));
+	ms->temp = (char *) malloc ((ms->m + 1) * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
 	while(ms->line[ms->k])

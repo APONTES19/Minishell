@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 17:59:55 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:05:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,21 @@ void	ft_redirection(t_ms *ms)
 	ms->i = 0;
 	while(ms->line[ms->i])
 	{
+		printf("\nLINE WHILE [%s] = |%d|\n___________________________\n", ms->line, ms->i);
+
 		if (ms-> line[ms->i] == '>')
 		{
 			if (ms-> line[ms->i + 1] == '>')
 				type = 2;
 			ft_red_point(ms, type, &ms->path_outfile);
-			ms->i = -1;
+			ms->i = 0;
 		}
 		if (ms-> line[ms->i] == '<')
 		{
 			if (ms-> line[ms->i + 1] == '<')
 				type = 2;
 			ft_red_point(ms, type, &ms->path_infile);
-			ms->i = -1;
+			ms->i = 0;
 		}
 		ms->i++;
 	}
@@ -54,7 +56,6 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 		{
 			while (ms->line[ms->k] == ' ')
 				ms->k++;
-			ms->end = ms->k;
 		}
 		if (ms->line[ms->k] == '\'')
 			ft_red_point_aux(ms, 'a', type);
@@ -65,13 +66,13 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 		}
 		if (ms->line[ms->k] == ' ' || ms->line[ms->k] == '|')
 			break;
-		ms->end++;
 		ms->k++;
+		printf("ANALISE END:[%c][%d]\n", ms->line[ms->k], ms->end);
 	}
 	ms->start = ms->start - type;
 	ms->end--;
-	ms->end = ms->end + ms->start;
-	printf("\nvalor de start = %d\n", ms->start);
+	ms->end = ms->k;
+	printf("\nvalor de start = %d", ms->start);
 	printf("\nvalor de end = %d\n", ms->end);
 	ft_red_temp(ms, ms->start, ms->end, path);
 }
@@ -82,18 +83,14 @@ void	ft_red_point_aux(t_ms *ms, char f, int type)
 	{
 		ms->start = (ms->i + type);
 		ms->k = ms->start;
-		ms->end = 0;
+		ms->end = ms->k;
 		ms->t = '\'';
 	}
 	else
 	{
 		ms->k++;
-		ms->end++;
 		while(ms->line[ms->k] != ms->t)
-		{
 			ms->k++;
-			ms->end++;
-		}
 	}
 }
 

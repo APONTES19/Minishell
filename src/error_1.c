@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/10 15:39:49 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:27:32 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(int number, t_ms *ms)
 {
-	dup2(2, STDOUT);
+	//dup2(2, STDOUT);
 	if (number == 33)
 	{
 		ft_printf ("Error while executing\n");
@@ -57,7 +57,7 @@ void	ft_error(int number, t_ms *ms)
 		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 	if (number == 19)
 		ft_putstr_fd("Value Envp = NUll\n", 2);
-	
+
 }
 
 void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
