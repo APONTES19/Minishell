@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 10:23:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:52:16 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_minus_cd(t_ms *ms)
 	{
 		temp = ft_strdup(ms->oldpwd);
 		getcwd(ms->oldpwd, 1024);
-		temp2 = ft_strjoin("OLDPWD=",ms->oldpwd);
+		temp2 = ft_strjoin("OLDPWD=", ms->oldpwd);
 		ft_change_envp("OLDPWD", temp2);
 		ft_printf("%s\n", temp);
 		chdir(temp);
