@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:02:24 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 20:36:01 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:41:04 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	line(char **bytes_read, char **result);
 static void	read_doc(int fd, char **buffer, char **bytes_read, char **result);
+
 char	*get_next_line(int fd)
 {
 	static char	*bytes_read = NULL;
