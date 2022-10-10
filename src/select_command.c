@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 14:22:05 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:58:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 	{
 		if(cmd[ms->p].arg_cmd == NULL)
 			ms->p++;
-		if (pipe(ms->pipe) == -1)
-			ft_error(21,ms);
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
+		if (pipe(ms->pipe) == -1)
+			ft_error(21,ms);
+		ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
 			ft_select_build(ms, cmd);
 		else
 			ft_execve(ms, cmd, envp);
+		ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(ms->pid, &ms->exit_s, 0);
-	if (ms->path_outfile != NULL)
-		close(g_ms.fileout);
+	waitpid(ms->pid, &g_ms.exit_s, 0);
 }
 
 void	ft_clean_quote(t_cmd *cmd)
@@ -58,13 +58,6 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_build(t_ms *ms, t_cmd *cmd)
 {
-	if (ms->p < (ms->n_pipe -1))
-		dup2(ms->pipe[1], STDOUT);
-	else if (ms->p == (ms->n_pipe -1) && ms->path_outfile != NULL)
-		dup2(g_ms.fileout, STDOUT);
-
-
-
 	if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
 		ft_cd(ms, cmd);
 	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
@@ -77,13 +70,6 @@ void	ft_select_build(t_ms *ms, t_cmd *cmd)
 		ft_pwd();
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 4))
 		ft_echo(ms, cmd);
-
-
-
-	dup2(ms->pipe[0], STDIN);
-	dup2(g_ms.stdout, 1);
-	close(ms->pipe[0]);
-	close(ms->pipe[1]);
 }
 
 int	ft_check_build(t_ms *ms, t_cmd *cmd)
@@ -101,4 +87,29 @@ int	ft_check_build(t_ms *ms, t_cmd *cmd)
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 4))
 		return (0);
 	return (1);
+}
+
+void	ft_set_fd_1(t_ms *ms)
+{
+	if (ms->p < (ms->n_pipe -1))
+		dup2(ms->pipe[1], STDOUT);
+	else if (ms->p == (ms->n_pipe -1) && ms->path_outfile != NULL)
+	{
+		dup2(g_ms.fileout, STDOUT);
+		close(g_ms.fileout);
+	}
+	close(ms->pipe[1]);
+	if (ms->p == 0 && ms->path_infile != NULL)
+	{
+		dup2(g_ms.filein, STDIN);
+		close(g_ms.filein);
+	}
+}
+
+void	ft_set_fd_2(t_ms *ms)
+{
+	dup2(ms->pipe[0], STDIN);
+	dup2(g_ms.stdout, STDOUT);
+	close(ms->pipe[0]);
+	close(ms->pipe[1]);
 }

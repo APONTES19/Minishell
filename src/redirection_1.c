@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 20:52:06 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:59:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	here_doc_open(char *str);
 void	ft_redirection(t_ms *ms)
 {
 	int	type;
@@ -70,7 +69,10 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 		ms->k++;
 	}
 	ms->start = ms->start - type;
+	ms->end--;
 	ms->end = ms->end + ms->start;
+	printf("\nvalor de start = %d\n", ms->start);
+	printf("\nvalor de end = %d\n", ms->end);
 	ft_red_temp(ms, ms->start, ms->end, path);
 }
 
@@ -120,47 +122,18 @@ int	ft_set_out(t_ms *ms, int type)
 
 int	ft_set_in(t_ms *ms, int type)
 {
-	if (type == 1)
+	if (type == 2)
 	{
-		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
-		if (g_ms.filein == -1)
-		{
-			ft_error(14, ms);
-			return(1);
-		}
+		g_ms.filein = ft_here_doc_open(ms->path_infile);
+		unlink(".hero_doc");
 	}
 	else
+		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
+	if (g_ms.filein == -1)
 	{
-	
-	    g_ms.filein =here_doc_open(ms->path_infile);
-		unlink(".here_doc");
+		ft_error(14, ms);
 		return(1);
 	}
-		
-
 	return(0);
 }
 
-
-int	here_doc_open(char *str)
-{
-	char	*line;
-	int		fd;
-
-	if (access(".here_doc", F_OK))
-		unlink(".here_doc");
-	fd = open(".here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	while (1)
-	{
-		line = readline(">");;
-		if (ft_strncmp(line, str, ft_strlen(str)) != 0)
-			write (fd, line, ft_strlen(line));
-		else
-		{
-			free (line);
-			close(fd);
-			return (open(".here_doc", O_RDONLY));
-		}
-		free(line);
-	}
-}

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/07 17:29:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:59:41 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 		ft_error(0, &ms);
-	return (0);
+	return (g_ms.exit_s);
 }
 
 void ft_get_line(t_ms * ms)

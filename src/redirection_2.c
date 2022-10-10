@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:33:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:31:46 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_red_temp(t_ms *ms, int start, int end, char **path)
 			ms->m++;
 		ms->k++;
 	}
+	printf("\n Valor de M no PATH1 = |%d|", ms->m);
 	ft_red_temp_aux2(ms, start, end, path);
 }
 
@@ -47,7 +48,7 @@ void	ft_red_temp_aux1(t_ms *ms)
 void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 {
 	ms->t = '\'';
-	*path = (char *) malloc(ms->m * sizeof(char*));
+	*path = (char *) malloc((ms->m + 1) * sizeof(char*));
 	ms->k = start;
 	ms->m = 0;
 	while (ms->k <= end)
@@ -66,7 +67,8 @@ void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 		}
 		ms->k++;
 	}
-	(*path)[ms->m] = '\0';
+	(*path)[ms->m+1] = '\0';
+	printf("\n Valor de M no PATH2 = |%d|", ms->m);
 	ft_red_copy_line(ms, start, end);
 }
 
@@ -89,10 +91,14 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	ms->m= 0;
 	while(ms->line[ms->k])
 	{
-		if (!(ms->k <= end && ms->k >= start))
+		if (!(ms->k >= start && ms->k <= end))
+		{
+			printf("LETRA = |%c|[%d]\n", ms->line[ms->k], ms->m);
 			ms->m++;
+		}
 		ms->k++;
 	}
+	printf("\n VALOR de m final = |%d|", ms->m);
 	ms->temp = (char *) malloc (ms->m * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
@@ -100,11 +106,13 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	{
 		if (!(ms->k <= end && ms->k >= start))
 		{
-			if(ms->m == 0 && ms->line[ms->k] == '|')
+			if (ms->m == 0 && (ft_strchr("| ",ms->line[ms->k]) != NULL))
 				ms->k++;
-			ms->temp[ms->m] = ms->line[ms->k];
-			ms->m++;
-	
+			if (ms->line[ms->k])
+			{
+				ms->temp[ms->m] = ms->line[ms->k];
+				ms->m++;
+			}
 		}
 		ms->k++;
 	}
@@ -112,5 +120,5 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	ft_free_point(ms->line);
 	ms->line = ft_strdup(ms->temp);
 	ft_free_point(ms->temp);
-	printf("%s\n", ms->line);
+	printf("\nline = |%s|\n___________________________\n", ms->line);
 }

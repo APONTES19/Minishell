@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:52:44 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:41:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		ft_special(t_ms *ms);
 void	ft_check_dolar(t_ms *ms);
 void	ft_check_space(t_ms *ms);
 int		next_pipe(t_ms *ms);
+int		ft_check_redirection(t_ms *ms);
 
 // COMMAND 1
 void	ft_execve(t_ms *ms, t_cmd *cm, char **envp);
@@ -87,6 +88,8 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp);
 void	ft_clean_quote(t_cmd *cmd);
 void	ft_select_build(t_ms *ms, t_cmd *cmd);
 int		ft_check_build(t_ms *ms, t_cmd *cmd);
+void	ft_set_fd_1(t_ms *ms);
+void	ft_set_fd_2(t_ms *ms);
 
 //UNSET 1
 void	ft_unset(t_ms *ms, t_cmd *cmd);
@@ -116,6 +119,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path);
 void	ft_red_copy_line(t_ms *ms, int start, int end);
 
 //REDIRECTION3
+int	ft_here_doc_open(char *str);
 
 //ERROR
 void	ft_error(int number, t_ms *ms);

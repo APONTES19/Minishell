@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 15:00:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:40:26 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct minishell
 	char	**envp;
 	int		fileout;
 	int		filein;
+	int		redirection;
 }	t_ms;
 
 typedef struct comand
@@ -56,8 +57,6 @@ typedef struct comand
 	char	**arg_cmd;
 	char	**base_list_cmd;
 }	t_cmd;
-
-
 
 typedef struct sort
 {
@@ -67,8 +66,6 @@ typedef struct sort
 	int	j;
 	int k;
 }	t_sort;
-
-
 
 extern t_ms	g_ms;
 #endif
