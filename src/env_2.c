@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:34:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 20:56:02 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:36:54 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_change_envp(char *variable, char *value)
 {
-	int	i;
+	int		i;
 	size_t	j;
 
 	i = 0;
@@ -32,9 +32,9 @@ void	ft_change_envp(char *variable, char *value)
 	g_ms.envp[i] = ft_strdup(value);
 }
 
-void	ft_add_envp (char *variable)
+void	ft_add_envp(char *variable)
 {
-	char **temp_envp;
+	char	**temp_envp;
 
 	temp_envp = ft_copy_temp_envp(g_ms.envp, variable);
 	ft_free_two_point(g_ms.envp);
@@ -42,18 +42,18 @@ void	ft_add_envp (char *variable)
 	ft_free_two_point(temp_envp);
 }
 
-char	**ft_copy_temp_envp(char **base,char *variable)
+char	**ft_copy_temp_envp(char **base, char *variable)
 {
-	int	i;
-	char **copy;
+	int		i;
+	char	**copy;
 
 	i = 0;
 	while (base[i])
 		i++;
 	if (variable == NULL)
-		copy = (char **) malloc((i+1) * sizeof(char **));
+		copy = (char **) malloc((i + 1) * sizeof(char **));
 	else
-		copy = (char **) malloc((i+2) * sizeof(char **));
+		copy = (char **) malloc((i + 2) * sizeof(char **));
 	i = 0;
 	while (base[i])
 	{
@@ -63,9 +63,9 @@ char	**ft_copy_temp_envp(char **base,char *variable)
 	if (variable != NULL)
 	{
 		copy[i] = ft_strdup(variable);
-		copy[i+1] = NULL;
+		copy[i + 1] = NULL;
 	}
 	else
 		copy[i] = NULL;
-	return(copy);
+	return (copy);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 18:39:34 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:44:01 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_red_temp_aux1(t_ms *ms)
 {
 	ms->k++;
 	ms->m++;
-	while(ms->line[ms->k] != ms->t)
+	while (ms->line[ms->k] != ms->t)
 	{
 		ms->m++;
 		ms->k++;
@@ -48,7 +48,7 @@ void	ft_red_temp_aux1(t_ms *ms)
 void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 {
 	ms->t = '\'';
-	*path = (char *) malloc((ms->m + 1) * sizeof(char*));
+	*path = (char *)malloc((ms->m + 1) * sizeof(char *));
 	ms->k = start;
 	ms->m = 0;
 	while (ms->k <= end)
@@ -67,7 +67,7 @@ void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 		}
 		ms->k++;
 	}
-	(*path)[ms->m+1] = '\0';
+	(*path)[ms->m + 1] = '\0';
 	printf("\n Valor de M no PATH2 = |%d|", ms->m);
 	ft_red_copy_line(ms, start, end);
 }
@@ -77,7 +77,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path)
 	(*path)[ms->m] = ms->line[ms->k];
 	ms->m++;
 	ms->k++;
-	while(ms->line[ms->k] != ms->t)
+	while (ms->line[ms->k] != ms->t)
 	{
 		(*path)[ms->m] = ms->line[ms->k];
 		ms->m++;
@@ -88,8 +88,8 @@ void	ft_red_temp_aux3(t_ms *ms, char **path)
 void	ft_red_copy_line(t_ms *ms, int start, int end)
 {
 	ms->k = 0;
-	ms->m= 0;
-	while(ms->line[ms->k])
+	ms->m = 0;
+	while (ms->line[ms->k])
 	{
 		if (!(ms->k >= start && ms->k <= end))
 		{
@@ -102,11 +102,11 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	ms->temp = (char *) malloc ((ms->m + 1) * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
-	while(ms->line[ms->k])
+	while (ms->line[ms->k])
 	{
 		if (!(ms->k <= end && ms->k >= start))
 		{
-			if (ms->m == 0 && (ft_strchr("| ",ms->line[ms->k]) != NULL))
+			if (ms->m == 0 && (ft_strchr("| ", ms->line[ms->k]) != NULL))
 				ms->k++;
 			if (ms->line[ms->k])
 			{

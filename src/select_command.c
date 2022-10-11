@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 15:58:29 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:39:15 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 {
 	ms->p = 0;
-	while(ms->p < ms->n_pipe)
+	while (ms->p < ms->n_pipe)
 	{
-		if(cmd[ms->p].arg_cmd == NULL)
+		if (cmd[ms->p].arg_cmd == NULL)
 			ms->p++;
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
 		if (pipe(ms->pipe) == -1)
-			ft_error(21,ms);
+			ft_error(21, ms);
 		ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
 			ft_select_build(ms, cmd);
@@ -36,17 +36,17 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 
 void	ft_clean_quote(t_cmd *cmd)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*c;
 
-	c = malloc(ft_strlen(cmd[0].arg_cmd[0])+1);
+	c = malloc(ft_strlen(cmd[0].arg_cmd[0]) + 1);
 	i = 0;
 	j = 0;
 	while (cmd[0].arg_cmd[0][i])
 	{
-		if(cmd[0].arg_cmd[0][i] == '\'' || cmd[0].arg_cmd[0][i] == '\"')
-			i++;
+		if (cmd[0].arg_cmd[0][i] == '\'' || cmd[0].arg_cmd[0][i] == '\"')
+			i ++;
 		c[j] = cmd[0].arg_cmd[0][i];
 		j++;
 		i++;

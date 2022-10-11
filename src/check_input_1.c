@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 16:42:41 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:56:27 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	ft_check_input(t_ms *ms)
 
 int	ft_check_quote(t_ms *ms)
 {
-	ms->i = 0;
+	ms->i = -1;
 	ms->quote = 0;
-	while (ms->line[ms->i])
+	while (ms->line[++ ms->i])
 	{
 		if (ms->line[ms->i] == '\'')
 		{
@@ -51,7 +51,6 @@ int	ft_check_quote(t_ms *ms)
 			ft_error(01, ms);
 			return (0);
 		}
-		ms->i ++;
 	}
 	return (1);
 }
@@ -77,12 +76,12 @@ int	ft_check_pipe(t_ms *ms)
 		if (ms->line[ms->i] == '|')
 		{
 			if (next_pipe(ms) == 0)
-				return(0);
+				return (0);
 			ms->n_pipe++;
 		}
 		ms->i++;
 	}
-	return(1);
+	return (1);
 }
 
 int	next_pipe(t_ms *ms)
@@ -105,5 +104,5 @@ int	next_pipe(t_ms *ms)
 		ft_error(04, ms);
 		return (0);
 	}
-	return(1);
+	return (1);
 }

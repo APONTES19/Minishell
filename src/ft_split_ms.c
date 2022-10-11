@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_ms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 14:33:32 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:36:42 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-typedef struct _var
-{
-	size_t	i;
-	size_t	p;
-	int		index;
-	char	**result;
-	int		quote;
-	int		len_s;
-	int		n_q;
-}t_var;
 
 static int		set_size(const char *str, char c);
 static char		*duplicate(const char *str, int start, int end);
@@ -37,7 +26,7 @@ char	**ft_split_ms(char const *s, char c)
 	{
 		if (s[var.i] == '\'' || s[var.i] == '\"')
 		{
-			if(var.quote == 0)
+			if (var.quote == 0)
 				next_quote(s, &var);
 			var.quote++;
 			if (var.quote == var.n_q)
@@ -119,15 +108,15 @@ static char	*duplicate(const char *str, int start, int end)
 
 static void	next_quote(const char *s, t_var *var)
 {
-	int	i;
+	int		i;
 	char	type;
 
 	type = s[var->i];
 	i = 0;
 	var->n_q = 0;
-	while(s[i])
+	while (s[i])
 	{
-		if(s[i] == type)
+		if (s[i] == type)
 			var->n_q++;
 		i++;
 	}

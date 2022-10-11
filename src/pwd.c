@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/05 16:31:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:38:26 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 void	ft_pwd(void)
 {
 	char	*s;
@@ -21,4 +22,3 @@ void	ft_pwd(void)
 	ft_free_point(s);
 	return ;
 }
-

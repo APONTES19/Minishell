@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/08 14:00:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:05:26 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 {
-	if(ms->n_pipe > 1)
+	if (ms->n_pipe > 1)
 	{
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd->base_list_cmd = ft_split_ms(ms->line, '|');
 		ms->i = 0;
-		while(ms->i != ms->n_pipe)
+		while (ms->i != ms->n_pipe)
 		{
 			cmd[ms->i].arg_cmd = ft_split_ms(cmd->base_list_cmd[ms->i], ' ');
 			ms->i++;
@@ -34,10 +34,10 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
 		ft_error(8, ms);
-		return(0);
+		return (0);
 	}
 	ft_main_while(ms, cmd, envp);
-	return(1);
+	return (1);
 }
 
 int	ft_get_path(t_ms *ms, char *cmd, char **envp)

@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   error_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/10 19:27:32 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:03:55 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+static void	error_ten_twenty(int number, t_ms *ms);
+
 void	ft_error(int number, t_ms *ms)
 {
-	//dup2(2, STDOUT);
-	if (number == 33)
-	{
-		ft_printf ("Error while executing\n");
-		exit(1);
-	}
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -40,29 +36,39 @@ void	ft_error(int number, t_ms *ms)
 		ft_printf("split error\n");
 	if (number == 9)
 		ft_printf("pipe error\n");
+	error_ten_twenty(number, ms);
+}
+
+static void	error_ten_twenty(int number, t_ms *ms)
+{
 	if (number == 12)
 		ft_printf("Erro no PID arguments\n");
 	if (number == 13)
 	{
-		ft_putstr_fd("Erro na Execução do comando com a execve\n",2);
+		ft_putstr_fd("Erro na Execução do comando com a execve\n", 2);
 		exit(3);
 	}
 	if (number == 14)
-		ft_printf("%s: No such file or directory\n",ms->path_infile);
+		ft_printf("%s: No such file or directory\n", ms->path_infile);
 	if (number == 15)
-		ft_printf("%s:  Permission denied\n",ms->path_outfile);
+		ft_printf("%s:  Permission denied\n", ms->path_outfile);
 	if (number == 16)
 		ft_putstr_fd("cd: too many arguments\n", 2);
 	if (number == 17)
 		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 	if (number == 19)
 		ft_putstr_fd("Value Envp = NUll\n", 2);
-
+	//dup2(2, STDOUT);
+	if (number == 33)
+	{
+		ft_printf ("Error while executing\n");
+		exit(1);
+	}
 }
 
 void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 {
-	dup2(2, STDOUT);
+	dup2 (2, STDOUT);
 	if (number == 07)
 	{
 		ft_printf("%s: command not found\n", cmd[ms->p].arg_cmd[0]);
@@ -79,53 +85,6 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 			cmd[ms->p].arg_cmd[1]);
 }
 
-void	ft_base_free(t_ms *ms, t_cmd *cmd)
-{
-	int i;
-	int j;
-
-	j = 0;
-	while(j < ms->n_pipe)
-	{
-		if(ms->n_pipe > 1)
-		{
-			free(cmd[0].base_list_cmd[j]);
-			cmd[0].base_list_cmd[j] = NULL;
-		}
-	    i = 0;
-	    while(cmd[j].arg_cmd[i])
-	    {
-	        free(cmd[j].arg_cmd[i]);
-			cmd[j].arg_cmd[i] = NULL;
-	        i ++;
-	    }
-	    free(cmd[j].arg_cmd);
-	    cmd[j].arg_cmd =NULL;
-	    j ++;
-	}
-	if(ms->n_pipe > 1)
-		free(cmd[0].base_list_cmd);
-	free(cmd);
-}
-
-void	ft_exit(t_ms *ms, t_cmd *cmd)
-{
-	ft_base_free(ms, cmd);
-	free (ms->path_cmd);
-	ms->path_cmd = NULL;
-	if (ms->n_pipe > 1)
-		{
-			ms->i = 0;
-			while(ms->fd[ms->i])
-			{
-				free(&ms->fd[ms->i]);
-				ms->i++;
-			}
-		}
-	free(ms->oldpwd);
-	ms->oldpwd = NULL;
-}
-
 void	ft_cd_error(t_ms *ms, t_cmd *cmd)
 {
 	ft_putstr_fd("cd: ", 2);
@@ -134,26 +93,4 @@ void	ft_cd_error(t_ms *ms, t_cmd *cmd)
 		ft_putstr_fd(": Not a directory\n", 2);
 	else
 		ft_putstr_fd(": No such file or directory\n", 2);
-}
-
-
-void	ft_free_two_point(char **point)
-{
-	int	i;
-
-	i = 0;
-	while(point[i])
-	{
-		free(point[i]);
-		point[i] = NULL;
-		i++;
-	}
-	free(point);
-	point = NULL;
-}
-
-void	ft_free_point(char *point)
-{
-	free(point);
-	point = NULL;
 }

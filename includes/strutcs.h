@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strutcs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 16:40:26 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:37:09 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct minishell
 	int		n_pipe;
 	int		pipe_d;
 	char	*line;
-	int		n_$;
+	int		n_dollar;
 	int		i;
 	int		j;
 	int		k;
@@ -66,6 +66,17 @@ typedef struct sort
 	int	j;
 	int k;
 }	t_sort;
+
+typedef struct _var
+{
+	size_t	i;
+	size_t	p;
+	int		index;
+	char	**result;
+	int		quote;
+	int		len_s;
+	int		n_q;
+}t_var;
 
 extern t_ms	g_ms;
 #endif

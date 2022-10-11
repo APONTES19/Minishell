@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 19:05:10 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:40:44 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	ft_redirection(t_ms *ms)
 	ms->path_outfile = NULL;
 	type = 1;
 	ms->i = 0;
-	while(ms->line[ms->i])
+	while (ms->line[ms->i])
 	{
 		printf("\nLINE WHILE [%s] = |%d|\n___________________________\n", ms->line, ms->i);
-
 		if (ms-> line[ms->i] == '>')
 		{
 			if (ms-> line[ms->i + 1] == '>')
@@ -133,4 +132,3 @@ int	ft_set_in(t_ms *ms, int type)
 	}
 	return(0);
 }
-

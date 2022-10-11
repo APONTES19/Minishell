@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:34:12 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:34:28 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_env(t_ms *ms, t_cmd *cmd)
 {
-
 	if (cmd[ms->p].arg_cmd[1] != NULL)
 		ft_error_2(18, cmd, ms);
 	else
@@ -36,7 +35,7 @@ void	ft_copy_envp(char **envp)
 	i = 0;
 	while (envp[i])
 		i++;
-	g_ms.envp = (char **) malloc((i+1) * sizeof(char **));
+	g_ms.envp = (char **) malloc((i + 1) * sizeof(char **));
 	i = 0;
 	while (envp[i])
 	{
@@ -48,9 +47,9 @@ void	ft_copy_envp(char **envp)
 
 char	*ft_getenv(char *s)
 {
-	int	i;
+	int		i;
 	size_t	j;
-	int	k;
+	int		k;
 
 	i = 0;
 	while (g_ms.envp[i])
