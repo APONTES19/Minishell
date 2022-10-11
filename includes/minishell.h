@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 16:41:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/11 01:49:25 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <sys/wait.h>
 # include <errno.h>
 # include <signal.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 //CHECK INPUT 1
 int		ft_check_input(t_ms *ms);
@@ -59,7 +59,7 @@ char	*ft_getenv(char *s);
 
 // ENV 2
 void	ft_change_envp(char *variable, char *value);
-void	ft_add_envp (char *variable);
+void	ft_add_envp(char *variable);
 char	**ft_copy_temp_envp(char **base, char *variable);
 
 // EXPORT 1
@@ -78,10 +78,10 @@ char	**ft_split_ms(char const *s, char c);
 //pwd
 void	ft_pwd(void);
 
-//MINISHELL
+//ft_get_line 
 void	ft_get_line(t_ms *ms);
 void	ft_get_head_line(t_ms *ms);
-
+char	*ft_three_join(char *s1, char *s2, char *s3);
 
 //SELLECT
 void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp);
@@ -119,7 +119,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path);
 void	ft_red_copy_line(t_ms *ms, int start, int end);
 
 //REDIRECTION3
-int	ft_here_doc_open(char *str);
+int		ft_here_doc_open(char *str);
 
 //ERROR
 void	ft_error(int number, t_ms *ms);

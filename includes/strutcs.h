@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 22:37:09 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/11 03:52:54 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct sort
 	int	*catch;
 	int	i;
 	int	j;
-	int k;
+	int	k;
 }	t_sort;
 
 typedef struct _var
@@ -77,6 +77,20 @@ typedef struct _var
 	int		len_s;
 	int		n_q;
 }t_var;
+
+typedef struct head
+{
+	char	*user;
+	char	*machine;
+	char	*pwd;
+	char	*path;
+	char	*temp1;
+	char	*temp2;
+	char	*temp3;
+	char	*temp4;
+}t_head;
+
+
 
 extern t_ms	g_ms;
 #endif
