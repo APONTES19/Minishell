@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:41:14 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/10 23:35:41 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/11 02:50:48 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_exit(t_ms *ms, t_cmd *cmd)
 			ms->i++;
 		}
 	}
+	//free(ms->head);
 	free(ms->oldpwd);
 	ms->oldpwd = NULL;
 }
