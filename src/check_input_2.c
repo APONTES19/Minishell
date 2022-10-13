@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 12:16:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:26:40 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_special(t_ms *ms)
 		}
 		if ((ft_strchr(SPECIAL_CH, ms->line[ms->i])))
 		{
-			ft_error(02, ms);
+			ft_error(02, ms, NULL);
 			return (1);
 		}
 		ms->i++;

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 16:18:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:47:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**ft_strstrdup(char **src);
 void	ft_cd(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
 void	ft_change_cd(t_ms *ms, char *change);
-void	ft_minus_cd(t_ms *ms);
+int	ft_minus_cd(t_ms *ms);
 
 //REDIRECTION
 int		ft_redirection(t_ms *ms);
@@ -131,12 +131,14 @@ int		ft_set_out(t_ms *ms, int type);
 int		ft_set_in(t_ms *ms, int type);
 
 //ERROR
-void	ft_error(int number, t_ms *ms);
-void	ft_error_2(int number, t_cmd *cmd, t_ms *ms);
+void	ft_error(int number, t_ms *ms, t_cmd *cmd);
+void	ft_error_1(int number, t_ms *ms, t_cmd *cmd);
+void	ft_error_2(int number, t_ms *ms, t_cmd *cmd);
+void	ft_error_3(int number, t_cmd *cmd, t_ms *ms);
+
 void	ft_base_free(t_ms *ms, t_cmd *cmd);
 void	ft_exit(t_ms *ms, t_cmd *cmd);
 void	ft_free_two_point(char **point);
 void	ft_free_point(char *point);
-void	ft_cd_error(t_ms *ms, t_cmd *cmd);
 
 #endif

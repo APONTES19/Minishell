@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:39:15 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:16:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,24 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
 		if (pipe(ms->pipe) == -1)
-			ft_error(21, ms);
+			ft_error(21, ms, cmd);
 		ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
+		{
 			ft_select_build(ms, cmd);
+			ms->j = 9;
+		}
 		else
+		{
 			ft_execve(ms, cmd, envp);
+			ms->j = 256;
+		}
 		ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(ms->pid, &g_ms.exit_s, 0);
+	waitpid(ms->pid, &ms->k, 0);
+	if (ms->j == 256)
+		g_ms.exit_s = ms->k;
 }
 
 void	ft_clean_quote(t_cmd *cmd)

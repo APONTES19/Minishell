@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 20:52:16 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:16:40 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,31 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 {
 	if (ms->n_pipe == 1)
 	{
-		if (g_ms.cd == 0)
+		if (g_ms.cd == 0 && ms->oldpwd == NULL)
 			ms->oldpwd = (char *) malloc(1024 * sizeof(char));
 		if (cmd[ms->p].arg_cmd[2] != NULL && cmd[ms->p].arg_cmd[1] != NULL)
-			ft_error(16, ms);
+		{
+			ft_error(14, ms, cmd);
+			return ;
+		}
 		else if (cmd[ms->p].arg_cmd[1] == NULL
 			|| ft_strncmp(cmd[ms->p].arg_cmd[1], "~", 1) == 0)
 			ft_change_cd(ms, "HOME");
 		else if (ft_strncmp(cmd[ms->p].arg_cmd[1], "-", 1) == 0)
-			ft_minus_cd(ms);
+		{
+			if(ft_minus_cd(ms) == 1)
+				return ;
+		}
 		else if (access(cmd[ms->p].arg_cmd[1], X_OK) == 0
 			&& ft_valid_dir(cmd[ms->p].arg_cmd[1]) == 1)
 			ft_change_cd(ms, cmd[ms->p].arg_cmd[1]);
 		else
-			ft_cd_error(ms, cmd);
+		{
+			ft_error(21, ms, cmd);
+			return ;
+		}
 	}
+	g_ms.exit_s = 0;
 	return ;
 }
 
@@ -66,13 +76,17 @@ void	ft_change_cd(t_ms *ms, char *change)
 	g_ms.cd++;
 }
 
-void	ft_minus_cd(t_ms *ms)
+int	ft_minus_cd(t_ms *ms)
 {
 	char	*temp;
 	char	*temp2;
 
 	if (g_ms.cd == 0)
-		ft_error(17, ms);
+	{
+		ft_error(15, ms, NULL);
+		return (1);
+	}
+	else
 	{
 		temp = ft_strdup(ms->oldpwd);
 		getcwd(ms->oldpwd, 1024);
@@ -83,4 +97,5 @@ void	ft_minus_cd(t_ms *ms)
 		ft_free_point(temp);
 		ft_free_point(temp2);
 	}
+	return (0);
 }
