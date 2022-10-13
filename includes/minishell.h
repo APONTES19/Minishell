@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 14:58:10 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:18:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path);
 void	ft_red_copy_line(t_ms *ms, int start, int end);
 
 //REDIRECTION3
+void	ft_redirection_aux(t_ms *ms, char q);
 int		ft_here_doc_open(char *str);
 int		ft_set_out(t_ms *ms, int type);
 int		ft_set_in(t_ms *ms, int type);

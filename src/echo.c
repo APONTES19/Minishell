@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 15:58:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:30:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_print_var(t_ms *ms, t_cmd *cmd)
 		ft_printf("%s\n", s);
 	else
 		ft_printf("\n");
-	ft_free_point(s);
 }
 
 static void	echo_while(t_ms *ms, t_cmd *cmd)

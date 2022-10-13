@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/13 12:03:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:39:14 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_error(int number, t_ms *ms)
 {
 	dup2 (2, STDOUT);
 	g_ms.exit_s = 127;
+	ft_printf("%d ", number);//excluir
+	ft_printf("Minishell: ");
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -71,6 +73,8 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 {
 	dup2 (2, STDOUT);
 	g_ms.exit_s = 127;
+	ft_printf("%d ", number);//excluir
+	ft_printf("Minishell: ");
 	if (number == 07)
 	{
 		ft_printf("%s: command not found\n", cmd[ms->p].arg_cmd[0]);
@@ -89,10 +93,11 @@ void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 
 void	ft_cd_error(t_ms *ms, t_cmd *cmd)
 {
-	ft_putstr_fd("cd: ", 2);
-	ft_putstr_fd(cmd[ms->p].arg_cmd[1], 2);
+	dup2 (2, STDOUT);
+	g_ms.exit_s = 1;
+	ft_printf("Minishell: cd: %s", cmd[ms->p].arg_cmd[1]);
 	if (access(cmd[ms->p].arg_cmd[1], F_OK) == 0)
-		ft_putstr_fd(": Not a directory\n", 2);
+		ft_printf(": Not a directory\n");
 	else
-		ft_putstr_fd(": No such file or directory\n", 2);
+		ft_printf(": No such file or directory\n");
 }

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 15:04:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:22:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 int	ft_redirection(t_ms *ms)
 {
 	int	type;
+	char q;
 
 	type = 1;
 	ms->i = 0;
+	q = '\'';
 	while (ms->line[ms->i])
 	{
+		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
+		{
+			if (ms-> line[ms->i] == '\"')
+				q = '\"';
+			ft_redirection_aux(ms, q);
+		}
 		if (ms-> line[ms->i] == '<')
 		{
 			if (ms-> line[ms->i + 1] == '<')
@@ -38,10 +46,19 @@ int	ft_redirection(t_ms *ms)
 
 int	ft_redirection_2(t_ms *ms, int type)
 {
+	char q;
+
+	q = '\'';
 	ms->i = 0;
 	type = 1;
 	while (ms->line[ms->i])
 	{
+		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
+		{
+			if (ms-> line[ms->i] == '\"')
+				q = '\"';
+			ft_redirection_aux(ms, q);
+		}
 		if (ms-> line[ms->i] == '>')
 		{
 			if (ms-> line[ms->i + 1] == '>')

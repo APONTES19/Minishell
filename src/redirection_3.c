@@ -6,11 +6,18 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 12:21:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:28:16 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_redirection_aux(t_ms *ms, char q)
+{
+	ms->i++;
+	while (ms-> line[ms->i] != q)
+		ms->i++;
+}
 
 int	ft_here_doc_open(char *str)
 {
