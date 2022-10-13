@@ -3,47 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:40:44 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:04:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_redirection(t_ms *ms)
+int	ft_redirection(t_ms *ms)
 {
 	int	type;
 
-	ms->path_infile = NULL;
-	ms->path_outfile = NULL;
 	type = 1;
 	ms->i = 0;
 	while (ms->line[ms->i])
 	{
-		printf("\nLINE WHILE [%s] = |%d|\n___________________________\n", ms->line, ms->i);
-		if (ms-> line[ms->i] == '>')
-		{
-			if (ms-> line[ms->i + 1] == '>')
-				type = 2;
-			ft_red_point(ms, type, &ms->path_outfile);
-			ms->i = 0;
-		}
 		if (ms-> line[ms->i] == '<')
 		{
 			if (ms-> line[ms->i + 1] == '<')
 				type = 2;
 			ft_red_point(ms, type, &ms->path_infile);
+			if (ft_redirection_3(ms, type) == 1)
+				return(1);
 			ms->i = 0;
 		}
 		ms->i++;
 	}
+	if (ft_redirection_2(ms, type) == 1)
+		return (1);
+	return (0);
+}
+
+int	ft_redirection_2(t_ms *ms, int type)
+{
+	ms->i = 0;
+	type = 1;
+	while (ms->line[ms->i])
+	{
+		if (ms-> line[ms->i] == '>')
+		{
+			if (ms-> line[ms->i + 1] == '>')
+				type = 2;
+			ft_red_point(ms, type, &ms->path_outfile);
+			if (ft_redirection_3(ms, type) == 1)
+				return(1);
+			ms->i = 0;
+		}
+		ms->i++;
+	}
+	return (0);
+}
+
+int	ft_redirection_3(t_ms *ms, int type)
+{
 	printf("|%s| -> |%s|\n", ms->path_infile,ms->path_outfile);
 	if (ms->path_infile != NULL)
-		ft_set_in(ms, type);
+	{
+		if (ft_set_in(ms, type) == 1)
+			return (1);
+	}
 	if (ms->path_outfile != NULL)
-		ft_set_out(ms, type);
+	{
+		if (ft_set_out(ms, type) == 1)
+			return (1);
+	}
+	return(0);
 }
 
 void	ft_red_point(t_ms *ms, int type, char **path)
@@ -91,44 +117,4 @@ void	ft_red_point_aux(t_ms *ms, char f, int type)
 		while(ms->line[ms->k] != ms->t)
 			ms->k++;
 	}
-}
-
-int	ft_set_out(t_ms *ms, int type)
-{
-	if(ms->path_outfile != NULL)
-	{
-		if (type == 1)
-		{
-			g_ms.fileout =
-				open(ms->path_outfile,O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		}
-		else
-		{
-			g_ms.fileout =
-				open(ms->path_outfile,O_WRONLY  | O_CREAT | O_APPEND, 0644);
-		}
-		if (g_ms.fileout == -1)
-		{
-			ft_error(15, ms);
-			return(1);
-		}
-	}
-	return(0);
-}
-
-int	ft_set_in(t_ms *ms, int type)
-{
-	if (type == 2)
-	{
-		g_ms.filein = ft_here_doc_open(ms->path_infile);
-		unlink(".hero_doc");
-	}
-	else
-		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
-	if (g_ms.filein == -1)
-	{
-		ft_error(14, ms);
-		return(1);
-	}
-	return(0);
 }

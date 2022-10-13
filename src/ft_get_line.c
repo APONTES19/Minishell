@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/11 19:49:41 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:00:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_get_head_line(t_ms *ms)
 		head->path = ft_strjoin(ft_strrchr(head->pwd, '/'), "~");
 	else
 		head->path = ft_strdup ("~");
-	head->temp4 = ft_three_join("\x1b[38;2;255;69;0m", head->path, "\x1b[0m\n%");
+	head->temp4 = ft_three_join("\x1b[38;2;255;69;0m", head->path, "\x1b[0m\n% ");
 	ms->head = ft_strjoin(head->temp3, head->temp4);
 	free_head(head);
 }

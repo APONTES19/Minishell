@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/11 01:49:25 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:58:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ char	**ft_split_ms(char const *s, char c);
 //pwd
 void	ft_pwd(void);
 
-//ft_get_line 
+// minishel
+	//main
+int	ft_set_parameters(t_ms *ms, char **envp);
+void	ft_set_init(t_ms *ms, t_cmd *cmd);
+
+
+//ft_get_line
 void	ft_get_line(t_ms *ms);
 void	ft_get_head_line(t_ms *ms);
 char	*ft_three_join(char *s1, char *s2, char *s3);
@@ -105,11 +111,11 @@ void	ft_change_cd(t_ms *ms, char *change);
 void	ft_minus_cd(t_ms *ms);
 
 //REDIRECTION
-void	ft_redirection(t_ms *ms);
+int		ft_redirection(t_ms *ms);
+int		ft_redirection_2(t_ms *ms, int type);
+int		ft_redirection_3(t_ms *ms, int type);
 void	ft_red_point(t_ms *ms, int type, char **path);
 void	ft_red_point_aux(t_ms *ms, char f, int type);
-int		ft_set_out(t_ms *ms, int type);
-int		ft_set_in(t_ms *ms, int type);
 
 //REDIRECTION2
 void	ft_red_temp(t_ms *ms, int start, int end, char **path);
@@ -120,6 +126,8 @@ void	ft_red_copy_line(t_ms *ms, int start, int end);
 
 //REDIRECTION3
 int		ft_here_doc_open(char *str);
+int		ft_set_out(t_ms *ms, int type);
+int		ft_set_in(t_ms *ms, int type);
 
 //ERROR
 void	ft_error(int number, t_ms *ms);

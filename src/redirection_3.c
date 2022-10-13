@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:41:48 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:21:57 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,44 @@ int	ft_here_doc_open(char *str)
 		free(line);
 	}
 	return (-1);
+}
+
+int	ft_set_out(t_ms *ms, int type)
+{
+	if(ms->path_outfile != NULL)
+	{
+		if (type == 1)
+		{
+			g_ms.fileout =
+				open(ms->path_outfile,O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		}
+		else
+		{
+			g_ms.fileout =
+				open(ms->path_outfile,O_WRONLY  | O_CREAT | O_APPEND, 0644);
+		}
+		if (g_ms.fileout == -1)
+		{
+			ft_error(15, ms);
+			return(1);
+		}
+	}
+	return(0);
+}
+
+int	ft_set_in(t_ms *ms, int type)
+{
+	if (type == 2)
+	{
+		g_ms.filein = ft_here_doc_open(ms->path_infile);
+		unlink(".hero_doc");
+	}
+	else
+		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
+	if (g_ms.filein == -1)
+	{
+		ft_error(14, ms);
+		return(1);
+	}
+	return(0);
 }

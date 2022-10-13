@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 21:33:23 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:58:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ void	ft_print_var(t_ms *ms, t_cmd *cmd)
 	char	*s;
 
 	s = ft_getenv(cmd[ms->p].arg_cmd[1] + 1);
-	if (s != NULL)
+	if (ft_strncmp(cmd[ms->p].arg_cmd[1], "$?",
+		 ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+		ft_printf("%d\n", g_ms.exit_s);
+	else if (s != NULL)
 		ft_printf("%s\n", s);
 	else
 		ft_printf("\n");
+	ft_free_point(s);
 }
 
 static void	echo_while(t_ms *ms, t_cmd *cmd)

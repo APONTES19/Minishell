@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 21:03:42 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:16:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	ft_special(t_ms *ms)
 		if ((ft_strchr(SPECIAL_CH, ms->line[ms->i])))
 		{
 			ft_error(02, ms);
-			return (0);
+			return (1);
 		}
 		ms->i++;
 	}
-	return (1);
+	return (0);
 }
 
 void	ft_check_dolar(t_ms *ms)

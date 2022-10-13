@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/10 22:03:55 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:03:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	error_ten_twenty(int number, t_ms *ms);
 
 void	ft_error(int number, t_ms *ms)
 {
+	dup2 (2, STDOUT);
+	g_ms.exit_s = 127;
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -58,7 +60,6 @@ static void	error_ten_twenty(int number, t_ms *ms)
 		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 	if (number == 19)
 		ft_putstr_fd("Value Envp = NUll\n", 2);
-	//dup2(2, STDOUT);
 	if (number == 33)
 	{
 		ft_printf ("Error while executing\n");
@@ -69,6 +70,7 @@ static void	error_ten_twenty(int number, t_ms *ms)
 void	ft_error_2(int number, t_cmd *cmd, t_ms *ms)
 {
 	dup2 (2, STDOUT);
+	g_ms.exit_s = 127;
 	if (number == 07)
 	{
 		ft_printf("%s: command not found\n", cmd[ms->p].arg_cmd[0]);
