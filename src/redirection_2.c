@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:44:01 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:31:13 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_red_temp(t_ms *ms, int start, int end, char **path)
 			ms->m++;
 		ms->k++;
 	}
-	printf("\n Valor de M no PATH1 = |%d|", ms->m);
 	ft_red_temp_aux2(ms, start, end, path);
 }
 
@@ -68,7 +67,6 @@ void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 		ms->k++;
 	}
 	(*path)[ms->m + 1] = '\0';
-	printf("\n Valor de M no PATH2 = |%d|", ms->m);
 	ft_red_copy_line(ms, start, end);
 }
 
@@ -92,13 +90,9 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	while (ms->line[ms->k])
 	{
 		if (!(ms->k >= start && ms->k <= end))
-		{
-			printf("LETRA = |%c|[%d]\n", ms->line[ms->k], ms->m);
 			ms->m++;
-		}
 		ms->k++;
 	}
-	printf("\n VALOR de m final = |%d|", ms->m);
 	ms->temp = (char *) malloc ((ms->m + 1) * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
@@ -120,5 +114,4 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	ft_free_point(ms->line);
 	ms->line = ft_strdup(ms->temp);
 	ft_free_point(ms->temp);
-	printf("\nline = |%s|\n___________________________\n", ms->line);
 }

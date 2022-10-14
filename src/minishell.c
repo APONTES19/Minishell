@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 17:16:53 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:43:45 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,32 @@
 t_ms	g_ms;
 int	main(int argc, char **argv, char **envp)
 {
-	t_ms	ms;
-	t_cmd	cmd;
+	t_ms	ms_b;
+	t_cmd	cmd_b;
+	t_ms	*ms;
+	t_cmd	*cmd;
 
-	(void )argv;
+	ms = &ms_b;
+	cmd = &cmd_b;
+	(void)argv;
 	if(argc == 1)
 	{
-		if (ft_set_parameters(&ms, envp) == 0)
+		if (ft_set_parameters(ms, envp) == 0)
 			while(1)
 			{
-				ft_set_init(&ms, &cmd);
-				ft_get_line(&ms);
-				add_history(ms.line);
-				if (ft_check_input(&ms) == 0)
-					ft_command_split(&ms, &cmd, envp);
+				ft_set_init(ms, cmd);
+				ft_get_line(ms);
+				add_history(ms->line);
+				if (ft_check_input(ms, cmd, envp) == 0)
+				{
+					ft_printf("LINE:%s[%p]\nCMD:\n:", ms->line,ms->line);
+				}
 				dup2(g_ms.stdin, STDIN);
 				dup2(g_ms.stdout, STDOUT);
 			}
 	}
 	else
-		ft_error(0, &ms, &cmd);
+		ft_error(0, ms, cmd);
 	return (g_ms.exit_s);
 }
 

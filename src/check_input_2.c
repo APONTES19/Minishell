@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 17:26:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 21:57:06 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	ft_check_space(t_ms *ms)
 			k++;
 		i++;
 	}
-	i = -1;
+	i = 0;
 	while (ms->line[k] != '\0')
 	{
-		ms->line[++ i] = ms->line[k];
+		ms->line[i++] = ms->line[k];
 		k++;
 	}
 	ms->line[i] = '\0';

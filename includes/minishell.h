@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 17:47:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:40:00 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@
 # include <sys/stat.h>
 
 //CHECK INPUT 1
-int		ft_check_input(t_ms *ms);
+int		ft_check_input(t_ms *ms, t_cmd *cmd, char ** envp);
 int		ft_check_quote(t_ms	*ms);
 int		ft_check_pipe(t_ms *ms);
+int		ft_next_pipe(t_ms *ms);
+int		ft_next_pipe_2(t_ms *ms);
 
-//CHECK INPUT 2
+//CHECK INPUT 1
 int		ft_special(t_ms *ms);
 void	ft_check_dolar(t_ms *ms);
 void	ft_check_space(t_ms *ms);
-int		next_pipe(t_ms *ms);
 int		ft_check_redirection(t_ms *ms);
+
+//exit
+void	ft_exit(t_ms *ms);
 
 // COMMAND 1
 void	ft_execve(t_ms *ms, t_cmd *cm, char **envp);
@@ -108,7 +112,7 @@ char	**ft_strstrdup(char **src);
 void	ft_cd(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
 void	ft_change_cd(t_ms *ms, char *change);
-int	ft_minus_cd(t_ms *ms);
+int		ft_minus_cd(t_ms *ms);
 
 //REDIRECTION
 int		ft_redirection(t_ms *ms);
@@ -137,7 +141,6 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cmd);
 void	ft_error_3(int number, t_cmd *cmd, t_ms *ms);
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd);
-void	ft_exit(t_ms *ms, t_cmd *cmd);
 void	ft_free_two_point(char **point);
 void	ft_free_point(char *point);
 

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 18:16:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:52:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp)
 {
+	ft_printf("LINE 2 : %s[%p]\n", ms->line, ms->line);
+	ft_printf("CMD  : %s[%p]\n", cmd[0].arg_cmd[0], cmd[0].arg_cmd[0]);
 	ms->p = 0;
 	while (ms->p < ms->n_pipe)
 	{

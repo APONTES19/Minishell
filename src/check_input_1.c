@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 19:15:34 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:40:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_check_input(t_ms *ms)
+int	ft_check_input(t_ms *ms, t_cmd *cmd, char **envp)
 {
 	if (ft_check_quote(ms) == 1)
 		return (1);
@@ -26,6 +26,8 @@ int	ft_check_input(t_ms *ms)
 	if (ft_check_pipe(ms) == 1)
 		return (1);
 	ft_check_dolar(ms);
+	if (ft_command_split(ms, cmd, envp) == 1)
+		return (1);
 	return (0);
 }
 
@@ -37,7 +39,7 @@ int	ft_check_quote(t_ms *ms)
 	{
 		if (ms->line[ms->i] == '\'')
 		{
-			ms->quote = 1;
+			(ms->quote) = 1;
 			ms->i ++;
 			while (ms->line[ms->i] != '\'' && ms->line[ms->i])
 				ms->i++;
@@ -78,7 +80,7 @@ int	ft_check_pipe(t_ms *ms)
 		}
 		if (ms->line[ms->i] == '|')
 		{
-			if (next_pipe(ms) == 1)
+			if (ft_next_pipe(ms) == 1)
 				return (1);
 			ms->n_pipe++;
 		}
@@ -87,7 +89,7 @@ int	ft_check_pipe(t_ms *ms)
 	return (0);
 }
 
-int	next_pipe(t_ms *ms)
+int	ft_next_pipe(t_ms *ms)
 {
 		if (ms->i == 0)
 		{
@@ -102,24 +104,32 @@ int	next_pipe(t_ms *ms)
 				return (1);
 			}
 		}
-		while (ms->line[ms->i +1] == ' ')
-			ms->i++;
-		if (ms->line[ms->i + 1] == '|')
-		{
-			if(ms->line[ms->i + 2] == '|')
-			{
-				ft_error(04, ms, NULL);
+		else
+			if (ft_next_pipe_2(ms) == 1)
 				return (1);
-			}
-			else
+	return (0);
+}
+
+int	ft_next_pipe_2(t_ms *ms)
+{
+	while (ms->line[ms->i +1] == ' ')
+		ms->i++;
+	if (ms->line[ms->i + 1] == '|')
+	{
+		if(ms->line[ms->i + 2] == '|')
+		{
+			ft_error(04, ms, NULL);
+			return (1);
+		}
+		else
+		{
+			ms->n_pipe--;
+			while (ms->line[ms->i])
 			{
-				ms->n_pipe--;
-				while (ms->line[ms->i])
-				{
-					ms->line[ms->i] = ' ';
-					ms->i++;
-				}
+				ms->line[ms->i] = ' ';
+				ms->i++;
 			}
 		}
+	}
 	return (0);
 }

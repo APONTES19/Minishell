@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/13 17:49:16 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:26:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_error(int number, t_ms *ms, t_cmd *cmd)
 	g_ms.exit_s = 127;
 	ft_printf("%d ", number);//excluir
 	ft_printf("Minishell: ");
-
-
+	
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -37,7 +36,7 @@ void	ft_error(int number, t_ms *ms, t_cmd *cmd)
 	if (number == 6)
 		ft_printf("envp error\n");
 	if (number == 8)
-		ft_printf("split error\n");
+		ft_printf("split line error\n");
 	if (number == 9)
 		ft_printf("pipe error\n");
 	ft_error_1(number, ms, cmd);

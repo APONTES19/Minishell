@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/13 15:00:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:38:08 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@ void	ft_get_line(t_ms *ms)
 	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
 		ft_get_line(ms);
 	if (ft_strncmp(ms->line, "exit", 4) == 0)
-	{
-		rl_clear_history();
-		free(ms->head);
-		ms->head = NULL;
-		free(ms->line);
-		ms->line = NULL;
-		exit(EXIT_SUCCESS);
-	}
+		ft_exit(ms);
 	free(ms->head);
 }
 

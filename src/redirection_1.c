@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 16:22:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:30:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	ft_redirection_2(t_ms *ms, int type)
 
 int	ft_redirection_3(t_ms *ms, int type)
 {
-	printf("|%s| -> |%s|\n", ms->path_infile,ms->path_outfile);
 	if (ms->path_infile != NULL)
 	{
 		if (ft_set_in(ms, type) == 1)
@@ -109,13 +108,10 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 		if (ms->line[ms->k] == ' ' || ms->line[ms->k] == '|')
 			break;
 		ms->k++;
-		printf("ANALISE END:[%c][%d]\n", ms->line[ms->k], ms->end);
 	}
 	ms->start = ms->start - type;
 	ms->end--;
 	ms->end = ms->k;
-	printf("\nvalor de start = %d", ms->start);
-	printf("\nvalor de end = %d\n", ms->end);
 	ft_red_temp(ms, ms->start, ms->end, path);
 }
 

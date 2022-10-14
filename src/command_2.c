@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 21:05:26 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:39:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 			cmd[ms->i].arg_cmd = ft_split_ms(cmd->base_list_cmd[ms->i], ' ');
 			ms->i++;
 		}
+		ft_free_two_point(cmd->base_list_cmd);
 	}
 	else
 	{
@@ -33,11 +34,11 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 	}
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
-		ft_error(8, ms);
-		return (0);
+		ft_error(8, ms, NULL);
+		return (1);
 	}
 	ft_main_while(ms, cmd, envp);
-	return (1);
+	return (0);
 }
 
 int	ft_get_path(t_ms *ms, char *cmd, char **envp)
