@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/13 20:38:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 00:43:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	free_head(t_head *head);
 
 void	ft_get_line(t_ms *ms)
 {
-	ft_get_head_line(ms);
-	ms->line = readline(ms->head);
+	//ft_get_head_line(ms);
+	ms->line = readline("MINISHELL->\n%");
 	if (ms->line[0] == ' ')
 		ft_check_space(ms);
 	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
 		ft_get_line(ms);
 	if (ft_strncmp(ms->line, "exit", 4) == 0)
-		ft_exit(ms);
+		ft_exit_m(ms, NULL);
 	free(ms->head);
 }
 

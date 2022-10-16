@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 12:38:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:45:28 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_env(t_ms *ms, t_cmd *cmd)
 {
 	if (cmd[ms->p].arg_cmd[1] != NULL)
-		ft_error_2(18, cmd, ms);
+		ft_error(18, ms, cmd);
 	else
 	{
 		ms->i = 0;

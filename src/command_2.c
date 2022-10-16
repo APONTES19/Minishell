@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 23:39:44 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:21:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
+int	ft_command_split(t_ms *ms, t_cmd *cmd)
 {
 	if (ms->n_pipe > 1)
 	{
@@ -37,18 +37,19 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd, char **envp)
 		ft_error(8, ms, NULL);
 		return (1);
 	}
-	ft_main_while(ms, cmd, envp);
+	ft_main_while(ms, cmd);
 	return (0);
 }
 
-int	ft_get_path(t_ms *ms, char *cmd, char **envp)
+void	ft_get_path(t_ms *ms, char *cmd)
 {
-	ms->i = 0;
-	while (envp[ms->i++])
+	ms->i = -1;
+	ms->j = 0;
+	while (g_ms.envp[ms->i++] != NULL)
 	{
-		if (!ft_strncmp(envp[ms->i], "PATH=", 5))
+		if (ft_strncmp(g_ms.envp[ms->i], "PETH=", 5) == 0)
 		{
-			ms->path_list = ft_split(envp[ms->i], ':');
+			ms->path_list = ft_split(g_ms.envp[ms->i], ':');
 			ms->j = 0;
 			while (ms->path_list[ms->j])
 			{
@@ -57,16 +58,16 @@ int	ft_get_path(t_ms *ms, char *cmd, char **envp)
 				if (!access(ms->path_cmd, F_OK | X_OK))
 				{
 					ft_aux_path(ms, 0);
-					return (1);
+					break;
 				}
 				ft_aux_path(ms, 1);
 				ms->j++;
 			}
 			ft_aux_path(ms, 2);
-			return (0);
+			ms->j = 1;
 		}
 	}
-	return (0);
+	ms->j = 1;
 }
 
 void	ft_aux_path(t_ms *ms, int number)

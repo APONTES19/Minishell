@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 22:07:43 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:47:23 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_export(t_ms *ms, t_cmd *cmd)
 	{
 		if (ft_isalpha(cmd[ms->p].arg_cmd[1][0]) == 0 ||
 			ft_export_special(ms, cmd) == 1)
-			ft_error_2(20, cmd, ms);
+			ft_error(20, ms, cmd);
 		else
 			ft_set_export(cmd, ms);
 	}

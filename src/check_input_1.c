@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 23:40:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:16:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_check_input(t_ms *ms, t_cmd *cmd, char **envp)
+int	ft_check_input(t_ms *ms, t_cmd *cmd)
 {
 	if (ft_check_quote(ms) == 1)
 		return (1);
@@ -26,7 +26,7 @@ int	ft_check_input(t_ms *ms, t_cmd *cmd, char **envp)
 	if (ft_check_pipe(ms) == 1)
 		return (1);
 	ft_check_dolar(ms);
-	if (ft_command_split(ms, cmd, envp) == 1)
+	if (ft_command_split(ms, cmd) == 1)
 		return (1);
 	return (0);
 }

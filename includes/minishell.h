@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 23:40:00 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:21:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <sys/stat.h>
 
 //CHECK INPUT 1
-int		ft_check_input(t_ms *ms, t_cmd *cmd, char ** envp);
+int		ft_check_input(t_ms *ms, t_cmd *cmd);
 int		ft_check_quote(t_ms	*ms);
 int		ft_check_pipe(t_ms *ms);
 int		ft_next_pipe(t_ms *ms);
@@ -41,14 +41,14 @@ void	ft_check_space(t_ms *ms);
 int		ft_check_redirection(t_ms *ms);
 
 //exit
-void	ft_exit(t_ms *ms);
+void	ft_exit_m(t_ms *ms, t_cmd *cmd);
 
 // COMMAND 1
-void	ft_execve(t_ms *ms, t_cmd *cm, char **envp);
+void	ft_execve(t_ms *ms, t_cmd *cm);
 
 // COMMAND 2
-int		ft_command_split(t_ms *ms, t_cmd *cmd, char **envp);
-int		ft_get_path(t_ms *ms, char *cmd, char **envp);
+int		ft_command_split(t_ms *ms, t_cmd *cmd);
+void		ft_get_path(t_ms *ms, char *cmd);
 void	ft_aux_path(t_ms *ms, int number);
 
 //ECHO
@@ -94,7 +94,7 @@ void	ft_get_head_line(t_ms *ms);
 char	*ft_three_join(char *s1, char *s2, char *s3);
 
 //SELLECT
-void	ft_main_while(t_ms *ms, t_cmd *cmd, char **envp);
+void	ft_main_while(t_ms *ms, t_cmd *cmd);
 void	ft_clean_quote(t_cmd *cmd);
 void	ft_select_build(t_ms *ms, t_cmd *cmd);
 int		ft_check_build(t_ms *ms, t_cmd *cmd);

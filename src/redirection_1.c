@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 19:30:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:56:42 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_redirection(t_ms *ms)
 	}
 	if (ft_redirection_2(ms, type) == 1)
 		return (1);
+	printf("\tLINHA : |%s|\n", ms->line);
+	printf("\tINFILE: |%s| <--> OUTFILE: |%s|\n\n", ms->path_infile, ms->path_outfile);
 	return (0);
 }
 
@@ -90,6 +92,7 @@ int	ft_redirection_3(t_ms *ms, int type)
 
 void	ft_red_point(t_ms *ms, int type, char **path)
 {
+	printf("\tDEBUG REDIRECT\n\n");
 	ft_red_point_aux(ms, 'i', type);
 	while (ms->line[ms->k])
 	{
@@ -110,8 +113,10 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 		ms->k++;
 	}
 	ms->start = ms->start - type;
-	ms->end--;
 	ms->end = ms->k;
+	ms->end--;
+	printf("\tINICIO LINE: |%d|\n", ms->start);
+	printf("\tFIM PATH: |%d|\n", ms->end);
 	ft_red_temp(ms, ms->start, ms->end, path);
 }
 

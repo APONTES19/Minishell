@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 18:16:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:03:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 			return ;
 		}
 		else if (cmd[ms->p].arg_cmd[1] == NULL
-			|| ft_strncmp(cmd[ms->p].arg_cmd[1], "~", 1) == 0)
+			|| (ft_strncmp(cmd[ms->p].arg_cmd[1], "~",
+				 ft_strlen(cmd[ms->p].arg_cmd[1])) == 0))
 			ft_change_cd(ms, "HOME");
-		else if (ft_strncmp(cmd[ms->p].arg_cmd[1], "-", 1) == 0)
+		else if (ft_strncmp(cmd[ms->p].arg_cmd[1], "-",
+			ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
 		{
 			if(ft_minus_cd(ms) == 1)
 				return ;

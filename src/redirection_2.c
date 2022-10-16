@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 19:31:13 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:05:45 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_red_temp(t_ms *ms, int start, int end, char **path)
 			ms->m++;
 		ms->k++;
 	}
+	printf("\tMALLOC 1 : |%d|\n", ms->m);
 	ft_red_temp_aux2(ms, start, end, path);
 }
 
@@ -66,7 +67,7 @@ void	ft_red_temp_aux2(t_ms *ms, int start, int end, char **path)
 		}
 		ms->k++;
 	}
-	(*path)[ms->m + 1] = '\0';
+	(*path)[ms->m] = '\0';
 	ft_red_copy_line(ms, start, end);
 }
 

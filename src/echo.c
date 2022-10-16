@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 16:30:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:32:01 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 	ms->k = 1;
 	if (cmd[ms->p].arg_cmd[1] == NULL)
 		ft_printf("\n");
-	else if (cmd[ms->p].arg_cmd[1][0] == '$')
+	else if (cmd[ms->p].arg_cmd[1][0] == '$' &&
+		 cmd[ms->p].arg_cmd[1][1] != '\0')
 		ft_print_var(ms, cmd);
 	else
 		echo_while (ms, cmd);
