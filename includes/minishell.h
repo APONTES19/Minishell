@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 13:36:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 14:40:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ int		ft_next_pipe_2(t_ms *ms);
 
 //CHECK INPUT 1
 int		ft_special(t_ms *ms);
-void	ft_check_dolar(t_ms *ms);
+int		ft_check_dolar(t_ms *ms);
 void	ft_check_space(t_ms *ms);
 int		ft_check_redirection(t_ms *ms);
+
+// dollar
+int	ft_set_line_dollar(t_ms *ms);
 
 //exit
 void	ft_exit_m(t_ms *ms, t_cmd *cmd);
@@ -112,7 +115,7 @@ void	ft_cd(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
 void	ft_change_cd(t_ms *ms, char *change, t_cmd *cmd);
 int		ft_minus_cd(t_ms *ms);
-int	ft_cd_home(t_ms *ms, t_cmd *cmd);
+int		ft_cd_home(t_ms *ms, t_cmd *cmd);
 
 //REDIRECTION
 int		ft_redirection(t_ms *ms);

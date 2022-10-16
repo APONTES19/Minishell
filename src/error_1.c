@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/16 13:18:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:01:30 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,6 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cmd)
 		g_ms.exit_s = 1;
 		ft_printf("cd: HOME not set\n");
 	}
+	if (number == 24)
+		ft_printf("Error '|' void\n");
 }

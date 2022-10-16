@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 21:57:06 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 14:37:38 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ int	ft_special(t_ms *ms)
 	return (0);
 }
 
-void	ft_check_dolar(t_ms *ms)
+int	ft_check_dolar(t_ms *ms)
 {
 	ms->i = 0;
 	ms->n_dollar = 0;
 	while (ms->line[ms->i])
 	{
+		if (ms->line[ms->i] == '$')
+			ms->n_dollar++;
 		if (ms->line[ms->i] == '\'')
 		{
 			ms->i++;
@@ -63,6 +65,7 @@ void	ft_check_dolar(t_ms *ms)
 		}
 		ms->i++;
 	}
+	return(ms->n_dollar);
 }
 
 void	ft_check_space(t_ms *ms)
