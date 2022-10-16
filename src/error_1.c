@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/16 15:01:30 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:22:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,9 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cmd)
 	}
 	if (number == 24)
 		ft_printf("Error '|' void\n");
+	if (number == 25)
+	{
+		g_ms.exit_s = 1;
+		ft_printf(" cd: %s: No such file or directory\n", ms->temp);
+	}
 }

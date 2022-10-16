@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 11:05:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:30:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct minishell
 	int		exit_s;
 	int		cd;
 	char	*oldpwd;
+	char	*pwd;
 	char	*head;
 	char	**envp;
 	int		fileout;

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 17:09:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:46:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,10 @@ char	**ft_strstrdup(char **src);
 //cd
 void	ft_cd(t_ms *ms, t_cmd *cmd);
 int		ft_valid_dir(char *path);
-void	ft_change_cd(t_ms *ms, char *change, t_cmd *cmd);
+void	ft_change_cd(t_ms *ms, char *change);
 int		ft_minus_cd(t_ms *ms);
 int		ft_cd_home(t_ms *ms, t_cmd *cmd);
+void	ft_update_pwd(t_ms *ms);
 
 //REDIRECTION
 int		ft_redirection(t_ms *ms);
