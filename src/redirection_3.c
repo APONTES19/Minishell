@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/13 19:34:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:57:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_redirection_aux(t_ms *ms, char q)
 	ms->i++;
 	while (ms-> line[ms->i] != q)
 		ms->i++;
+	ms->i++;
 }
 
 int	ft_here_doc_open(char *str)
