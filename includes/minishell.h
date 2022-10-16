@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 14:40:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:09:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		ft_check_redirection(t_ms *ms);
 
 // dollar
 int	ft_set_line_dollar(t_ms *ms);
+void	ft_get_path_dollar(t_ms *ms);
+void	ft_change_line_dollar(t_ms *ms, char *dollar);
 
 //exit
 void	ft_exit_m(t_ms *ms, t_cmd *cmd);
