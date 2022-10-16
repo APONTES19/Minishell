@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 16:00:07 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:19:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_redirection(t_ms *ms)
 	{
 		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
 		{
-			printf("entrei\n");
 			if (ms-> line[ms->i] == '\"')
 				q = '\"';
 			ft_redirection_aux(ms, q);
@@ -36,7 +35,7 @@ int	ft_redirection(t_ms *ms)
 			ft_red_point(ms, type, &ms->path_infile);
 			if (ft_redirection_3(ms, type) == 1)
 				return(1);
-			ms->i = 0;
+			ms->i = -1;
 		}
 		ms->i++;
 	}
@@ -58,7 +57,6 @@ int	ft_redirection_2(t_ms *ms, int type)
 	{
 		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
 		{
-			printf("entrei1\n");
 			if (ms-> line[ms->i] == '\"')
 				q = '\"';
 			ft_redirection_aux(ms, q);
@@ -70,11 +68,10 @@ int	ft_redirection_2(t_ms *ms, int type)
 			ft_red_point(ms, type, &ms->path_outfile);
 			if (ft_redirection_3(ms, type) == 1)
 				return(1);
-			ms->i = 0;
+			ms->i = -1;
 		}
 		ms->i++;
 	}
-	printf("\tLINHA > : |%s|\n", ms->line);
 	return (0);
 }
 

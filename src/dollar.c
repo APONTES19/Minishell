@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 15:41:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:21:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,18 @@ int	ft_set_line_dollar(t_ms *ms)
 // 		ms->k++;
 // 	}
 // }
+
+// echo $HOME
+	// echo /home/lucas
+
+// echo $jsnd
+	// echo
+
+// echo $
+	// echo $
+
+// echo '$HOME' "$HOME" $PWD
+	//ENTRA NA FUNÇÃO POIS A PRIMIEIRA QUE VERIFICA SE TEM OU NÃO $ DEU POSITIVO
+	// RESULTADO DA LINHA
+		// echo '$HOME' /home/lucas $PWD
+		// echo '$HOME' /home/lucas .\42

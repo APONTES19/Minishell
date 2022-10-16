@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/14 17:05:45 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:14:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,5 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 	ft_free_point(ms->line);
 	ms->line = ft_strdup(ms->temp);
 	ft_free_point(ms->temp);
+	printf("\t\tDEVOLVE LINE : |%s|\n", ms->line);
 }
