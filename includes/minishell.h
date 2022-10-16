@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/14 22:21:50 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 11:06:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_execve(t_ms *ms, t_cmd *cm);
 
 // COMMAND 2
 int		ft_command_split(t_ms *ms, t_cmd *cmd);
-void		ft_get_path(t_ms *ms, char *cmd);
+int		ft_get_path(t_ms *ms, char *cmd);
 void	ft_aux_path(t_ms *ms, int number);
 
 //ECHO
@@ -91,7 +91,6 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd);
 //ft_get_line
 void	ft_get_line(t_ms *ms);
 void	ft_get_head_line(t_ms *ms);
-char	*ft_three_join(char *s1, char *s2, char *s3);
 
 //SELLECT
 void	ft_main_while(t_ms *ms, t_cmd *cmd);

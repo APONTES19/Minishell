@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/14 22:21:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 00:53:57 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 	return (0);
 }
 
-void	ft_get_path(t_ms *ms, char *cmd)
+int	ft_get_path(t_ms *ms, char *cmd)
 {
 	ms->i = -1;
-	ms->j = 0;
 	while (g_ms.envp[ms->i++] != NULL)
 	{
-		if (ft_strncmp(g_ms.envp[ms->i], "PETH=", 5) == 0)
+		if (ft_strncmp(g_ms.envp[ms->i], "PATH=", 5) == 0)
 		{
 			ms->path_list = ft_split(g_ms.envp[ms->i], ':');
 			ms->j = 0;
@@ -58,16 +57,17 @@ void	ft_get_path(t_ms *ms, char *cmd)
 				if (!access(ms->path_cmd, F_OK | X_OK))
 				{
 					ft_aux_path(ms, 0);
-					break;
+					return (0);
 				}
 				ft_aux_path(ms, 1);
 				ms->j++;
 			}
 			ft_aux_path(ms, 2);
-			ms->j = 1;
+			return (1);
 		}
 	}
-	ms->j = 1;
+	ft_printf("sai\n");
+	return (1);
 }
 
 void	ft_aux_path(t_ms *ms, int number)

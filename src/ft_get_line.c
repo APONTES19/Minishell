@@ -6,18 +6,16 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/16 00:43:27 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 11:03:42 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	free_head(t_head *head);
-
 void	ft_get_line(t_ms *ms)
 {
-	//ft_get_head_line(ms);
-	ms->line = readline("MINISHELL->\n%");
+	ft_get_head_line(ms);
+	ms->line = readline(ms->head);
 	if (ms->line[0] == ' ')
 		ft_check_space(ms);
 	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
@@ -29,52 +27,25 @@ void	ft_get_line(t_ms *ms)
 
 void	ft_get_head_line(t_ms *ms)
 {
-	t_head	*head;
+	char	*temp;
+	char	*s;
+	char	*temp1;
+	char	*temp2;
 
-	head = malloc(sizeof(t_head));
-	head->user = ft_strdup(getenv("USER"));
-	if (!head->user)
-		head->user = ft_strdup("coder");
-	head->temp1 = ft_three_join("\x1b[38;2;255;255;0m", head->user, "@");
-	if (ft_strchr(getenv("SESSION_MANAGER"), '/'))
-	{
-		head->temp2 = ft_strdup(ft_strchr(getenv("SESSION_MANAGER"), '/') + 1);
-			head->machine = ft_substr(head->temp2, 0,
-				((ft_strchr(head->temp2, ':')) - head->temp2));
-		free(head->temp2);
-	}
-	else
-		head->machine = ft_strdup("Workspace");
-	head->temp3 = ft_three_join (head->temp1, head->machine, "\x1b[0m:");
-	head->pwd = ft_strdup(getenv("PWD"));
-	if (ft_strrchr(head->pwd, '/'))
-		head->path = ft_strjoin(ft_strrchr(head->pwd, '/'), "~");
-	else
-		head->path = ft_strdup ("~");
-	head->temp4 = ft_three_join("\x1b[38;2;255;69;0m", head->path, "\x1b[0m\n% ");
-	ms->head = ft_strjoin(head->temp3, head->temp4);
-	free_head(head);
-}
-
-char	*ft_three_join(char *s1, char *s2, char *s3)
-{
-	char	*tmp2;
-	char	*tmp1;
-
-	tmp1 = ft_strjoin(s1, s2);
-	tmp2 = ft_strjoin(tmp1, s3);
-	free (tmp1);
-	return (tmp2);
-}
-
-void	free_head(t_head *head)
-{
-	free (head->temp1);
-	free (head->machine);
-	free (head->user);
-	free (head->temp3);
-	free (head->temp4);
-	free (head->path);
-	free (head->pwd);
-	free (head);
+	temp = ft_strdup("\x1b[38;2;255;255;0mMinishell\x1b[0m:");
+	if (temp == NULL)
+		temp = ft_strdup("");
+	s = (char *) malloc(1024 * sizeof(char));
+	getcwd(s, 1024);
+	if (s == NULL)
+		s = ft_strdup("-->");
+	temp1 = ft_strjoin("\x1b[38;2;255;69;0m", s);
+	ft_free_point(s);
+	temp2 = ft_strjoin(temp1, "\x1b[0m\n% ");
+	ft_free_point(temp1);
+	if (temp2 == NULL)
+		temp2 = ft_strdup("\x1b[38;2;255;255;0mMinishell\x1b[0m:");
+	ms->head = ft_strjoin(temp, temp2);
+	ft_free_point(temp);
+	ft_free_point(temp2);
 }
