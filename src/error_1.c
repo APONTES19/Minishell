@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/13 20:26:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 11:19:52 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_error(int number, t_ms *ms, t_cmd *cmd)
 	dup2 (2, STDOUT);
 	g_ms.exit_s = 127;
 	ft_printf("%d ", number);//excluir
-	ft_printf("Minishell: ");
-	
+	ft_printf("-minishell: ");
+
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -99,5 +99,10 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cmd)
 			ft_printf(": Not a directory\n");
 		else
 			ft_printf(": No such file or directory\n");
+	}
+	if (number == 22)
+	{
+		ft_printf("%s: command not found\n", cmd[ms->p].arg_cmd[0]);
+		exit(1);
 	}
 }
