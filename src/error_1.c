@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/16 11:19:52 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:18:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cmd)
 		ft_printf ("Error while executing\n");
 		exit(1);
 	}
-	//
 	ft_error_2(number, ms , cmd);
 }
 
@@ -104,5 +103,10 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cmd)
 	{
 		ft_printf("%s: command not found\n", cmd[ms->p].arg_cmd[0]);
 		exit(1);
+	}
+	if (number == 23)
+	{
+		g_ms.exit_s = 1;
+		ft_printf("cd: HOME not set\n");
 	}
 }
