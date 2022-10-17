@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/14 14:47:23 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:16:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_export(t_ms *ms, t_cmd *cmd)
 {
 	if (cmd[ms->p].arg_cmd[1] == NULL
-		|| ft_strncmp(cmd[ms->p].arg_cmd[1], "#", 1) == 0)
+		|| ft_strncmp_m(cmd[ms->p].arg_cmd[1], "#") == 0)
 		ft_print_export();
 	else if (ft_strchr(cmd[ms->p].arg_cmd[1], '=') != 0)
 	{

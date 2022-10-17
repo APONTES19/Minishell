@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 20:35:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:19:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	echo_while(t_ms *ms, t_cmd *cmd);
 
 void	ft_echo(t_ms *ms, t_cmd *cmd)
 {
-		printf("entrei\n");
 	ms->k = 1;
 	if (cmd[ms->p].arg_cmd[1] == NULL)
 		ft_printf("\n");
@@ -59,11 +58,9 @@ void	ft_quote_echo(t_ms *ms, t_cmd *cmd)
 
 void	ft_print_var(t_ms *ms, t_cmd *cmd)
 {
-	if (ft_strncmp(cmd[ms->p].arg_cmd[1], "$?",
-		 ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+	if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "$?") == 0)
 		ft_printf("%d\n", g_ms.exit_s);
-	if (ft_strncmp(cmd[ms->p].arg_cmd[1], "$0",
-		 ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+	if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "$0") == 0)
 		ft_printf("-minishell\n");
 }
 
@@ -76,7 +73,7 @@ static void	echo_while(t_ms *ms, t_cmd *cmd)
 	{
 		if (ms->quote == 1)
 			ft_quote_echo(ms, cmd);
-		if (ms->k == 1 && !ft_strncmp(cmd[ms->p].arg_cmd[ms->k], "-n", 2))
+		if (ms->k == 1 && !ft_strncmp_m(cmd[ms->p].arg_cmd[ms->k], "-n"))
 		{
 			ms->k++;
 			if (cmd[ms->p].arg_cmd[ms->k] == NULL)

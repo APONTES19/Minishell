@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 19:24:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:12:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 		}
 		else if (ft_cd_home(ms ,cmd) == 0)
 				ft_change_cd(ms, "HOME");
-		else if (ft_strncmp(cmd[ms->p].arg_cmd[1], "-",
-			ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+		else if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "-") == 0)
 		{
 			if(ft_minus_cd(ms) == 1)
 				return ;
@@ -50,14 +49,12 @@ int	ft_cd_home(t_ms *ms, t_cmd *cmd)
 	ms->k = 0;
 	if (cmd[ms->p].arg_cmd[1] == NULL)
 		return(0);
-	if(ft_strncmp(cmd[ms->p].arg_cmd[1], "~",
-		ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+	if(ft_strncmp_m(cmd[ms->p].arg_cmd[1], "~") == 0)
 	{
 		ms->k = -890;
 		return (0);
 	}
-	if(ft_strncmp(cmd[ms->p].arg_cmd[1], "~/",
-		ft_strlen(cmd[ms->p].arg_cmd[1])) == 0)
+	if(ft_strncmp_m(cmd[ms->p].arg_cmd[1], "~/") == 0)
 	{
 		ms->k = -890;
 		return (0);
@@ -89,7 +86,7 @@ void	ft_change_cd(t_ms *ms, char *change)
 	}
 	temp2 = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
 	ft_change_envp("OLDPWD", temp2);
-	if (ft_strncmp(change, "HOME", 4) == 0)
+	if (ft_strncmp_m(change, "HOME") == 0)
 	{
 		ms->temp = ft_getenv(change);
 		if (ms->k == -890)

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 20:42:18 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:07:25 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
-	printf("COMANDO = |%s|",cmd[0].arg_cmd[0]);
 	ms->p = 0;
 	while (ms->p < ms->n_pipe)
 	{
-		if (cmd[ms->p].arg_cmd == NULL)
-			ms->p++;
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
 		if (pipe(ms->pipe) == -1)
@@ -67,44 +64,37 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_build(t_ms *ms, t_cmd *cmd)
 {
-	if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "cd", 2))
+	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
 		ft_cd(ms, cmd);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env", 3) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)
 		ft_env(ms, cmd);
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "export", 6))
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "export") == 0)
 		ft_export(ms, cmd);
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "unset", 5))
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "unset") == 0)
 		ft_unset(ms, cmd);
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "pwd") == 0)
 		ft_pwd();
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 10))
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "echo") == 0)
 		ft_echo(ms, cmd);
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "exit", 4))
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "exit") == 0)
 		ft_exit_m(ms, cmd);
 }
 
 int	ft_check_build(t_ms *ms, t_cmd *cmd)
 {
-	if (ft_strncmp(cmd[ms->p].arg_cmd[0], "cd",
-		 ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "env",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "export",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "export") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "unset",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "unset") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "pwd") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "echo",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "echo") == 0)
 		return (0);
-	else if (ft_strncmp(cmd[ms->p].arg_cmd[0], "exit",
-		ft_strlen(cmd[ms->p].arg_cmd[0])) == 0)
+	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "exit") == 0)
 		return (0);
 	return (1);
 }

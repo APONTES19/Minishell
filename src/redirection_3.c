@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 15:57:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:39:02 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_here_doc_open(char *str)
 	while (1)
 	{
 		line = readline(">");
-		if (ft_strncmp(line, str, ft_strlen(line)) != 0)
+		if (ft_strncmp_m(line, str) == 1)
 		{
 			write (fd, line, ft_strlen(line));
 			write (fd, "\n", 1);
@@ -74,7 +74,7 @@ int	ft_set_in(t_ms *ms, int type)
 	if (type == 2)
 	{
 		g_ms.filein = ft_here_doc_open(ms->path_infile);
-		unlink(".hero_doc");
+		
 	}
 	else
 		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);

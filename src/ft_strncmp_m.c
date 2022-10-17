@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp_m.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 20:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:39:47 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/10/16 22:49:40 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/10/16 23:10:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_exit_m(t_ms *ms, t_cmd *cmd)
+int	ft_strncmp_m(const char *str1, const char *str2)
 {
-	(void)cmd;
-	rl_clear_history();
-	ft_free_point(ms->head);
-	ft_free_point(ms->line);
-	exit(g_ms.exit_s);
+	size_t	a;
+	size_t	b;
+
+	a = ft_strlen(str1);
+	b = ft_strlen(str2);
+	if ((a - b) != 0)
+		return (1);
+	while(*str1)
+	{
+		if (*str1 != *str2)
+			return(1);
+		str1++;
+		str2++;
+	}
+	return (0);
 }

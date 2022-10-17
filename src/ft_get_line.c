@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/16 11:03:42 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:18:14 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_get_line(t_ms *ms)
 	ms->line = readline(ms->head);
 	if (ms->line[0] == ' ')
 		ft_check_space(ms);
-	if (ms->line == NULL || ft_strncmp(ms->line, "", 1) == 0)
+	if (ms->line == NULL || ft_strncmp_m(ms->line, "") == 0)
 		ft_get_line(ms);
-	if (ft_strncmp(ms->line, "exit", 4) == 0)
+	if (ft_strncmp_m(ms->line, "exit") == 0)
 		ft_exit_m(ms, NULL);
 	free(ms->head);
 }
