@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 00:20:50 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:31:28 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:58:01 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_aux_cd_change(t_ms *ms, char *change)
 	if (ms->k == -890)
 		chdir(getenv(change));
 	else if (ms->temp == NULL)
-		ft_error(23, ms , NULL);
+		ft_error(23, ms , NULL, NULL);
 	else
 		if (chdir(ft_getenv(change)) == -1)
-			ft_error(25, ms, NULL);
+			ft_error(25, ms, NULL, NULL);
 }

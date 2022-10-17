@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:15:50 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:01:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_export(t_ms *ms, t_cmd *cmd)
 	{
 		if (ft_isalpha(cmd[ms->p].arg_cmd[1][0]) == 0 ||
 			ft_export_special(ms, cmd) == 1)
-			ft_error(20, ms, cmd);
+			ft_error(20, ms, cmd, cmd[ms->p].arg_cmd[1]);
 		else
 			ft_set_export(cmd, ms);
 	}

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:31:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:04:15 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 		if (g_ms.cd == 0 && ms->oldpwd == NULL)
 			ms->oldpwd = (char *) malloc(1024 * sizeof(char));
 		if (cmd[ms->p].arg_cmd[2] != NULL && cmd[ms->p].arg_cmd[1] != NULL)
-			ft_error(14, ms, cmd);
+			ft_error(14, ms, cmd, cmd[ms->p].arg_cmd[1]);
 		else if (ft_cd_home(ms ,cmd) == 0)
 				ft_change_cd(ms, "HOME");
 		else if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "-") == 0)
@@ -30,7 +30,7 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 			&& ft_valid_dir(cmd[ms->p].arg_cmd[1]) == 1)
 			ft_change_cd(ms, cmd[ms->p].arg_cmd[1]);
 		else
-			ft_error(21, ms, cmd);
+			ft_error(21, ms, cmd, cmd[ms->p].arg_cmd[1]);
 	}
 	return ;
 }
@@ -84,7 +84,7 @@ int	ft_minus_cd(t_ms *ms)
 
 	if (g_ms.cd == 0)
 	{
-		ft_error(15, ms, NULL);
+		ft_error(15, ms, NULL, NULL);
 		return (1);
 	}
 	else

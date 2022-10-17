@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 11:33:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:03:08 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
 		if (pipe(ms->pipe) == -1)
-			ft_error(21, ms, cmd);
+			ft_error(21, ms, cmd, cmd[ms->p].arg_cmd[1]);
 		ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
 			ft_select_build(ms, cmd);
 		else
 		{
-			ms->j = 256;
-			g_ms.pid = fork();
-			if (g_ms.pid < 0)
-				ft_error (2, ms, cmd);
 			ft_execve(ms, cmd);
 		}
 		ft_set_fd_2(ms);

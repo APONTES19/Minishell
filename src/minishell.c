@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 11:31:00 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:02:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 			}
 	}
 	else
-		ft_error(0, ms, cmd);
+		ft_error(0, ms, NULL, NULL);
 	return (g_ms.exit_s);
 }
 
@@ -46,7 +46,7 @@ int	ft_set_parameters(t_ms *ms, char **envp)
 {
 		if (envp == NULL)
 		{
-			ft_error(06, ms, NULL);
+			ft_error(06, ms, NULL, NULL);
 			return (1);
 		}
 		ms->oldpwd = NULL;

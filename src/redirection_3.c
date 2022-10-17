@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:39:02 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:02:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_set_out(t_ms *ms, int type)
 		}
 		if (g_ms.fileout == -1)
 		{
-			ft_error(13, ms, NULL);
+			ft_error(13, ms, NULL, NULL);
 			return(1);
 		}
 	}
@@ -74,13 +74,13 @@ int	ft_set_in(t_ms *ms, int type)
 	if (type == 2)
 	{
 		g_ms.filein = ft_here_doc_open(ms->path_infile);
-		
+
 	}
 	else
 		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
 	if (g_ms.filein == -1)
 	{
-		ft_error(12, ms, NULL);
+		ft_error(12, ms, NULL, NULL);
 		return(1);
 	}
 	return(0);

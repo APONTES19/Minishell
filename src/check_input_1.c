@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 11:10:20 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:58:32 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int	ft_next_pipe(t_ms *ms)
 	{
 		if (ms->line[ms->i+1] == '|')
 		{
-			ft_error(04, ms, NULL);
+			ft_error(04, ms, NULL, NULL);
 			return (1);
 		}
-		else if (ms->i == 0 && ms->line[ms->i] == '|')
+		else if (ms->line[ms->i] == '|')
 		{
-			ft_error(03, ms, NULL);
+			ft_error(03, ms, NULL, NULL);
 			return (1);
 		}
 	}
@@ -90,21 +90,21 @@ int	ft_next_pipe(t_ms *ms)
 
 int	ft_next_pipe_2(t_ms *ms)
 {
-	ms->i++;
-	while(ms->line[ms->i] != '\0')
+	ms->k = ms->i + 1;
+	while(ms->line[ms->k])
 	{
-		if (ms->line[ms->i] == ' ')
-			ms->i++;
+		while (ms->line[ms->k] == ' ')
+			ms->k++;
 		break;
 	}
-	if (ms->line[ms->i] == '\0')
+	if (ms->line[ms->k] == '\0')
 	{
-		ft_error(24, ms , NULL);
+		ft_error(24, ms , NULL, NULL);
 			return (1);
 	}
-	else if (ms->line[ms->i] == '|')
+	else if (ms->line[ms->k] == '|')
 	{
-		ft_error(04, ms, NULL);
+		ft_error(04, ms, NULL, NULL);
 			return (1);
 	}
 	return (0);
