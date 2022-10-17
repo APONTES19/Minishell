@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 01:37:43 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:31:00 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd)
 	ft_memset(cmd, '0', sizeof(cmd));
 	ms->path_infile = NULL;
 	ms->path_outfile = NULL;
+	g_ms.pid = -1;
 	unlink(".hero_doc");
 }
 

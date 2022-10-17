@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 14:37:38 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:01:54 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,35 @@ int	ft_special(t_ms *ms)
 			return (1);
 		}
 		ms->i++;
+	}
+	return (0);
+}
+
+int	ft_check_quote(t_ms *ms)
+{
+	ms->i = -1;
+	ms->quote = 0;
+	while (ms->line[++ ms->i])
+	{
+		if (ms->line[ms->i] == '\'')
+		{
+			(ms->quote) = 1;
+			ms->i ++;
+			while (ms->line[ms->i] != '\'' && ms->line[ms->i])
+				ms->i++;
+		}
+		if (ms->line[ms->i] == '\"')
+		{
+			ms->quote = 1;
+			ms->i ++;
+			while (ms->line[ms->i] != '\"' && ms->line[ms->i])
+				ms->i++;
+		}
+		if (!ms->line[ms->i])
+		{
+			ft_error(01, ms, NULL);
+			return (1);
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/17 01:57:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:06:12 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ft_error(int number, t_ms *ms, t_cmd *cmd)
 		ft_printf("invalid character: %c\n", ms->line[ms->i]);
 	if (number == 3)
 		ft_printf("syntax error near "
-			"unexpected token `%c'\n", ms->line[ms->i]);
+			"unexpected token `|'\n");
 	if (number == 4)
 		ft_printf("syntax error near "
-			"unexpected token `%c%c'\n", ms->line[ms->i], ms->line[ms->i + 1]);
+			"unexpected token `||'\n");
 	if (number == 5)
 		ft_printf("malloc error\n");
 	if (number == 6)
