@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:41:14 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/11 02:50:48 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:24:13 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,39 @@ void	ft_free_two_point(char **point)
 {
 	int	i;
 
-	i = 0;
-	while (point[i])
+	if (point[0] != NULL)
 	{
-		free(point[i]);
-		point[i] = NULL;
-		i++;
+		i = 0;
+		while (point[i])
+		{
+			free(point[i]);
+			point[i] = NULL;
+			i++;
+		}
+		free(point);
+		point = NULL;
 	}
-	free(point);
-	point = NULL;
 }
 
 void	ft_free_point(char *point)
 {
-	free(point);
-	point = NULL;
+	if (point != NULL)
+	{
+		free(point);
+		point = NULL;
+	}
 }
 
 void	ft_base_free(t_ms *ms, t_cmd *cmd)
 {
-	int	i;
 	int	j;
 
 	j = 0;
 	while (j < ms->n_pipe)
 	{
-		if (ms->n_pipe > 1)
-		{
-			free(cmd[0].base_list_cmd[j]);
-			cmd[0].base_list_cmd[j] = NULL;
-		}
-		i = 0;
-		while (cmd[j].arg_cmd[i])
-		{
-			free(cmd[j].arg_cmd[i]);
-			cmd[j].arg_cmd[i] = NULL;
-			i ++;
-		}
-		free (cmd[j].arg_cmd);
-		cmd[j].arg_cmd = NULL;
+		ft_free_two_point(cmd[j].arg_cmd);
 		j ++;
 	}
-	if (ms->n_pipe > 1)
-		free(cmd[0].base_list_cmd);
 	free(cmd);
 }
 

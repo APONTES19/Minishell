@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:07:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:48:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,16 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 			ft_error(21, ms, cmd);
 		ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
-		{
 			ft_select_build(ms, cmd);
-			ms->j = 9;
-		}
 		else
-		{
 			ft_execve(ms, cmd);
-			ms->j = 256;
-		}
 		ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(ms->pid, &ms->k, 0);
+	wait (&ms->k);
 	if (ms->j == 256)
 		g_ms.exit_s = ms->k;
+	ft_base_free(ms, cmd);
 }
 
 void	ft_clean_quote(t_cmd *cmd)
@@ -64,6 +59,7 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_build(t_ms *ms, t_cmd *cmd)
 {
+	ms->j = 9;
 	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
 		ft_cd(ms, cmd);
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)

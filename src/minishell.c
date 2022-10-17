@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:41:10 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:37:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	main(int argc, char **argv, char **envp)
 				ft_set_init(ms, cmd);
 				ft_get_line(ms);
 				add_history(ms->line);
-				if (ft_check_input(ms, cmd) == 0)
+				ft_check_input(ms, cmd);
 				dup2(g_ms.stdin, STDIN);
 				dup2(g_ms.stdout, STDOUT);
+				ft_set_end(ms, cmd);
 			}
 	}
 	else
@@ -67,4 +68,14 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd)
 	ms->path_infile = NULL;
 	ms->path_outfile = NULL;
 	unlink(".hero_doc");
+}
+
+void	ft_set_end(t_ms *ms, t_cmd *cmd)
+{
+	(void)ms;
+	(void)cmd;
+	//ft_base_free(ms, cmd);
+	//ft_free_point(ms->path_cmd);
+	//ft_free_point(ms->line);
+	//ft_free_point(ms->head);
 }

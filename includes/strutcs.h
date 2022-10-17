@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 18:30:19 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:06:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct minishell
 	int		fileout;
 	int		filein;
 	int		redirection;
+	int		cmd;
 }	t_ms;
 
 typedef struct comand

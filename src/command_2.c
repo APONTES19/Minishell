@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:35:50 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:36:17 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
 	}
+	ft_free_point(ms->line);
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
 		ft_error(8, ms, NULL);

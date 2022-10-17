@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:35:12 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:33:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_execve(t_ms *ms, t_cmd *cm)
 {
+	ms->j = 256;
 	ms->pid = fork();
 	if (ms->pid < 0)
 		ft_error (2, ms, cm);
@@ -32,6 +33,9 @@ void	ft_execve(t_ms *ms, t_cmd *cm)
 			ft_error(22, ms, cm);
 		}
 		else
-			ft_error(18, ms, cm);
+		{
+			ft_free_point(ms->path_cmd);
+			ft_error (18, ms, cm);
+		}
 	}
 }

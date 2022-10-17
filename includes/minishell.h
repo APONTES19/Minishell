@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:31:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 01:11:28 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	ft_pwd(void);
 	//main
 int	ft_set_parameters(t_ms *ms, char **envp);
 void	ft_set_init(t_ms *ms, t_cmd *cmd);
+void	ft_set_end(t_ms *ms, t_cmd *cmd);
 
 
 //ft_get_line
