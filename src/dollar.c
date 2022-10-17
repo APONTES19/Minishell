@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 17:57:42 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:26:26 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,28 @@ int	ft_set_line_dollar(t_ms *ms)
 
 		if (ms->line[ms->i] == '\'')
 			ft_redirection_aux(ms, '\'');
-		if (ms->line[ms->i] == '$')
+		if (ms->line[ms->i] == '\"')
 		{
-			if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
+			ms->i++;
+			while(ms->line[ms->i] != '\"')
+			{
+				if (ms->line[ms->i] == '$')
+				{
+					if (ft_strchr(" |?0", ms->line[ms->i + 1]) != NULL)
+						ms->i++;
+					else
+					{
+						ft_get_path_dollar(ms);
+						ms->i = -1;
+						break;
+					}
+				}
+				ms->i++;
+			}
+		}
+		if (ms->line[ms->i] == '$' && ms->i > 0)
+		{
+			if (ft_strchr(" |?0", ms->line[ms->i + 1]) != NULL)
 				ms->i++;
 			else
 			{
@@ -41,7 +60,7 @@ void	ft_get_path_dollar(t_ms *ms)
 	char	*temp2;
 	ms->start = ms->i+1;
 	ms->k = ms->start;
-	while(ft_strchr(" |\"", ms->line[ms->k]) == NULL)
+	while(ft_strchr(" |\"\'", ms->line[ms->k]) == NULL)
 		ms->k++;
 	ms->end = (ms->k - ms->start);
 

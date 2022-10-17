@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 18:47:15 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:24:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_cd(t_ms *ms, t_cmd *cmd)
 {
 	g_ms.exit_s = 0;
+	ms->k = 0;
 	if (ms->n_pipe == 1)
 	{
 		if (g_ms.cd == 0 && ms->oldpwd == NULL)
@@ -93,7 +94,7 @@ void	ft_change_cd(t_ms *ms, char *change)
 		ms->temp = ft_getenv(change);
 		if (ms->k == -890)
 			chdir(getenv(change));
-		else if (temp == NULL && ms->k == 0)
+		else if (ms->temp == NULL)
 			ft_error(23, ms , NULL);
 		else
 			if (chdir(ft_getenv(change)) == -1)

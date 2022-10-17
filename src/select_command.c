@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/14 17:27:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:42:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
+	printf("COMANDO = |%s|",cmd[0].arg_cmd[0]);
 	ms->p = 0;
 	while (ms->p < ms->n_pipe)
 	{
@@ -76,7 +77,7 @@ void	ft_select_build(t_ms *ms, t_cmd *cmd)
 		ft_unset(ms, cmd);
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "pwd", 3))
 		ft_pwd();
-	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 4))
+	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "echo", 10))
 		ft_echo(ms, cmd);
 	else if (!ft_strncmp(cmd[ms->p].arg_cmd[0], "exit", 4))
 		ft_exit_m(ms, cmd);

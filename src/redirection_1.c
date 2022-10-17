@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 16:19:48 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:37:05 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_red_point(t_ms *ms, int type, char **path)
 			ms->t = '\"';
 			ft_red_point_aux(ms, 'a', type);
 		}
-		if (ms->line[ms->k] == ' ' || ms->line[ms->k] == '|')
+		if (ft_strchr("| ><", ms->line[ms->k]) != NULL)
 			break;
 		ms->k++;
 	}
