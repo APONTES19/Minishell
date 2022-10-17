@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:33 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 23:29:18 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/17 00:19:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_unset(t_ms *ms, t_cmd *cmd)
 		ft_unset2(cmd[ms->p].arg_cmd[i]);
 		i ++;
 	}
+	g_ms.exit_s = 0;
 }
 
 void	ft_unset2(char *src)

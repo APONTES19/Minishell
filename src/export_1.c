@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:16:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 00:15:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_export(t_ms *ms, t_cmd *cmd)
 		else
 			ft_set_export(cmd, ms);
 	}
+	g_ms.exit_s = 0;
 	return ;
 }
 

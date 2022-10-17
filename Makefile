@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/16 23:09:57 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/17 00:20:15 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC_FILES=minishell.c\
 		  redirection_2.c\
 		  redirection_3.c\
 		  echo.c\
-		  cd.c\
+		  cd_1.c\
+		  cd_2.c\
 		  pwd.c\
 		  env_1.c\
 		  env_2.c\

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:19:39 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 00:14:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_echo(t_ms *ms, t_cmd *cmd)
 		ft_print_var(ms, cmd);
 	else
 		echo_while (ms, cmd);
+	g_ms.exit_s = 0;
 	return ;
 }
 

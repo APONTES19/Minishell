@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 22:38:26 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/17 00:17:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	ft_pwd(void)
 	getcwd(s, 1024);
 	ft_printf("%s\n", s);
 	ft_free_point(s);
+	g_ms.exit_s = 0;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:20:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:57:41 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	ft_next_pipe(t_ms *ms)
 	}
 	if (ms->line[ms->k] == '\0')
 	{
-		ft_error(24, ms, NULL);
+		ft_error(3, ms, NULL);
 		return(1);
 	}
 	if (ms->i == 0)
@@ -134,9 +134,9 @@ int	ft_next_pipe_2(t_ms *ms)
 {
 	while (ms->line[ms->i +1] == ' ')
 		ms->i++;
-	if (ms->line[ms->i + 1] == '|')
+	if (ms->line[ms->i] == '|')
 	{
-		if(ms->line[ms->i + 2] == '|')
+		if(ms->line[ms->i + 1] == '|')
 		{
 			ft_error(04, ms, NULL);
 			return (1);
