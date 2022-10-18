@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 18:37:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 23:08:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
 	ms->p = 0;
+	ms->pid = (int *) malloc(ms->n_pipe * sizeof(int *));
 	while (ms->p < ms->n_pipe)
 	{
+		printf("VALOR DE P[%d]\n", ms->p);
 		if (ms->quote == 1)
 			ft_clean_quote(cmd);
 		if (pipe(ms->pipe) == -1)
 			ft_error(21, ms, cmd, cmd[ms->p].arg_cmd[1]);
-		ft_set_fd_1(ms);
+		//ft_set_fd_1(ms);
 		if (ft_check_build(ms, cmd) != 1)
 			ft_select_build(ms, cmd);
 		else
-		{
 			ft_execve(ms, cmd);
-		}
-		ft_set_fd_2(ms);
+		//ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(ms->pid, &ms->k, 0);
+	waitpid(ms->pid1, &ms->k, 0);
 	if (ms->j == 256)
 		g_ms.exit_s = WEXITSTATUS(ms->k);
 	ft_free_cmd(ms, cmd);
+	free(ms->pid);
 }
 
 void	ft_clean_quote(t_cmd *cmd)
@@ -116,8 +117,11 @@ void	ft_set_fd_1(t_ms *ms)
 
 void	ft_set_fd_2(t_ms *ms)
 {
-	dup2(ms->pipe[0], STDIN);
-	dup2(g_ms.stdout, STDOUT);
-	close(ms->pipe[0]);
 	close(ms->pipe[1]);
+	if (ms->p < (ms->n_pipe -1))
+		dup2(ms->pipe[0], STDIN);
+	else
+
+	//dup2(g_ms.stdout, STDOUT);
+	close(ms->pipe[0]);
 }
