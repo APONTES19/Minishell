@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 17:11:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:20:13 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		if (pipe(ms->pipe) == -1)
 			ft_error(21, ms, cmd, cmd[ms->p].arg_cmd[1]);
 		ft_set_fd_1(ms);
-		if (ft_check_build(ms, cmd) != 1)
-			ft_select_build(ms, cmd);
-		else
-		{
+		ft_check_build(ms, cmd);
+		if (ms->j == 0)
 			ft_execve(ms, cmd);
-		}
 		ft_set_fd_2(ms);
 		ms->p++;
 	}
@@ -38,7 +35,6 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 	i = 0;
 	while(i < ms->n_pipe)
 	{
-		printf("PID%d[%d]\n", i, ms->pid[i]);
 		waitpid(ms->pid[i], &ms->k, 0);
 		g_ms.exit_s = WEXITSTATUS(ms->k);
 		i++;
@@ -69,41 +65,24 @@ void	ft_clean_quote(t_cmd *cmd)
 	ft_free_point(c);
 }
 
-void	ft_select_build(t_ms *ms, t_cmd *cmd)
+void	ft_check_build(t_ms *ms, t_cmd *cmd)
 {
+	ms->j = 1;
 	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
-		ft_cd(ms, cmd);
+		return (ft_cd(ms, cmd));
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)
-		ft_env(ms, cmd);
+		return (ft_env(ms, cmd));
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "export") == 0)
-		ft_export(ms, cmd);
+		return (ft_export(ms, cmd));
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "unset") == 0)
-		ft_unset(ms, cmd);
+		return (ft_unset(ms, cmd));
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "pwd") == 0)
-		ft_pwd();
+		return (ft_pwd());
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "echo") == 0)
-		ft_echo(ms, cmd);
+		return (ft_echo(ms, cmd));
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "exit") == 0)
-		ft_exit_m(ms, cmd);
-}
-
-int	ft_check_build(t_ms *ms, t_cmd *cmd)
-{
-	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "export") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "unset") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "pwd") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "echo") == 0)
-		return (0);
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "exit") == 0)
-		return (0);
-	return (1);
+		return (ft_exit_m(ms, cmd));
+	ms->j = 0;
 }
 
 void	ft_set_fd_1(t_ms *ms)

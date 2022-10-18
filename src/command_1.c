@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 17:12:01 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:51:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_execve(t_ms *ms, t_cmd *cm)
 		ft_error (2, ms, cm, cm[ms->p].arg_cmd[0]);
 	if (ms->pid[ms->p] == 0)
 	{
-		sleep(3 - ms->p);
 		if (ms->p == (ms->n_pipe -1))
 			close(ms->pipe[0]);
 		if (ft_get_path(ms, cm[ms->p].arg_cmd[0]) == 0)
