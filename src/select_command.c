@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 18:37:31 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:19:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
+	ms->pid = (int *) malloc(ms->n_pipe * sizeof(int *));
+	ft_bzero(ms->pid, ms->n_pipe * sizeof(int *));
 	ms->p = 0;
 	while (ms->p < ms->n_pipe)
 	{
@@ -31,9 +33,18 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(ms->pid, &ms->k, 0);
-	if (ms->j == 256)
+	int i;
+
+	i = 0;
+	while(i < ms->n_pipe)
+	{
+		printf("PID%d[%d]\n", i, ms->pid[i]);
+		waitpid(ms->pid[i], &ms->k, 0);
 		g_ms.exit_s = WEXITSTATUS(ms->k);
+		i++;
+	}
+	//if (ms->j == 256)
+	free(ms->pid);
 	ft_free_cmd(ms, cmd);
 }
 

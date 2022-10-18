@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 01:06:36 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:08:00 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct minishell
 	int		fd_out;
 	int		fd_in;
 	char	*temp;
-	int		pid;
+	int		*pid;
 	int		pid1;
 	int		quote;
 	int		stdout;
