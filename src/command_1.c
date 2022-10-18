@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 16:26:52 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:12:01 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_execve(t_ms *ms, t_cmd *cm)
 {
-	ms->j = 256;
 	ms->pid[ms->p] = fork();
 	if (ms->pid[ms->p] < 0)
 		ft_error (2, ms, cm, cm[ms->p].arg_cmd[0]);

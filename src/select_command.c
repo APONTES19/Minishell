@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 16:19:39 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:11:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		g_ms.exit_s = WEXITSTATUS(ms->k);
 		i++;
 	}
-	//if (ms->j == 256)
 	free(ms->pid);
 	ft_free_cmd(ms, cmd);
 }
@@ -72,7 +71,6 @@ void	ft_clean_quote(t_cmd *cmd)
 
 void	ft_select_build(t_ms *ms, t_cmd *cmd)
 {
-	ms->j = 9;
 	if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "cd") == 0)
 		ft_cd(ms, cmd);
 	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[0], "env") == 0)
