@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/17 18:37:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:42:07 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
 	dup2 (2, STDOUT);
+	g_ms.exit_s = 127;
 	ft_printf("%d ", number);//excluir
 	ft_printf("-minishell: ");
 

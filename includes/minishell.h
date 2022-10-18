@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 21:56:23 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:06:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int		ft_check_dolar(t_ms *ms);
 void	ft_check_space(t_ms *ms);
 int		ft_check_redirection(t_ms *ms);
 
-
-//dollar
+// dollar
 int	ft_set_line_dollar(t_ms *ms);
 void	ft_get_path_dollar(t_ms *ms);
 void	ft_change_line_dollar(t_ms *ms, char *dollar);
 
 //ft_strcmp_m
 int	ft_strncmp_m(const char *str1, const char *str2);
-
 //exit
 void	ft_exit_m(t_ms *ms, t_cmd *cmd);
 
@@ -109,8 +107,6 @@ void	ft_select_build(t_ms *ms, t_cmd *cmd);
 int		ft_check_build(t_ms *ms, t_cmd *cmd);
 void	ft_set_fd_1(t_ms *ms);
 void	ft_set_fd_2(t_ms *ms);
-void	ft_set_fd_4(t_ms *ms);
-void	ft_set_fd_3(t_ms *ms);
 
 //UNSET 1
 void	ft_unset(t_ms *ms, t_cmd *cmd);
