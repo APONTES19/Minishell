@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 13:02:29 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:59:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd)
 	ft_memset(cmd, '0', sizeof(cmd));
 	ms->path_infile = NULL;
 	ms->path_outfile = NULL;
-	g_ms.pid = -1;
+	g_ms.i = 0;
+	g_ms.pid = 1;
 	unlink(".hero_doc");
 }
 
@@ -75,7 +76,7 @@ void	ft_set_end(t_ms *ms, t_cmd *cmd)
 {
 	(void)ms;
 	(void)cmd;
-	//ft_base_free(ms, cmd);
+	//ft_free_cmd(ms, cmd);
 	//ft_free_point(ms->path_cmd);
 	//ft_free_point(ms->line);
 	//ft_free_point(ms->head);

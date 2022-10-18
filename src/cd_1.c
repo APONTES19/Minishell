@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 13:04:15 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:57:05 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	ft_change_cd(t_ms *ms, char *change)
 	temp = ft_getenv("OLDPWD");
 	if (temp == NULL)
 	{
-		temp = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
+		temp = ft_strjoin ("OLDPWD=", ms->oldpwd);
 		ft_add_envp(temp);
 		ft_free_point(temp);
 	}
-	temp2 = ft_strjoin (ft_strdup("OLDPWD="), ms->oldpwd);
+	temp2 = ft_strjoin ("OLDPWD=", ms->oldpwd);
 	ft_change_envp("OLDPWD", temp2);
 	if (ft_strncmp_m(change, "HOME") == 0)
 		ft_aux_cd_change(ms, change);

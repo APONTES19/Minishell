@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 13:03:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:37:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		ft_set_fd_2(ms);
 		ms->p++;
 	}
-	waitpid(g_ms.pid, &ms->k, 0);
+	waitpid(ms->pid, &ms->k, 0);
 	if (ms->j == 256)
-		g_ms.exit_s = ms->k;
-	ft_base_free(ms, cmd);
+		g_ms.exit_s = WEXITSTATUS(ms->k);
+	ft_free_cmd(ms, cmd);
 }
 
 void	ft_clean_quote(t_cmd *cmd)

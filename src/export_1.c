@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 13:01:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:40:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	ft_set_export(t_cmd *cmd, t_ms *ms)
 	{
 		ft_change_envp(s, cmd[ms->p].arg_cmd[1]);
 	}
+	ft_free_point(s);
 }

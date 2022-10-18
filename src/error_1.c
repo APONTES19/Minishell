@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/17 13:05:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:37:40 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
 	dup2 (2, STDOUT);
-	g_ms.exit_s = 127;
 	ft_printf("%d ", number);//excluir
 	ft_printf("-minishell: ");
 
@@ -49,7 +48,8 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 11)
 	{
 		ft_printf("Erro na Execução do comando com a execve\n");
-		exit(3);
+		ft_free_exit(ms, cm);
+		exit(g_ms.exit_s);
 	}
 	if (number == 12)
 		ft_printf("%s: No such file or directory\n", ms->path_infile);
@@ -70,7 +70,8 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 17)
 	{
 		ft_printf ("Error while executing\n");
-		exit(1);
+		ft_free_exit(ms, cm);
+		exit(g_ms.exit_s);
 	}
 	ft_error_2(number, ms ,cm, cmd);
 }
@@ -80,8 +81,9 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 18)
 	{
 		ft_printf("%s: command not found\n", cmd);
-		ft_base_free(ms, cm);
-		ft_exit_m(ms, cm);
+		ft_free_cmd(ms, cm);
+		ft_free_exit(ms, cm);
+		exit(g_ms.exit_s);
 	}
 	if (number == 19)
 	{
@@ -114,5 +116,20 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	{
 		g_ms.exit_s = 1;
 		ft_printf(" cd: %s: No such file or directory\n", ms->temp);
+	}
+	if (number == 26)
+	{
+		g_ms.exit_s = 2;
+		ft_printf("syntax error near unexpected token `newline'\n");
+	}
+	if (number == 27)
+	{
+		g_ms.exit_s = 2;
+		ft_printf("exit: %s: numeric argument required\n", cmd);
+	}
+	if (number == 28)
+	{
+		g_ms.exit_s = 1;
+		ft_printf("exit: too many arguments\n");
 	}
 }

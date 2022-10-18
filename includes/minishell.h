@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 13:01:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:06:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,12 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd);
 void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd);
 void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd);
 
-void	ft_base_free(t_ms *ms, t_cmd *cmd);
+
+//exit
+void	ft_free_cmd(t_ms *ms, t_cmd *cmd);
 void	ft_free_two_point(char **point);
 void	ft_free_point(char *point);
+void	ft_free_exit(t_ms *ms, t_cmd *cmd);
+int	ft_str_isnum(char *str);
 
 #endif

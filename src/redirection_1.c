@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 19:37:05 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:55:10 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,24 @@ int	ft_redirection_3(t_ms *ms, int type)
 {
 	if (ms->path_infile != NULL)
 	{
-		if (ft_set_in(ms, type) == 1)
+		if (ft_strncmp_m(ms->line,"") == 0 &&
+		ft_strncmp_m(ms->path_infile,"") == 0)
+		{
+			ft_error(26, ms, NULL, NULL);
+			return (1);
+		}
+		else if (ft_set_in(ms, type) == 1)
 			return (1);
 	}
 	if (ms->path_outfile != NULL)
 	{
-		if (ft_set_out(ms, type) == 1)
+		if (ft_strncmp_m(ms->line,"") == 0 &&
+			ft_strncmp_m(ms->path_outfile,"") == 0)
+		{
+			ft_error(26, ms, NULL, NULL);
+			return (1);
+		}
+		else if (ft_set_out(ms, type) == 1)
 			return (1);
 	}
 	return(0);

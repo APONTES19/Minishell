@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:57:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:31:55 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_split_ms(char const *s, char c)
 		}
 		var.i++;
 	}
-	var.result[var.p] = 0;
+	var.result[var.p] = NULL;
 	return (var.result);
 }
 

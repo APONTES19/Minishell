@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:14:10 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:48:27 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	ft_quote_echo(t_ms *ms, t_cmd *cmd)
 
 void	ft_print_var(t_ms *ms, t_cmd *cmd)
 {
-	if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "$?") == 0)
-		ft_printf("%d\n", g_ms.exit_s);
 	if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "$0") == 0)
 		ft_printf("-minishell\n");
 }
