@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 12:59:23 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/19 00:08:46 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,80 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 		ft_error(8, ms, NULL, NULL);
 		return (1);
 	}
+	if (ms->quote == 1)
+		ft_clean_quote(ms,cmd);
 	ft_main_while(ms, cmd);
 	return (0);
 }
+
+void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
+{
+	char *temp;
+	char type;
+	printf("\n_________Aqui começa o split do pipe __________\n");
+	type = '\"';
+	ms->i = 0;
+	while(ms->i != ms->n_pipe)
+	{
+		printf("Struc cmd[%d]\n",ms->i);
+		ms->j = 0;
+		while(cmd[ms->i].arg_cmd[ms->j])
+		{
+		    printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
+			temp = ft_strdup(cmd[ms->i].arg_cmd[ms->j]);
+			ft_free_point(cmd[ms->i].arg_cmd[ms->j]);
+			ms->k = 0;
+			ms->p = 0;
+			while(temp[ms->k])
+			{
+				if (temp[ms->k] == '\'' || temp[ms->k] == '\"')
+				{
+					if (temp[ms->k] == '\'')
+						type = '\'';
+					ms->k++;
+					ms->p+= 2;
+					while(temp[ms->k] != type)
+						ms->k++;
+				}
+				ms->k++;
+			}
+			cmd[ms->i].arg_cmd[ms->j] =
+				(char *) malloc ((8) *sizeof(char *));
+			ms->k = 0;
+			ms->p = 0;
+			while(temp[ms->k])
+			{
+				if (temp[ms->k] == '\'' || temp[ms->k] == '\"')
+				{
+					if (temp[ms->k] == '\'')
+						type = '\'';
+					ms->k++;
+					while(temp[ms->k] != type)
+					{
+						cmd[ms->i].arg_cmd[ms->j][ms->p] = temp[ms->k];
+						ms->p++;
+						ms->k++;
+					}
+					ms->k++;
+				}
+				if (temp[ms->k])
+				{
+					cmd[ms->i].arg_cmd[ms->j][ms->p] = temp[ms->k];
+					ms->p++;
+					ms->k++;
+				}
+			}
+			printf("%d", ms->p);
+			cmd[ms->i].arg_cmd[ms->j][ms->p] = '\0';
+			ft_free_point(temp);
+			printf("\talterado-Arg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
+		    ms->j++;
+		}
+		ms->i++;
+	}
+	printf("_________Aqui termina o split do pipe __________\n\n");
+}
+
 
 int	ft_get_path(t_ms *ms, char *cmd)
 {

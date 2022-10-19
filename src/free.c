@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:41:14 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/17 16:03:53 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:18:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_free_two_point(char **point)
 {
 	int	i;
 
-	if (point[0] != NULL)
-	{
 		i = 0;
 		while (point[i])
 		{
@@ -27,16 +25,12 @@ void	ft_free_two_point(char **point)
 		}
 		free(point);
 		point = NULL;
-	}
 }
 
 void	ft_free_point(char *point)
 {
-	if (point != NULL)
-	{
 		free(point);
 		point = NULL;
-	}
 }
 
 void	ft_free_cmd(t_ms *ms, t_cmd *cmd)
@@ -50,12 +44,15 @@ void	ft_free_cmd(t_ms *ms, t_cmd *cmd)
 		j ++;
 	}
 	free(cmd);
+	free(ms->pid);
+	ms->pid = NULL;
 }
 
 void	ft_free_exit(t_ms *ms, t_cmd *cmd)
 {
 	(void)ms;
 	(void)cmd;
+
 	rl_clear_history();
 	ft_free_two_point(g_ms.envp);
 }
