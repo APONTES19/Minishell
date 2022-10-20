@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 18:57:37 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:11:12 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,33 +72,37 @@ void	ft_get_path_dollar(t_ms *ms)
 
 
 	temp = ft_substr(ms->line, ms->start, ms->end);
-
+	temp2 = NULL;
 
 
 	printf("TEMP = |%s|\n", temp);
 
-	if (ft_strncmp_m(temp, "?") == 0)
+	if (ft_strncmp_m(temp, "PWD") == 0)
+	{
+		printf("entrei no PWD\n");
+		temp2 = ft_getenv(temp);
+		if (temp2 == NULL)
+		{
+			temp2 = (char *) malloc (1024 * sizeof(char));
+			getcwd(temp2, 1024);
+		}
+	}
+	else if (ft_strncmp_m(temp, "?") == 0)
 	{
 		temp2 = ft_itoa(g_ms.exit_s);
 		ft_printf("ENTREI temp2= |%s|\n",temp2);
 	}
-	else
-		temp2 = ft_getenv(temp);
-	if(temp2 == NULL)
+	else if (temp2 == NULL)
 	{
-		temp2 = ft_strdup("");
-
-
-
-
-		printf("env null\n");
-
-
+		temp2 = ft_getenv(temp);
+		if (temp2 == NULL)
+		{
+			temp2 = ft_strdup("");
+			printf("env null\n");
+		}
 	}
 	else
-		printf("VALOR DO ENV:|%s|\n", temp2);
-
-
+	printf("VALOR DO ENV:|%s|\n", temp2);
 	ft_change_line_dollar(ms, temp2);
 
 	if (ft_strncmp_m(temp, "?") == 0)

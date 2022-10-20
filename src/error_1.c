@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/18 15:42:07 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:46:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	{
 		g_ms.exit_s = 1;
 		ft_printf("cd: %s", cmd);
-		if (access(cmd, F_OK) == 0)
+		if (access(cmd, F_OK) != 0)
 			ft_printf(": Not a directory\n");
 		else
 			ft_printf(": No such file or directory\n");

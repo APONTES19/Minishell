@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 12:59:41 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 08:55:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,30 @@ void	ft_env(t_ms *ms, t_cmd *cmd)
 void	ft_copy_envp(char **envp)
 {
 	int	i;
+	int c;
 
 	i = 0;
+	c = 0;
 	while (envp[i])
 		i++;
 	g_ms.envp = (char **) malloc((i + 1) * sizeof(char **));
 	i = 0;
+	c = 0;
 	while (envp[i])
 	{
-		g_ms.envp[i] = ft_strdup(envp[i]);
-		i++;
+		if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0)
+		{
+			printf("%s\n", envp[i]);
+			i++;
+		}
+		else
+		{
+			g_ms.envp[c] = ft_strdup(envp[i]);
+			c++;
+			i++;
+		}
 	}
-	g_ms.envp[i] = NULL;
+	g_ms.envp[c] = NULL;
 }
 
 char	*ft_getenv(char *s)
