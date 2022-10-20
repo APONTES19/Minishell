@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 17:46:16 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:39:06 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int		init_var(t_var *var, char const *s, char c);
 
 char	**ft_split_ms(char const *s, char c)
 {
+	printf("________________SPLIT_______________\n");
 	t_var	var;
 
 	init_var(&var, s, c);
@@ -26,10 +27,8 @@ char	**ft_split_ms(char const *s, char c)
 	{
 		if (s[var.i] == '\'' || s[var.i] == '\"')
 		{
-			printf("\n\nENTREI %ld[%c]\n", var.i, s[var.i]);
 			if (var.quote == 0)
 				next_quote(s, &var);
-			printf("SAI %ld[%c]\n\n", var.i, s[var.i]);
 			var.quote++;
 			if (var.quote == var.n_q)
 				var.quote = 0;
@@ -45,6 +44,13 @@ char	**ft_split_ms(char const *s, char c)
 		var.i++;
 	}
 	var.result[var.p] = NULL;
+	int i; i = 0;
+	while(var.result[i])
+	{
+		printf("[%d] %s\n", i, var.result[i]);
+		i++;
+	}
+	printf("___________________________________\n");
 	return (var.result);
 }
 
@@ -114,12 +120,15 @@ static void	next_quote(const char *s, t_var *var)
 	char	type;
 
 	type = s[var->i];
-	i = 0;
+	i = 1;
 	var->n_q = 0;
 	while (s[i])
 	{
 		if (s[i] == type)
+		{
 			var->n_q++;
+			break;
+		}
 		i++;
 	}
 }

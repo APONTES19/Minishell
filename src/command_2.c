@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:01:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:52:06 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
 	}
+	//return(1);
 	ft_free_point(ms->line);
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
@@ -49,17 +50,35 @@ void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
 	char *temp;
 	char type;
 	printf("\n_________Aqui começa o split do pipe __________\n");
-	type = '\"';
+
 	ms->i = 0;
 	while(ms->i != ms->n_pipe)
 	{
 		printf("Struc cmd[%d]\n",ms->i);
 		ms->j = 0;
+
+
+
+
+
+
+
+
+
+
+
 		while(cmd[ms->i].arg_cmd[ms->j])
 		{
 		    printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
+
+
+
+			//duplica variavel
 			temp = ft_strdup(cmd[ms->i].arg_cmd[ms->j]);
+			//limpa a original da memoria
 			ft_free_point(cmd[ms->i].arg_cmd[ms->j]);
+
+			// inicio contagem pra malocar
 			ms->k = 0;
 			g_ms.p = 0;
 			while(temp[ms->k])
@@ -68,6 +87,8 @@ void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
 				{
 					if (temp[ms->k] == '\'')
 						type = '\'';
+					else
+						type = '\"';
 					ms->k++;
 					g_ms.p+= 2;
 					while(temp[ms->k] != type)
@@ -75,8 +96,8 @@ void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
 				}
 				ms->k++;
 			}
-			cmd[ms->i].arg_cmd[ms->j] =
-				(char *) malloc ((8) *sizeof(char *));
+			ms->k = (ms->k - g_ms.p);
+			cmd[ms->i].arg_cmd[ms->j] = (char *) malloc (ms->k * sizeof(char *));
 			ms->k = 0;
 			g_ms.p = 0;
 			while(temp[ms->k])
@@ -104,9 +125,30 @@ void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
 			printf("%d", g_ms.p);
 			cmd[ms->i].arg_cmd[ms->j][g_ms.p] = '\0';
 			ft_free_point(temp);
-			printf("\talterado-Arg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
+			printf("\t\t\talterado-Arg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
 		    ms->j++;
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		ms->i++;
 	}
 	printf("_________Aqui termina o split do pipe __________\n\n");

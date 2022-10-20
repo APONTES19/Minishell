@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 17:28:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:40:02 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_set_line_dollar(t_ms *ms)
 
 void	ft_get_path_dollar(t_ms *ms)
 {
+	printf("________________DOLLAR_______________\n");
 	char	*temp;
 	char	*temp2;
 	ms->start = ms->i+1;
@@ -114,6 +115,7 @@ void	ft_get_path_dollar(t_ms *ms)
 	if (ms->j == -1)
 		ft_free_point(temp2);
 	ft_free_point(temp);
+	printf("______________________________\n");
 }
 
 void	ft_change_line_dollar(t_ms *ms, char *dollar)

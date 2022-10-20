@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:01:34 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:16:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ void	ft_copy_envp(char **envp)
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0)
-		{
-			printf("%s\n", envp[i]);
 			i++;
-		}
 		else
 		{
 			g_ms.envp[c] = ft_strdup(envp[i]);
