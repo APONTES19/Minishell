@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 14:11:17 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:05:58 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ int		ft_get_path(t_ms *ms, char *cmd);
 void	ft_aux_path(t_ms *ms, int number);
 
 //ECHO
-void	ft_quote_echo(t_ms *ms, t_cmd *cmd);
 void	ft_echo(t_ms *ms, t_cmd *cmd);
-void	ft_print_var(t_ms *ms, t_cmd *cmd);
+void	ft_echo_while(t_ms *ms, t_cmd *cmd);
 
 // ENV 1
 void	ft_env(t_ms *ms, t_cmd *cmd);
@@ -75,7 +74,7 @@ char	**ft_copy_temp_envp(char **base, char *variable);
 
 // EXPORT 1
 void	ft_export(t_ms *ms, t_cmd *cmd);
-void	ft_set_export(t_cmd *cmd, t_ms *ms);
+void	ft_set_export(t_cmd *cmd);
 int		ft_export_special(t_ms *ms, t_cmd *cmd);
 
 // EXPORT 2
@@ -109,7 +108,7 @@ void	ft_set_fd_1(t_ms *ms);
 void	ft_set_fd_2(t_ms *ms);
 
 //UNSET 1
-void	ft_unset(t_ms *ms, t_cmd *cmd);
+void	ft_unset(t_cmd *cmd);
 void	ft_unset2(char *src);
 int		ft_index_envp(char *src);
 size_t	ft_strstrlen(char **src);

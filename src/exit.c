@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 20:30:07 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 21:17:58 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:01:34 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_exit_m(t_ms *ms, t_cmd *cmd)
 {
-	if (cmd[ms->p].arg_cmd[1] != NULL &&
-		ft_str_isnum(cmd[ms->p].arg_cmd[1]) == 0)
-		ft_error(27, ms, cmd, cmd[ms->p].arg_cmd[1]);
-	else if (cmd[ms->p].arg_cmd[1] != NULL &&
-		cmd[ms->p].arg_cmd[2] != NULL)
-		ft_error(28, ms, cmd, cmd[ms->p].arg_cmd[1]);
-	else if (cmd[ms->p].arg_cmd[1] != NULL &&
-		ft_str_isnum(cmd[ms->p].arg_cmd[1]) == 1)
-		g_ms.exit_s = ft_atoi(cmd[ms->p].arg_cmd[1]);
+	if (cmd[g_ms.p].arg_cmd[1] != NULL &&
+		ft_str_isnum(cmd[g_ms.p].arg_cmd[1]) == 0)
+		ft_error(27, ms, cmd, cmd[g_ms.p].arg_cmd[1]);
+	else if (cmd[g_ms.p].arg_cmd[1] != NULL &&
+		cmd[g_ms.p].arg_cmd[2] != NULL)
+		ft_error(28, ms, cmd, cmd[g_ms.p].arg_cmd[1]);
+	else if (cmd[g_ms.p].arg_cmd[1] != NULL &&
+		ft_str_isnum(cmd[g_ms.p].arg_cmd[1]) == 1)
+		g_ms.exit_s = ft_atoi(cmd[g_ms.p].arg_cmd[1]);
 	ft_free_cmd(ms, cmd);
 	ft_free_exit(ms, cmd);
 	exit(g_ms.exit_s);

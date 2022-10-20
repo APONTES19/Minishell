@@ -6,20 +6,20 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:33 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 00:19:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:05:58 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_unset(t_ms *ms, t_cmd *cmd)
+void	ft_unset(t_cmd *cmd)
 {
 	int	i;
 
 	i = 1;
-	while (cmd[ms->p].arg_cmd[i])
+	while (cmd[g_ms.p].arg_cmd[i])
 	{
-		ft_unset2(cmd[ms->p].arg_cmd[i]);
+		ft_unset2(cmd[g_ms.p].arg_cmd[i]);
 		i ++;
 	}
 	g_ms.exit_s = 0;

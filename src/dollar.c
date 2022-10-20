@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 16:11:12 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:28:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_set_line_dollar(t_ms *ms)
 			{
 				if (ms->line[ms->i] == '$')
 				{
-					if (ft_strchr(" |0", ms->line[ms->i + 1]) != NULL)
+					if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
 						ms->i++;
 					else
 					{
@@ -41,7 +41,7 @@ int	ft_set_line_dollar(t_ms *ms)
 		}
 		if (ms->line[ms->i] == '$' && ms->i > 0)
 		{
-			if (ft_strchr(" |0", ms->line[ms->i + 1]) != NULL)
+			if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
 				ms->i++;
 			else
 			{
@@ -76,9 +76,14 @@ void	ft_get_path_dollar(t_ms *ms)
 
 
 	printf("TEMP = |%s|\n", temp);
-
+	if (ft_strncmp_m(temp, "0") == 0)
+	{
+		ms->j = -1;
+		temp2 = ft_strdup("-minishell");
+	}
 	if (ft_strncmp_m(temp, "PWD") == 0)
 	{
+		ms->j = -1;
 		printf("entrei no PWD\n");
 		temp2 = ft_getenv(temp);
 		if (temp2 == NULL)
@@ -89,6 +94,7 @@ void	ft_get_path_dollar(t_ms *ms)
 	}
 	else if (ft_strncmp_m(temp, "?") == 0)
 	{
+		ms->j = -1;
 		temp2 = ft_itoa(g_ms.exit_s);
 		ft_printf("ENTREI temp2= |%s|\n",temp2);
 	}
@@ -105,7 +111,7 @@ void	ft_get_path_dollar(t_ms *ms)
 	printf("VALOR DO ENV:|%s|\n", temp2);
 	ft_change_line_dollar(ms, temp2);
 
-	if (ft_strncmp_m(temp, "?") == 0)
+	if (ms->j == -1)
 		ft_free_point(temp2);
 	ft_free_point(temp);
 }

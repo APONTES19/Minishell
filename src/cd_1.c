@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 15:17:26 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:01:34 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 //cd ~
 // cd ~/
 // cd /
+//cd lfkf lkflkf lklfk varios algumentos
 //cd $HOME  comando absoluto pois espande ex vira cd /home/apontes19 se não tiver path home retorna erro
 //cd $HGJ expandi vazio variavel invalida ex: cd se então volta pra home se não tiver path erro
 //cd $PWD retorna a pasta atual
@@ -39,31 +40,31 @@ void	ft_cd(t_ms *ms, t_cmd *cmd)
 {
 	g_ms.exit_s = 0;
 	ms->k = 0;
-	if (cmd[ms->p].arg_cmd[1] != NULL && cmd[ms->p].arg_cmd[2] != NULL)
-		ft_error(14, ms, cmd, cmd[ms->p].arg_cmd[1]);
+	if (cmd[g_ms.p].arg_cmd[1] != NULL && cmd[g_ms.p].arg_cmd[2] != NULL)
+		ft_error(14, ms, cmd, cmd[g_ms.p].arg_cmd[1]);
 	else if (ft_cd_home(ms ,cmd) == 0)
 		ft_change_cd(ms, "HOME");
-	else if (ft_strncmp_m(cmd[ms->p].arg_cmd[1], "-") == 0)
+	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[1], "-") == 0)
 		ft_minus_cd(ms);
-	else if (access(cmd[ms->p].arg_cmd[1], X_OK) == 0
-		&& ft_valid_dir(cmd[ms->p].arg_cmd[1]) == 1)
-		ft_change_cd(ms, cmd[ms->p].arg_cmd[1]);
+	else if (access(cmd[g_ms.p].arg_cmd[1], X_OK) == 0
+		&& ft_valid_dir(cmd[g_ms.p].arg_cmd[1]) == 1)
+		ft_change_cd(ms, cmd[g_ms.p].arg_cmd[1]);
 	else
-		ft_error(21, ms, cmd, cmd[ms->p].arg_cmd[1]);
+		ft_error(21, ms, cmd, cmd[g_ms.p].arg_cmd[1]);
 	return ;
 }
 
 int	ft_cd_home(t_ms *ms, t_cmd *cmd)
 {
 	ms->k = 0;
-	if (cmd[ms->p].arg_cmd[1] == NULL)
+	if (cmd[g_ms.p].arg_cmd[1] == NULL)
 		return(0);
-	if(ft_strncmp_m(cmd[ms->p].arg_cmd[1], "~") == 0)
+	if(ft_strncmp_m(cmd[g_ms.p].arg_cmd[1], "~") == 0)
 	{
 		ms->k = -890;
 		return (0);
 	}
-	if(ft_strncmp_m(cmd[ms->p].arg_cmd[1], "~/") == 0)
+	if(ft_strncmp_m(cmd[g_ms.p].arg_cmd[1], "~/") == 0)
 	{
 		ms->k = -890;
 		return (0);
@@ -102,28 +103,28 @@ void	ft_change_cd(t_ms *ms, char *change)
 
 int	ft_minus_cd(t_ms *ms)
 {
-	char	*temp;
-	char	*temp2;
-	char	*temp3;
+	char	*get_old;
+	char	*new_old;
+	char	*old;
 
-	temp = ft_getenv("OLDPWD");
-	if (temp == NULL)
+	get_old = ft_getenv("OLDPWD");
+	if (get_old == NULL)
 	{
 		ft_error(15, ms, NULL, NULL);
 		return (1);
 	}
 	else
 	{
-		temp3 = ft_strdup(temp);
+		old = ft_strdup(get_old);
 		ms->temp = (char *) malloc (1024 * sizeof(char));
-		getcwd(ms->oldpwd, 1024);
-		temp2 = ft_strjoin("OLDPWD=", ms->temp);
-		ft_change_envp("OLDPWD", temp2);
-		ft_printf("%s\n", temp3);
-		chdir(temp3);
+		getcwd(ms->temp, 1024);
+		new_old = ft_strjoin("OLDPWD=", ms->temp);
+		ft_change_envp("OLDPWD", new_old);
+		ft_printf("%s\n", old);
+		chdir(old);
 		ft_update_pwd(ms);
-		ft_free_point(temp2);
-		ft_free_point(temp3);
+		ft_free_point(new_old);
+		ft_free_point(old);
 		ft_free_point(ms->temp);
 	}
 	return (0);

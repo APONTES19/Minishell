@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:07:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/17 14:31:55 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:46:16 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ char	**ft_split_ms(char const *s, char c)
 	{
 		if (s[var.i] == '\'' || s[var.i] == '\"')
 		{
+			printf("\n\nENTREI %ld[%c]\n", var.i, s[var.i]);
 			if (var.quote == 0)
 				next_quote(s, &var);
+			printf("SAI %ld[%c]\n\n", var.i, s[var.i]);
 			var.quote++;
 			if (var.quote == var.n_q)
 				var.quote = 0;
