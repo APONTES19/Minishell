@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 17:21:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 19:29:49 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct minishell
 	int		type;
 	int		command_on;
 	int		open_hero_doc;
+	int		fo;
 }	t_ms;
 
 typedef struct comand

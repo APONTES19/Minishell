@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 17:26:55 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 19:32:42 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,26 @@ void	ft_redirection_aux(t_ms *ms, char q)
 int	ft_here_doc_open(char *str)
 {
 	char	*line;
-	int		fd;
 
 	signal (SIGQUIT, SIG_IGN);
-	fd = open(".hero_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	g_ms.fo = open(".hero_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
+		printf("voltei\n");
 		line = readline(">");
 		if (ft_strncmp_m(line, str) == 1)
 		{
-			write (fd, line, ft_strlen(line));
-			write (fd, "\n", 1);
+			write (g_ms.fo, line, ft_strlen(line));
+			write (g_ms.fo, "\n", 1);
 		}
 		else
 		{
 			ft_free_point(line);
-			close(fd);
-			return (open(".hero_doc", O_RDONLY, 644));
+			close(g_ms.fo);
+			//return (open(".hero_doc", O_RDONLY, 644));
 		}
 		ft_free_point(line);
 	}
-	return (-1);
 }
 
 int	ft_set_out(t_ms *ms, int type)
@@ -77,6 +76,11 @@ int	ft_set_in(t_ms *ms, int type)
 		g_ms.open_hero_doc = 1;
 		signal (SIGQUIT, SIG_IGN);
 		g_ms.filein = ft_here_doc_open(ms->path_infile);
+		if (g_ms.filein == -1)
+		{
+			printf("ATENA\n");
+			return (1);
+		}
 		signal (SIGQUIT, ft_quit);
 		g_ms.open_hero_doc = 0;
 	}
