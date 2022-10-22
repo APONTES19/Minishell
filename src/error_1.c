@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/20 19:01:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:30:00 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
 	dup2 (2, STDOUT);
 	g_ms.exit_s = 127;
-	ft_printf("%d ", number);//excluir
+	ft_printf("%d ", number);
 	ft_printf("-minishell: ");
-
 	if (number == 0)
 		ft_printf("Invalid arguments\n");
 	if (number == 1)
@@ -66,6 +65,11 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		g_ms.exit_s = 1;
 		ft_printf("cd: OLDPWD not set\n");
 	}
+	ft_error_2(number, ms, cm, cmd);
+}
+
+void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
+{
 	if (number == 16)
 		ft_printf("Value Envp = NUll\n");
 	if (number == 17)
@@ -74,11 +78,6 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		ft_free_exit(ms, cm);
 		exit(g_ms.exit_s);
 	}
-	ft_error_2(number, ms ,cm, cmd);
-}
-
-void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
-{
 	if (number == 18)
 	{
 		ft_printf("%s: command not found\n", cmd);
@@ -92,6 +91,13 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	}
 	if (number == 20)
 		ft_printf("export: '%s': não é um identificador válido\n", cmd);
+	ft_error_3(number, ms, cm, cmd);
+}
+
+void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
+{
+	(void)ms;
+	(void)cm;
 	if (number == 21)
 	{
 		g_ms.exit_s = 1;
@@ -113,24 +119,4 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	}
 	if (number == 24)
 		ft_printf("Error '|' void\n");
-	if (number == 25)
-	{
-		g_ms.exit_s = 1;
-		ft_printf(" cd: %s: No such file or directory\n", ms->temp);
-	}
-	if (number == 26)
-	{
-		g_ms.exit_s = 2;
-		ft_printf("syntax error near unexpected token `newline'\n");
-	}
-	if (number == 27)
-	{
-		g_ms.exit_s = 2;
-		ft_printf("exit: %s: numeric argument required\n", cmd);
-	}
-	if (number == 28)
-	{
-		g_ms.exit_s = 1;
-		ft_printf("exit: too many arguments\n");
-	}
 }

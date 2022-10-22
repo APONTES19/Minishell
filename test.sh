@@ -1,50 +1,18 @@
 #!/bin/sh
 
-MINISHELL="./minishell"
+#MINISHELL="valgrind -q --leak-check=full --track-fds=no ./minishell"
 # MINISHELL="valgrind -q --leak-check=full --track-fds=yes ./minishell"
-# MINISHELL="./minishell"
+MINISHELL="./minishell"
 
 make
 clear
 
-enterkey()
-{
-	echo -n "\t\t\t\t\t--> Next ";
-	read anything;
-}
-
-
-echo TESTE MINISHELL
-echo "=============================================================="
-echo TESTE BUILDS
-echo "=============================================================="
-echo "=============================================================="
-echo ECHO
-echo "=============================================================="
-echo 'echo Hello\necho $?\nexit' | $MINISHELL
-echo "=============================================================="
-echo 'echo -n Hello\necho $?\nexit' | $MINISHELL
-echo "=============================================================="
-echo 'echo -n Hello -n \necho $?\nexit' | $MINISHELL
-echo "=============================================================="
-
-
-enterkey()
-{
-	echo -n "\t\t\t\t\t--> Next ";
-	read anything;
-}
-
-
-
-
-
-
-
-
-
-
-
+echo '  __  __ _____ _   _ _____  _____ _    _ ______ _      _
+ |  \/  |_   _| \ | |_   _|/ ____| |  | |  ____| |    | |
+ | \  / | | | |  \| | | | | (___ | |__| | |__  | |    | |
+ | |\/| | | | | . ` | | |  \___ \|  __  |  __| | |    | |
+ | |  | |_| |_| |\  |_| |_ ____) | |  | | |____| |____| |____
+ |_|  |_|_____|_| \_|_____|_____/|_|  |_|______|______|______|'
 echo "=============================================================="
 echo '\nexit' | $MINISHELL
 echo "=============================================================="
@@ -58,6 +26,11 @@ echo '/bin/ls -la\necho $?\nexit' | $MINISHELL
 echo "=============================================================="
 echo 'ls *\necho $?\nexit' | $MINISHELL
 echo "=============================================================="
+echo 'echo Hello\necho $?\nexit' | $MINISHELL
+echo "=============================================================="
+echo 'echo -n Hello\necho $?\nexit' | $MINISHELL
+echo "=============================================================="
+echo 'echo -n Hello -n \necho $?\nexit' | $MINISHELL
 echo "=============================================================="
 echo 'exit 0\necho $?' | $MINISHELL
 echo $?

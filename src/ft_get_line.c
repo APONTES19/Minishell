@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/17 16:10:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:11:40 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_get_line(t_ms *ms)
 		ft_free_point(ms->head);
 		ft_free_point(ms->line);
 		ft_get_line(ms);
-		return;
+		return ;
 	}
 	ft_free_point(ms->head);
 }

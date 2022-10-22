@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:01:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 02:06:57 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_here_doc_open(char *str)
 	char	*line;
 	int		fd;
 
+	signal (SIGQUIT, SIG_IGN);
 	fd = open(".hero_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
@@ -36,37 +37,36 @@ int	ft_here_doc_open(char *str)
 		}
 		else
 		{
-			free (line);
-			line = NULL;
+			ft_free_point(line);
 			close(fd);
 			return (open(".hero_doc", O_RDONLY, 644));
 		}
-		free(line);
+		ft_free_point(line);
 	}
 	return (-1);
 }
 
 int	ft_set_out(t_ms *ms, int type)
 {
-	if(ms->path_outfile != NULL)
+	if (ms->path_outfile != NULL)
 	{
 		if (type == 1)
 		{
-			g_ms.fileout =
-				open(ms->path_outfile,O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			g_ms.fileout
+				= open (ms->path_outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		}
 		else
 		{
-			g_ms.fileout =
-				open(ms->path_outfile,O_WRONLY  | O_CREAT | O_APPEND, 0644);
+			g_ms.fileout
+				= open (ms->path_outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		}
 		if (g_ms.fileout == -1)
 		{
 			ft_error(13, ms, NULL, NULL);
-			return(1);
+			return (1);
 		}
 	}
-	return(0);
+	return (0);
 }
 
 int	ft_set_in(t_ms *ms, int type)
@@ -74,14 +74,35 @@ int	ft_set_in(t_ms *ms, int type)
 	if (type == 2)
 	{
 		g_ms.filein = ft_here_doc_open(ms->path_infile);
-
 	}
 	else
 		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
 	if (g_ms.filein == -1)
 	{
 		ft_error(12, ms, NULL, NULL);
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
+}
+
+void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
+{
+	if (t == 'i')
+	{
+		ms->k = 0;
+		ms->m = 0;
+		while (ms->line[ms->k])
+		{
+			if (!(ms->k >= start && ms->k <= end))
+				ms->m++;
+			ms->k++;
+		}
+	}
+	else if (t == 'f')
+	{
+		ms->temp[ms->m] = '\0';
+		ft_free_point(ms->line);
+		ms->line = ft_strdup(ms->temp);
+		ft_free_point(ms->temp);
+	}
 }

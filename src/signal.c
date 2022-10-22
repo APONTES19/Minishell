@@ -1,55 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 21:41:14 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/22 01:33:30 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/10/22 02:14:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_free_two_point(char **point)
+void	ft_quit(int signum)
 {
 	int	i;
 
+	(void) signum;
 	i = 0;
-	while (point[i])
+	while (i < g_ms.n_pipe)
 	{
-		ft_free_point(point[i]);
+		if (g_ms.pid[i] != 0)
+		{
+			kill(g_ms.pid[i], SIGKILL);
+			ft_putstr_fd("Quit\n", 1);
+		}
 		i++;
 	}
-	free(point);
-}
-
-void	ft_free_point(char *point)
-{
-	free(point);
-	point = NULL;
-}
-
-void	ft_free_cmd(t_ms *ms, t_cmd *cmd)
-{
-	int	j;
-
-	j = 0;
-	while (j < ms->n_pipe)
-	{
-		ft_free_two_point(cmd[j].arg_cmd);
-		j ++;
-	}
-	free(cmd);
-	free(g_ms.pid);
-	g_ms.pid = NULL;
-}
-
-void	ft_free_exit(t_ms *ms, t_cmd *cmd)
-{
-	(void)ms;
-	(void)cmd;
-	rl_clear_history();
-	ft_free_two_point(g_ms.envp);
 }

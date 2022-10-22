@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 20:21:10 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:02:38 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 02:06:02 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	ft_execve(t_ms *ms, t_cmd *cm)
 		}
 		else if (ft_strchr(cm[g_ms.p].arg_cmd[0], '/') != NULL)
 		{
-			if ((execve(cm[g_ms.p].arg_cmd[0], cm[g_ms.p].arg_cmd,
-				g_ms.envp)) == -1)
-			ft_error(22, ms, cm, cm[g_ms.p].arg_cmd[0]);
+			if ((execve(cm[g_ms.p].arg_cmd[0], cm[g_ms.p].arg_cmd, g_ms.envp))
+				== -1)
+				ft_error(22, ms, cm, cm[g_ms.p].arg_cmd[0]);
 		}
 		else
 		{

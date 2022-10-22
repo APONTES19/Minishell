@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/18 16:08:00 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:44:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct minishell
 	int		j;
 	int		k;
 	char	t;
+	char	q;
 	int		m;
 	int		start;
 	int		end;
@@ -52,6 +53,7 @@ typedef struct minishell
 	int		filein;
 	int		redirection;
 	int		cmd;
+	int		type;
 }	t_ms;
 
 typedef struct comand

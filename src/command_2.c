@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:52:06 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 00:11:50 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
 		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
 	}
-	//return(1);
+	if (ft_command_split_aux(ms, cmd) == 1)
+		return (1);
+	ft_main_while(ms, cmd);
+	return (0);
+}
+
+int	ft_command_split_aux(t_ms *ms, t_cmd *cmd)
+{
 	ft_free_point(ms->line);
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
@@ -40,120 +47,9 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 		return (1);
 	}
 	if (ms->quote == 1)
-		ft_clean_quote(ms,cmd);
-	ft_main_while(ms, cmd);
+		ft_clean_quote(ms, cmd);
 	return (0);
 }
-
-void	ft_clean_quote(t_ms *ms, t_cmd *cmd)
-{
-	char *temp;
-	char type;
-	printf("\n_________Aqui começa o split do pipe __________\n");
-
-	ms->i = 0;
-	while(ms->i != ms->n_pipe)
-	{
-		printf("Struc cmd[%d]\n",ms->i);
-		ms->j = 0;
-
-
-
-
-
-
-
-
-
-
-
-		while(cmd[ms->i].arg_cmd[ms->j])
-		{
-		    printf("\tArg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
-
-
-
-			//duplica variavel
-			temp = ft_strdup(cmd[ms->i].arg_cmd[ms->j]);
-			//limpa a original da memoria
-			ft_free_point(cmd[ms->i].arg_cmd[ms->j]);
-
-			// inicio contagem pra malocar
-			ms->k = 0;
-			g_ms.p = 0;
-			while(temp[ms->k])
-			{
-				if (temp[ms->k] == '\'' || temp[ms->k] == '\"')
-				{
-					if (temp[ms->k] == '\'')
-						type = '\'';
-					else
-						type = '\"';
-					ms->k++;
-					g_ms.p+= 2;
-					while(temp[ms->k] != type)
-						ms->k++;
-				}
-				ms->k++;
-			}
-			ms->k = (ms->k - g_ms.p);
-			cmd[ms->i].arg_cmd[ms->j] = (char *) malloc (ms->k * sizeof(char *));
-			ms->k = 0;
-			g_ms.p = 0;
-			while(temp[ms->k])
-			{
-				if (temp[ms->k] == '\'' || temp[ms->k] == '\"')
-				{
-					if (temp[ms->k] == '\'')
-						type = '\'';
-					ms->k++;
-					while(temp[ms->k] != type)
-					{
-						cmd[ms->i].arg_cmd[ms->j][g_ms.p] = temp[ms->k];
-						g_ms.p++;
-						ms->k++;
-					}
-					ms->k++;
-				}
-				if (temp[ms->k])
-				{
-					cmd[ms->i].arg_cmd[ms->j][g_ms.p] = temp[ms->k];
-					g_ms.p++;
-					ms->k++;
-				}
-			}
-			printf("%d", g_ms.p);
-			cmd[ms->i].arg_cmd[ms->j][g_ms.p] = '\0';
-			ft_free_point(temp);
-			printf("\t\t\talterado-Arg[%d]%s\n",ms->j,cmd[ms->i].arg_cmd[ms->j]);
-		    ms->j++;
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		ms->i++;
-	}
-	printf("_________Aqui termina o split do pipe __________\n\n");
-}
-
 
 int	ft_get_path(t_ms *ms, char *cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:16:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 00:35:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_env(t_ms *ms, t_cmd *cmd)
 void	ft_copy_envp(char **envp)
 {
 	int	i;
-	int c;
+	int	c;
 
 	i = 0;
 	c = 0;

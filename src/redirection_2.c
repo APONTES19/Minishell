@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/16 16:14:48 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:52:19 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_red_temp(t_ms *ms, int start, int end, char **path)
 			ms->m++;
 		ms->k++;
 	}
-	printf("\tMALLOC 1 : |%d|\n", ms->m);
 	ft_red_temp_aux2(ms, start, end, path);
 }
 
@@ -86,14 +85,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path)
 
 void	ft_red_copy_line(t_ms *ms, int start, int end)
 {
-	ms->k = 0;
-	ms->m = 0;
-	while (ms->line[ms->k])
-	{
-		if (!(ms->k >= start && ms->k <= end))
-			ms->m++;
-		ms->k++;
-	}
+	ft_red_copy_line_aux(ms, start, end, 'i');
 	ms->temp = (char *) malloc ((ms->m + 1) * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
@@ -111,9 +103,5 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 		}
 		ms->k++;
 	}
-	ms->temp[ms->m] = '\0';
-	ft_free_point(ms->line);
-	ms->line = ft_strdup(ms->temp);
-	ft_free_point(ms->temp);
-	printf("\t\tDEVOLVE LINE : |%s|\n", ms->line);
+	ft_red_copy_line_aux(ms, start, end, 'f');
 }

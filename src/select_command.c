@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:06:59 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 01:59:23 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
+	signal (SIGQUIT, ft_quit);
 	g_ms.pid = (int *) malloc(ms->n_pipe * sizeof(int *));
 	ft_memset(g_ms.pid, -1, ms->n_pipe * sizeof(int *));
 	g_ms.p = 0;
@@ -28,10 +29,16 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 		ft_set_fd_2(ms);
 		g_ms.p++;
 	}
-	int i;
+	ft_main_while_aux(ms);
+	ft_free_cmd(ms, cmd);
+}
+
+void	ft_main_while_aux(t_ms *ms)
+{
+	int	i;
 
 	i = 0;
-	while(i < ms->n_pipe)
+	while (i < ms->n_pipe)
 	{
 		if (g_ms.pid[i] != -20)
 		{
@@ -42,35 +49,7 @@ void	ft_main_while(t_ms *ms, t_cmd *cmd)
 	}
 	free(g_ms.pid);
 	g_ms.pid = NULL;
-	ft_free_cmd(ms, cmd);
 }
-
-// void	ft_clean_quote(t_cmd *cmd)
-// {
-
-
-
-
-
-// 	int		i;
-// 	int		j;
-// 	char	*c;
-
-// 	c = malloc(ft_strlen(cmd[0].arg_cmd[0]) + 1);
-// 	i = 0;
-// 	j = 0;
-// 	while (cmd[0].arg_cmd[0][i])
-// 	{
-// 		if (cmd[0].arg_cmd[0][i] == '\'' || cmd[0].arg_cmd[0][i] == '\"')
-// 			i ++;
-// 		c[j] = cmd[0].arg_cmd[0][i];
-// 		j++;
-// 		i++;
-// 	}
-// 	c[j] = '\0';
-// 	cmd[0].arg_cmd[0] = ft_strdup(c);
-// 	ft_free_point(c);
-// }
 
 void	ft_check_build(t_ms *ms, t_cmd *cmd)
 {
@@ -83,7 +62,7 @@ void	ft_check_build(t_ms *ms, t_cmd *cmd)
 	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "export") == 0)
 		return (ft_export(ms, cmd));
 	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "unset") == 0)
-		return (ft_unset( cmd));
+		return (ft_unset(cmd));
 	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "pwd") == 0)
 		return (ft_pwd());
 	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "echo") == 0)

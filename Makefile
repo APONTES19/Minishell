@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/17 00:45:53 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/22 00:55:13 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,14 @@ SRC_FILES=minishell.c\
 		  export_2.c\
 		  unset_1.c\
 		  error_1.c\
+		  error_2.c\
 		  ft_get_line.c\
-		  dollar.c\
+		  dollar_1.c\
+		  dollar_2.c\
 		  free.c\
 		  ft_strncmp_m.c\
+		  signal.c\
+		  clean_quote.c\
 		  exit.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
