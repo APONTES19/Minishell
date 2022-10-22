@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 15:16:37 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:43:34 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_main_while(t_ms *ms, t_cmd *cmd)
 {
+	g_ms.command_on = 1;
 	signal (SIGQUIT, ft_quit);
 	g_ms.pid = (int *) malloc(ms->n_pipe * sizeof(int *));
 	ft_memset(g_ms.pid, -1, ms->n_pipe * sizeof(int *));

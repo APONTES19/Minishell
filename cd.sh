@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MINISHELL="./minishell"
-#MINISHELL="valgrind --leak-check=full --show-leak-kinds=all --suppressions=./includes/readline.supp ./minishell"
+#MINISHELL="./minishell"
+MINISHELL="valgrind --leak-check=full --show-leak-kinds=all --suppressions=./includes/readline.supp ./minishell"
 comando=0
 function next()
 {
@@ -45,16 +45,13 @@ echo "<------------------------------------------------------------->"
 echo
 echo 'ls' | $MINISHELL
 echo
-echo 'ls -la' | $MINISHELL
-echo
-echo 'ls' | $MINISHELL
 
 next
 ((comando++))
 echo "🟢 $comando - Comando 'CD -' Primeiro acesso deve retornar erro"
 echo "<------------------------------------------------------------->"
 echo
-echo 'exit' | $MINISHELL
+echo 'exit 1' | $MINISHELL
 
 echo
 echo "████████╗██╗  ██╗███████╗    ███████╗███╗   ██╗██████╗ "

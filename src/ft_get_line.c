@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/22 01:11:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:40:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@ void	ft_get_line(t_ms *ms)
 {
 	ft_get_head_line(ms);
 	ms->line = readline(ms->head);
-	if (ms->line[0] == ' ')
-		ft_check_space(ms);
-	if (ms->line == NULL || ft_strncmp_m(ms->line, "") == 0)
+	if (ms->line == NULL)
+	{
+		printf("CTRL+D\n");
+		ft_free_crtl_d(ms);
+	}
+	if (ft_strncmp_m(ms->line, "") == 0)
 	{
 		ft_free_point(ms->head);
 		ft_free_point(ms->line);
 		ft_get_line(ms);
 		return ;
 	}
+	else if (ms->line[0] == ' ')
+		ft_check_space(ms);
 	ft_free_point(ms->head);
 }
 
@@ -44,7 +49,7 @@ void	ft_get_head_line(t_ms *ms)
 		s = ft_strdup("-->");
 	temp1 = ft_strjoin("\x1b[38;2;255;69;0m", s);
 	ft_free_point(s);
-	temp2 = ft_strjoin(temp1, "\x1b[0m\n% ");
+	temp2 = ft_strjoin(temp1, "\x1b[0m$ ");
 	ft_free_point(temp1);
 	if (temp2 == NULL)
 		temp2 = ft_strdup("\x1b[38;2;255;255;0mMinishell\x1b[0m:");

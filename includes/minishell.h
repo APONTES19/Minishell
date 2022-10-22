@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 12:07:54 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:17:06 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ int		ft_str_isnum(char *str);
 void	ft_quit(int signum);
 void	ft_main_while_aux(t_ms *ms);
 int		ft_red_check_next(t_ms *ms);
+void	ft_free_crtl_d(t_ms *ms);
+void	ft_kill_loop(int signum);
 
 #endif

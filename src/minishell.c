@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 02:19:28 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:49:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (argc == 1)
 	{
+		g_ms.command_on = 0;
+		signal(SIGINT, ft_kill_loop);
 		if (ft_set_parameters(ms, envp) == 1)
 			ft_error(29, ms, cmd, NULL);
 		while (1)
 		{
+			signal (SIGQUIT, SIG_IGN);
+			g_ms.open_hero_doc = 0;
+			g_ms.command_on = 0;
 			ft_set_init(ms, cmd);
 			ft_get_line(ms);
 			add_history(ms->line);
