@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 01:45:28 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:22:44 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_redirection(t_ms *ms)
 		}
 		if (ms-> line[ms->i] == '<')
 		{
-			if (ms-> line[ms->i + 1] == '<')
-				ms->type = 2;
+			if (ft_red_check_next(ms) == 1)
+				return (1);
 			ft_red_point(ms, ms->type, &ms->path_infile);
 			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
@@ -36,18 +36,18 @@ int	ft_redirection(t_ms *ms)
 		}
 		ms->i++;
 	}
-	if (ft_redirection_2(ms, ms->type) == 1)
+	if (ft_redirection_2(ms) == 1)
 		return (1);
 	return (0);
 }
 
-int	ft_redirection_2(t_ms *ms, int type)
+int	ft_redirection_2(t_ms *ms)
 {
 	char	q;
 
 	q = '\'';
 	ms->i = 0;
-	type = 1;
+	ms->type = 1;
 	while (ms->line[ms->i])
 	{
 		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
@@ -58,10 +58,10 @@ int	ft_redirection_2(t_ms *ms, int type)
 		}
 		if (ms-> line[ms->i] == '>')
 		{
-			if (ms-> line[ms->i + 1] == '>')
-				type = 2;
-			ft_red_point(ms, type, &ms->path_outfile);
-			if (ft_redirection_3(ms, type) == 1)
+			if (ft_red_check_next(ms) == 1)
+				return (1);
+			ft_red_point(ms, ms->type, &ms->path_outfile);
+			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
 			ms->i = -1;
 		}

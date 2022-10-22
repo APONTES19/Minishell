@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 00:34:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 13:47:11 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_set_line_dollar(t_ms *ms)
 		{
 			if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
 			{
-				if (ms->line[ms->i] != '\0')
+				if (ms->line[ms->i + 1])
 					ms->i++;
 			}
 			else
@@ -34,8 +34,7 @@ int	ft_set_line_dollar(t_ms *ms)
 				ms->i = -1;
 			}
 		}
-		if (ms->i >= 0 && ms->line[ms->i] != '\0')
-			ms->i++;
+		ms->i++;
 	}
 	return (0);
 }
@@ -73,6 +72,7 @@ void	ft_get_path_dollar(t_ms *ms)
 
 	ms->start = ms->i + 1;
 	ms->k = ms->start;
+	ms->j = 0;
 	while (ft_strchr(" |\"\'", ms->line[ms->k]) == NULL)
 		ms->k++;
 	ms->end = (ms->k - ms->start);

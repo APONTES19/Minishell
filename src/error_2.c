@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 00:54:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 01:31:49 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:24:58 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_error_4(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
-	(void)cm;
 	if (number == 25)
 	{
 		g_ms.exit_s = 1;
@@ -37,4 +36,15 @@ void	ft_error_4(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	}
 	if (number == 29)
 		ft_printf("Error init minishell\n");
+	ft_error_5(number, ms, cm, cmd);
+}
+
+void	ft_error_5(int number, t_ms *ms, t_cmd *cm, char *cmd)
+{
+	(void)cm;
+	if (number == 30)
+	{
+		g_ms.exit_s = 2;
+		ft_printf("syntax error near unexpected token\n");
+	}
 }

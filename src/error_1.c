@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/22 01:30:00 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 10:35:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,5 @@ void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	}
 	if (number == 24)
 		ft_printf("Error '|' void\n");
+	ft_error_4(number, ms, cm, cmd);
 }

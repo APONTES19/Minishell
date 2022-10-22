@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/21 23:04:40 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 10:20:24 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	ft_check_quote(t_ms *ms)
 {
 	ms->i = -1;
 	ms->quote = 0;
-	while (ms->line[++ ms->i])
+	while (ms->line[++ms->i])
 	{
 		if (ms->line[ms->i] == '\'')
 		{
-			(ms->quote) = 1;
+			ms->quote = 1;
 			ms->i ++;
 			while (ms->line[ms->i] != '\'' && ms->line[ms->i])
 				ms->i++;

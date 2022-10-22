@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 02:29:25 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/22 12:07:54 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		ft_cd_home(t_ms *ms, t_cmd *cmd);
 void	ft_update_pwd(t_ms *ms);
 void	ft_aux_cd_change(t_ms *ms, char *change);
 int		ft_redirection(t_ms *ms);
-int		ft_redirection_2(t_ms *ms, int type);
+int		ft_redirection_2(t_ms *ms);
 int		ft_redirection_3(t_ms *ms, int type);
 void	ft_red_point(t_ms *ms, int type, char **path);
 void	ft_red_point_aux(t_ms *ms, char f, int type);
@@ -117,5 +117,6 @@ void	ft_free_exit(t_ms *ms, t_cmd *cmd);
 int		ft_str_isnum(char *str);
 void	ft_quit(int signum);
 void	ft_main_while_aux(t_ms *ms);
+int		ft_red_check_next(t_ms *ms);
 
 #endif

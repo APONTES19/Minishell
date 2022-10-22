@@ -67,10 +67,36 @@ echo
 next
 clear
 
-
 #ls
 #lgh
 #cd
+#"''" funções com problema
+#""
+#''
+#'"
+#>>
+#<<
+#> // leak
+#<
+#<<<
+#>>>
+#>l
+#<l inexistente
+#<l bloqueado
+#>pasta existente
+#>>|
+#<<|
+#>|
+#>|
+#<>
+#> lucas
+#>> lucas abrir incremento
+# >>
+#> $PWD deve dar erro pois abre o ende atual e não arquivo
+#> $PWD/arquivo  tem que criar o arquivo no caminho
+#> 'lasd      sdf' o nome do arquivo deve ser igual ao digitado
+#<< 'nsdkcn oijkko ' deve funcionar e ou não travar
+
 
 
 #cd - o terminal ao rodar pela primiera vez ele não carrega o OLDPWD então deve retornar erro
@@ -95,4 +121,4 @@ clear
 #cd remove path home se não tiver o path home retorna erro
 #cd ~ home absoluto mesmo removendo path home
 #cd ~/ home absoluto
-#
+#echo '$HOME' "$HOME" "'$HOME'" '"$HOME"'
