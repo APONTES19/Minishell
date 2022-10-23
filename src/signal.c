@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 04:54:20 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/23 05:11:34 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void    ft_kill_loop(int signum)
     
     if(g_ms.command_on == 1)
     {
-        printf("Estamos aqui?");
         ft_putstr_fd("\n", 1);
         i =0;
         while(i < g_ms.n_pipe )
@@ -70,8 +69,6 @@ void    ft_kill_loop(int signum)
       	  i ++;
         }
     }
-
-
 
     g_ms.exit_s = 130;
 }
