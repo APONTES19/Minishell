@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 00:35:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 09:10:51 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_copy_envp(char **envp)
 	c = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0)
+		if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0
+			|| ft_strnstr(envp[i], "WORKSPACE", ft_strlen(envp[i])) != NULL)
 			i++;
 		else
 		{

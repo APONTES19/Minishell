@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 04:10:31 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/23 09:15:12 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,24 +95,24 @@ int	ft_set_in(t_ms *ms, int type)
 	return (0);
 }
 
-void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
+void	ft_red_copy_line_aux(t_ms **ms, int start, int end, char t)
 {
 	if (t == 'i')
 	{
-		ms->k = 0;
-		ms->m = 0;
-		while (ms->line[ms->k])
+		(*ms)->k = 0;
+		(*ms)->m = 0;
+		while ((*ms)->line[(*ms)->k])
 		{
-			if (!(ms->k >= start && ms->k <= end))
-				ms->m++;
-			ms->k++;
+			if (!((*ms)->k >= start && (*ms)->k <= end))
+				(*ms)->m++;
+			(*ms)->k++;
 		}
 	}
 	else if (t == 'f')
 	{
-		ms->temp[ms->m] = '\0';
-		ft_free_point(ms->line);
-		ms->line = ft_strdup(ms->temp);
-		ft_free_point(ms->temp);
+		(*ms)->temp[(*ms)->m] = '\0';
+		ft_free_point((*ms)->line);
+		(*ms)->line = ft_strdup((*ms)->temp);
+		ft_free_point((*ms)->temp);
 	}
 }

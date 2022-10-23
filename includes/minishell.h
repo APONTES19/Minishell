@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 17:17:06 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 09:15:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_redirection_aux(t_ms *ms, char q);
 int		ft_here_doc_open(char *str);
 int		ft_set_out(t_ms *ms, int type);
 int		ft_set_in(t_ms *ms, int type);
-void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t);
+void	ft_red_copy_line_aux(t_ms **ms, int start, int end, char t);
 void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd);
 void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd);
 void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd);
