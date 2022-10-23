@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 13:47:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:31:35 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	ft_get_path_dollar(t_ms *ms)
 	temp = ft_substr(ms->line, ms->start, ms->end);
 	temp2 = NULL;
 	ft_aux_dollar_2(ms, &temp, &temp2);
-	ft_change_line_dollar(ms, temp2);
-	if (ms->j == -1)
+	ft_change_line_dollar(ms, &temp2);
+	if (ms->j == 0)
 		ft_free_point(temp2);
 	ft_free_point(temp);
 }
@@ -89,12 +89,10 @@ void	ft_aux_dollar_2(t_ms *ms, char **temp, char **temp2)
 {
 	if (ft_strncmp_m(*temp, "0") == 0)
 	{
-		ms->j = -1;
 		*temp2 = ft_strdup("-minishell");
 	}
 	else if (ft_strncmp_m(*temp, "PWD") == 0)
 	{
-		ms->j = -1;
 		*temp2 = ft_getenv(*temp);
 		if (*temp2 == NULL)
 		{
@@ -110,14 +108,13 @@ void	ft_aux_dollar_2(t_ms *ms, char **temp, char **temp2)
 void	ft_aux_dollar_3(t_ms *ms, char **temp, char **temp2)
 {
 	if (ft_strncmp_m(*temp, "?") == 0)
-	{
-		ms->j = -1;
 		*temp2 = ft_itoa(g_ms.exit_s);
-	}
 	else if (*temp2 == NULL)
 	{
 		*temp2 = ft_getenv(*temp);
 		if (*temp2 == NULL)
 			*temp2 = ft_strdup("");
+		else
+			ms->j = -1;
 	}
 }

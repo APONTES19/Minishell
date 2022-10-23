@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/22 17:40:21 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:45:48 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_get_head_line(t_ms *ms)
 	char	*temp1;
 	char	*temp2;
 
+	(void)ms;
 	temp = ft_strdup("\x1b[38;2;255;255;0mMinishell\x1b[0m:");
 	if (temp == NULL)
 		temp = ft_strdup("");
@@ -49,7 +50,7 @@ void	ft_get_head_line(t_ms *ms)
 		s = ft_strdup("-->");
 	temp1 = ft_strjoin("\x1b[38;2;255;69;0m", s);
 	ft_free_point(s);
-	temp2 = ft_strjoin(temp1, "\x1b[0m$ ");
+	temp2 = ft_strjoin(temp1, "\x1b[0m\n$ ");
 	ft_free_point(temp1);
 	if (temp2 == NULL)
 		temp2 = ft_strdup("\x1b[38;2;255;255;0mMinishell\x1b[0m:");

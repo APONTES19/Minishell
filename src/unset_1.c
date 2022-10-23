@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:33 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:05:58 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:46:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_unset2(char *src)
 	size_t	i;
 	size_t	j;
 
-	if (!ft_index_envp(src))
+	if (ft_index_envp(src) == -1)
 		return ;
 	index = ft_index_envp(src);
 	temp = ft_strstrdup(g_ms.envp);

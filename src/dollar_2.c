@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:42:26 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 00:34:32 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:14:37 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_change_line_dollar(t_ms *ms, char *dollar)
+void	ft_change_line_dollar(t_ms *ms, char **dollar)
 {
 	char	*temp;
 	char	*temp1;
@@ -23,7 +23,7 @@ void	ft_change_line_dollar(t_ms *ms, char *dollar)
 	{
 		temp1 = ft_substr(ms->line, ms->k, ft_strlen(&ms->line[ms->k]));
 		ft_free_point(ms->line);
-		temp2 = ft_strjoin(temp, dollar);
+		temp2 = ft_strjoin(temp, *dollar);
 		ms->line = ft_strjoin(temp2, temp1);
 		ft_free_point(temp1);
 		ft_free_point(temp2);
@@ -31,7 +31,7 @@ void	ft_change_line_dollar(t_ms *ms, char *dollar)
 	else
 	{
 		ft_free_point(ms->line);
-		ms->line = ft_strjoin(temp, dollar);
+		ms->line = ft_strjoin(temp, *dollar);
 	}
 	ft_free_point(temp);
 }

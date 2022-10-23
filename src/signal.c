@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 18:41:17 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:45:26 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void    ft_kill_loop(int signum)
     if (g_ms.command_on == 0)
     {
         rl_replace_line("", 0);
-        write (1, "\n", 1);
+      	write (1, "\n", 1);
         rl_on_new_line();
         rl_redisplay();
     }

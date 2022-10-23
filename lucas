@@ -1,0 +1,10 @@
+Makefile
+cd.sh
+f.sh
+includes
+libs
+lucas
+minishell
+obj
+src
+test.sh
