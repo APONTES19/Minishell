@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 05:11:34 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/23 18:41:17 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void    ft_kill_loop(int signum)
     int     i;
 
     (void)signum;
-    
+
     if (g_ms.open_hero_doc == 1)
 	{
+		g_ms.open_hero_doc = 0;
+		g_ms.exit_s = 130;
 		dup2(g_ms.fo, STDIN);
 		close(STDIN);
         write (1, "\n", 1);
@@ -46,16 +48,13 @@ void    ft_kill_loop(int signum)
 
     if (g_ms.command_on == 0)
     {
-      
-      
-        
         rl_replace_line("", 0);
-         write (1, "\n", 1);
+        write (1, "\n", 1);
         rl_on_new_line();
         rl_redisplay();
     }
 
-    
+
     if(g_ms.command_on == 1)
     {
         ft_putstr_fd("\n", 1);

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 00:54:30 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 15:28:05 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:18:28 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_error_4(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 26)
 	{
 		g_ms.exit_s = 2;
+		ft_free_point(ms->path_infile);
+		ft_free_point(ms->path_outfile);
+		ft_free_point(ms->line);
 		ft_printf("syntax error near unexpected token `newline'\n");
 	}
 	if (number == 27)

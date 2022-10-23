@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:24:19 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 09:15:57 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 18:59:46 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_red_temp_aux3(t_ms *ms, char **path)
 
 void	ft_red_copy_line(t_ms *ms, int start, int end)
 {
-	ft_red_copy_line_aux(&ms, start, end, 'i');
+	ft_red_copy_line_aux(ms, start, end, 'i');
 	ms->temp = (char *) malloc ((ms->m + 1) * sizeof(char *));
 	ms->k = 0;
 	ms->m = 0;
@@ -103,5 +103,5 @@ void	ft_red_copy_line(t_ms *ms, int start, int end)
 		}
 		ms->k++;
 	}
-	ft_red_copy_line_aux(&ms, start, end, 'f');
+	ft_red_copy_line_aux(ms, start, end, 'f');
 }
