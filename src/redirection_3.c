@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 19:32:42 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 03:47:00 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	ft_here_doc_open(char *str)
 	{
 		printf("voltei\n");
 		line = readline(">");
-		if (ft_strncmp_m(line, str) == 1)
+		if(!line)
+			return(-1);
+		else if (ft_strncmp_m(line, str) == 1)
 		{
 			write (g_ms.fo, line, ft_strlen(line));
 			write (g_ms.fo, "\n", 1);
