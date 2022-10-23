@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 03:47:00 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/23 04:10:31 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_here_doc_open(char *str)
 	g_ms.fo = open(".hero_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
-		printf("voltei\n");
+
 		line = readline(">");
 		if(!line)
 			return(-1);
@@ -42,7 +42,7 @@ int	ft_here_doc_open(char *str)
 		{
 			ft_free_point(line);
 			close(g_ms.fo);
-			//return (open(".hero_doc", O_RDONLY, 644));
+			return (open(".hero_doc", O_RDONLY, 644));
 		}
 		ft_free_point(line);
 	}
@@ -80,7 +80,6 @@ int	ft_set_in(t_ms *ms, int type)
 		g_ms.filein = ft_here_doc_open(ms->path_infile);
 		if (g_ms.filein == -1)
 		{
-			printf("ATENA\n");
 			return (1);
 		}
 		signal (SIGQUIT, ft_quit);

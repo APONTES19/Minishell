@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 19:30:20 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 04:39:15 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,30 @@ void    ft_kill_loop(int signum)
     int     i;
 
     (void)signum;
+    
     if (g_ms.open_hero_doc == 1)
 	{
 		dup2(g_ms.fo, STDIN);
 		close(STDIN);
-		g_ms.exit_s = 130;
+        write (1, "\n", 1);
+        rl_replace_line("", 0);
+        rl_redisplay();
+        return ;
 	}
+
+    if (g_ms.command_on == 0)
+    {
+      
+        write (1, "\n", 1);
+        rl_on_new_line();
+        rl_replace_line("\n", 0);
+        rl_redisplay();
+    }
+
+    
     if(g_ms.command_on == 1)
     {
+        printf("Estamos aqui?");
         ft_putstr_fd("\n", 1);
         i =0;
         while(i < g_ms.n_pipe )
@@ -52,13 +68,7 @@ void    ft_kill_loop(int signum)
       	  i ++;
         }
     }
-    if (g_ms.command_on == 1)
-    {
-        write (1, "\n", 1);
-        rl_on_new_line();
-        rl_replace_line("", 0);
-        rl_redisplay();
-    }
+
 
 
     g_ms.exit_s = 130;
