@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 04:39:15 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/23 04:54:20 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void    ft_kill_loop(int signum)
     if (g_ms.command_on == 0)
     {
       
-        write (1, "\n", 1);
+      
+        
+        rl_replace_line("", 0);
+         write (1, "\n", 1);
         rl_on_new_line();
-        rl_replace_line("\n", 0);
         rl_redisplay();
     }
 
