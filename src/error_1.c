@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/22 10:35:48 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 21:01:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 22)
 	{
 		ft_printf("%s: command not found\n", cmd);
-		exit(1);
+		ft_free_cmd(ms, cm);
+		ft_free_exit(ms, cm);
+		exit(g_ms.exit_s);
 	}
 	if (number == 23)
 	{

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/22 15:05:39 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/23 21:05:08 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int	ft_get_path(t_ms *ms, char *cmd)
 		while (ms->path_list[ms->j])
 		{
 			ms->temp = ft_strjoin(ms->path_list[ms->j], "/");
-			ms->path_cmd = ft_strjoin(ms->temp, cmd);
+			if (cmd == NULL)
+				ms->path_cmd = ft_strdup(ms->temp);
+			else
+				ms->path_cmd = ft_strjoin(ms->temp, cmd);
 			if (!access(ms->path_cmd, F_OK | X_OK))
 			{
 				ft_aux_path(ms, 0);

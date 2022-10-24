@@ -64,6 +64,8 @@ echo
 next
 clear
 
+#""""
+#''''
 #ls
 #lgh
 #cd
