@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 16:55:29 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:47:22 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	ft_while(t_ms *ms, t_cmd *cmd)
 	ft_set_init(ms, cmd);
 	ft_get_line(ms);
 	add_history(g_ms.line);
-	ft_check_input(ms, cmd);
+	if (ft_check_input(ms, cmd) == 1)
+		ft_free_point(g_ms.line);
 	ft_set_end(ms, cmd);
 }
 

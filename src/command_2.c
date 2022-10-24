@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 19:15:13 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:45:42 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 
 int	ft_command_split_aux(t_ms *ms, t_cmd *cmd)
 {
-	ft_free_point(g_ms.line);
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
 		ft_error(8, ms, NULL, NULL);
 		return (1);
 	}
+	ft_free_point(g_ms.line);
 	if (ms->quote == 1)
 		ft_clean_quote(ms, cmd);
 	return (0);
