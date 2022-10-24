@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 15:22:52 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 15:04:00 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:00:47 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	ft_red_check_next(t_ms *ms)
 			ft_error(30, ms, NULL, NULL);
 			return (1);
 		}
+	}
+	else
+	{
+		ft_error(30, ms, NULL, NULL);
+		return (1);
 	}
 	return (0);
 }
