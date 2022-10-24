@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:41:14 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 10:19:11 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:21:36 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	ft_free_crtl_d(t_ms *ms)
 	ft_free_point(g_ms.line);
 	rl_clear_history();
 	ft_free_two_point(g_ms.envp);
+	printf("exit\n");
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 14:20:43 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:20:01 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	ft_get_line(t_ms *ms)
 	ft_get_head_line(ms);
 	g_ms.line = readline(ms->head);
 	if (g_ms.line == NULL)
-	{
-		printf("CTRL+D\n");
 		ft_free_crtl_d(ms);
-	}
 	if (ft_strncmp_m(g_ms.line, "") == 0)
 	{
 		ft_free_point(ms->head);
