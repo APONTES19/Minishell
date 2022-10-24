@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:58:37 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:18:54 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:55:45 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,8 @@ int	ft_check_dolar(t_ms *ms)
 	return (ms->n_dollar);
 }
 
-void	ft_check_space(t_ms *ms)
+void	ft_check_space(void)
 {
-	(void)ms;
 	int	i;
 	int	k;
 	int	j;

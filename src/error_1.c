@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 10:53:39 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:16:45 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 
 void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
-	(void)ms;
-	(void)cm;
 	if (number == 21)
 	{
 		g_ms.exit_s = 1;

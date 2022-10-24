@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 15:22:52 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:04:00 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
+{
+	if (t == 'i')
+	{
+		ms->k = 0;
+		ms->m = 0;
+		while (g_ms.line[ms->k])
+		{
+			if (!(ms->k >= start && ms->k <= end))
+				ms->m++;
+			ms->k++;
+		}
+	}
+	else if (t == 'f')
+	{
+		ms->temp[ms->m] = '\0';
+		ft_free_point(g_ms.line);
+		g_ms.line = ft_strdup(ms->temp);
+		ft_free_point(ms->temp);
+	}
+}
 
 int	ft_red_check_next(t_ms *ms)
 {

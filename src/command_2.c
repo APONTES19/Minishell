@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:04:07 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,24 @@ int	ft_get_path(t_ms *ms, char *cmd)
 	path = ft_getenv("PATH");
 	if (path == NULL)
 		return (1);
-	else
+	ms->path_list = ft_split(path, ':');
+	ms->j = -1;
+	while (ms->path_list[++ms->j])
 	{
-		ms->path_list = ft_split(path, ':');
-		ms->j = 0;
-		while (ms->path_list[ms->j])
+		ms->temp = ft_strjoin(ms->path_list[ms->j], "/");
+		if (cmd == NULL)
+			ms->path_cmd = ft_strdup(ms->temp);
+		else
+			ms->path_cmd = ft_strjoin(ms->temp, cmd);
+		if (!access(ms->path_cmd, F_OK | X_OK))
 		{
-			ms->temp = ft_strjoin(ms->path_list[ms->j], "/");
-			if (cmd == NULL)
-				ms->path_cmd = ft_strdup(ms->temp);
-			else
-				ms->path_cmd = ft_strjoin(ms->temp, cmd);
-			if (!access(ms->path_cmd, F_OK | X_OK))
-			{
-				ft_aux_path(ms, 0);
-				return (0);
-			}
-			ft_aux_path(ms, 1);
-			ms->j++;
+			ft_aux_path(ms, 0);
+			return (0);
 		}
-		ft_aux_path(ms, 2);
-		return (1);
+		ft_aux_path(ms, 1);
 	}
+	ft_aux_path(ms, 2);
+	return (1);
 }
 
 void	ft_aux_path(t_ms *ms, int number)

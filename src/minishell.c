@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:48:14 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+static void	ft_while(t_ms *ms, t_cmd *cmd);
 t_ms	g_ms;
 
 int	main(int argc, char **argv, char **envp)
@@ -33,18 +34,23 @@ int	main(int argc, char **argv, char **envp)
 		while (1)
 		{
 			signal (SIGQUIT, SIG_IGN);
-			g_ms.open_hero_doc = 0;
-			g_ms.command_on = 0;
-			ft_set_init(ms, cmd);
-			ft_get_line(ms);
-			add_history(g_ms.line);
-			ft_check_input(ms, cmd);
-			ft_set_end(ms, cmd);
+			ft_while(ms, cmd);
 		}
 	}
 	else
 		ft_error(0, ms, NULL, NULL);
 	return (g_ms.exit_s);
+}
+
+static void	ft_while(t_ms *ms, t_cmd *cmd)
+{
+	g_ms.open_hero_doc = 0;
+	g_ms.command_on = 0;
+	ft_set_init(ms, cmd);
+	ft_get_line(ms);
+	add_history(g_ms.line);
+	ft_check_input(ms, cmd);
+	ft_set_end(ms, cmd);
 }
 
 int	ft_set_parameters(t_ms *ms, char **envp)

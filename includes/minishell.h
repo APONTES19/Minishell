@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:56:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:44:42 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_next_pipe(t_ms *ms);
 int		ft_next_pipe_2(t_ms *ms);
 int		ft_special(t_ms *ms);
 int		ft_check_dolar(t_ms *ms);
-void	ft_check_space(t_ms *ms);
+void	ft_check_space(void);
 int		ft_check_redirection(t_ms *ms);
 void	ft_clean_quote_aux_1(t_ms *ms, char **temp);
 void	ft_clean_quote_aux_2(t_ms *ms, t_cmd *cmd, char **temp, char type);
@@ -111,5 +111,4 @@ int		ft_red_check_next(t_ms *ms);
 void	ft_free_crtl_d(t_ms *ms);
 void	ft_kill_loop(int signum);
 void	ft_free_line(t_ms *ms);
-
 #endif

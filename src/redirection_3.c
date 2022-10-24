@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:13:05 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void	ft_ctrl_d(char *str);
 
 void	ft_redirection_aux(t_ms *ms, char q)
 {
@@ -30,22 +32,15 @@ int	ft_here_doc_open(char *str)
 	while (1)
 	{
 		line = readline(">");
-		if(!line)
+		if (!line)
 		{
-			free(line);
-            if (g_ms.open_hero_doc == 1)
-            {
-                close(g_ms.fo);
-                printf (" warning: here-document delimited by"
-                    " end-of-file (wanted `%s')\n", str);
-            }
-            return(-1);
+			free (line);
+			if (g_ms.open_hero_doc == 1)
+				ft_ctrl_d(str);
+			return (-1);
 		}
 		else if (ft_strncmp_m(line, str) == 1)
-		{
-			write (g_ms.fo, line, ft_strlen(line));
-			write (g_ms.fo, "\n", 1);
-		}
+			ft_putendl_fd(line, g_ms.fo);
 		else
 		{
 			ft_free_point(line);
@@ -54,6 +49,13 @@ int	ft_here_doc_open(char *str)
 		}
 		ft_free_point(line);
 	}
+}
+
+static void	ft_ctrl_d(char *str)
+{
+	close (g_ms.fo);
+	printf (" warning: here-document delimited by"
+		" end-of-file (wanted `%s')\n", str);
 }
 
 int	ft_set_out(t_ms *ms, int type)
@@ -105,26 +107,4 @@ int	ft_set_in(t_ms *ms, int type)
 	}
 	ft_free_point(g_ms.path_infile);
 	return (0);
-}
-
-void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
-{
-	if (t == 'i')
-	{
-		ms->k = 0;
-		ms->m = 0;
-		while (g_ms.line[ms->k])
-		{
-			if (!(ms->k >= start && ms->k <= end))
-				ms->m++;
-			ms->k++;
-		}
-	}
-	else if (t == 'f')
-	{
-		ms->temp[ms->m] = '\0';
-		ft_free_point(g_ms.line);
-		g_ms.line = ft_strdup(ms->temp);
-		ft_free_point(ms->temp);
-	}
 }

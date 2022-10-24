@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_ms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:28:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 19:29:37 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:21:30 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int		init_var(t_var *var, char const *s, char c);
 
 char	**ft_split_ms(char const *s, char c)
 {
-	//printf("________________SPLIT_______________\n");
 	t_var	var;
 
 	init_var(&var, s, c);
@@ -44,13 +43,6 @@ char	**ft_split_ms(char const *s, char c)
 		var.i++;
 	}
 	var.result[var.p] = NULL;
-	//int i; i = 0;
-	//while(var.result[i])
-	//{
-	//	printf("[%d] %s\n", i, var.result[i]);
-	//	i++;
-	//}
-	//printf("___________________________________\n");
 	return (var.result);
 }
 

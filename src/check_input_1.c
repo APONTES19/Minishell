@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:05:58 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:29:35 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ int	ft_check_input(t_ms *ms, t_cmd *cmd)
 			return (1);
 	}
 	if (g_ms.line[0] == ' ')
-		ft_check_space(ms);
+		ft_check_space();
 	if (g_ms.line == NULL || ft_strncmp_m(g_ms.line, "") == 0)
 	{
 		ft_free_point(g_ms.line);
 		return (1);
 	}
-	if (ft_check_pipe(ms) == 1)
-		return (1);
-	if (ft_command_split(ms, cmd) == 1)
+	if (ft_check_pipe(ms) == 1 || ft_command_split(ms, cmd) == 1)
 		return (1);
 	return (0);
 }
