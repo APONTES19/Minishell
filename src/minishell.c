@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 05:26:46 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 			g_ms.command_on = 0;
 			ft_set_init(ms, cmd);
 			ft_get_line(ms);
-			add_history(ms->line);
+			add_history(g_ms.line);
 			ft_check_input(ms, cmd);
 			ft_set_end(ms, cmd);
 		}
@@ -70,8 +70,8 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd)
 {
 	ft_memset(ms, '0', sizeof(ms));
 	ft_memset(cmd, '0', sizeof(cmd));
-	ms->path_infile = NULL;
-	ms->path_outfile = NULL;
+	g_ms.path_infile = NULL;
+	g_ms.path_outfile = NULL;
 	g_ms.i = 0;
 	unlink(".hero_doc");
 }

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/23 21:01:03 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 1)
 		ft_printf("quote is missing\n");
 	if (number == 2)
-		ft_printf("invalid character: %c\n", ms->line[ms->i]);
+		ft_printf("invalid character: %c\n", g_ms.line[ms->i]);
 	if (number == 3)
 		ft_printf("syntax error near "
 			"unexpected token `|'\n");
@@ -52,9 +52,9 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		exit(g_ms.exit_s);
 	}
 	if (number == 12)
-		ft_printf("%s: No such file or directory\n", ms->path_infile);
+		ft_printf("%s: No such file or directory\n", g_ms.path_infile);
 	if (number == 13)
-		ft_printf("%s:  Permission denied\n", ms->path_outfile);
+		ft_printf("%s:  Permission denied\n", g_ms.path_outfile);
 	if (number == 14)
 	{
 		g_ms.exit_s = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 05:15:57 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ void	ft_set_fd_1(t_ms *ms)
 {
 	if (g_ms.p < (ms->n_pipe -1))
 		dup2(ms->pipe[1], STDOUT);
-	else if (g_ms.p == (ms->n_pipe -1) && ms->path_outfile != NULL)
+	else if (g_ms.p == (ms->n_pipe -1) && g_ms.path_outfile != NULL)
 	{
 		dup2(g_ms.fileout, STDOUT);
 		close(g_ms.fileout);
 	}
 	close(ms->pipe[1]);
-	if (g_ms.p == 0 && ms->path_infile != NULL)
+	if (g_ms.p == 0 && g_ms.path_infile != NULL)
 	{
 		dup2(g_ms.filein, STDIN);
 		close(g_ms.filein);

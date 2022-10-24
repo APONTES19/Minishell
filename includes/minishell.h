@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 04:31:11 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:17:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ void	ft_main_while_aux(t_ms *ms);
 int		ft_red_check_next(t_ms *ms);
 void	ft_free_crtl_d(t_ms *ms);
 void	ft_kill_loop(int signum);
+void	ft_free_line(t_ms *ms);
 
 #endif

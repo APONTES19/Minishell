@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 05:21:00 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_redirection_aux(t_ms *ms, char q)
 {
 	ms->i++;
-	while (ms-> line[ms->i] != q)
+	while (g_ms.line[ms->i] != q)
 		ms->i++;
-	if (ms-> line[ms->i + 1])
+	if (g_ms.line[ms->i + 1])
 		ms->i++;
 }
 
@@ -58,26 +58,26 @@ int	ft_here_doc_open(char *str)
 
 int	ft_set_out(t_ms *ms, int type)
 {
-	if (ms->path_outfile != NULL)
+	if (g_ms.path_outfile != NULL)
 	{
 		if (type == 1)
 		{
 			g_ms.fileout
-				= open (ms->path_outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				= open (g_ms.path_outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		}
 		else
 		{
 			g_ms.fileout
-				= open (ms->path_outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
+				= open (g_ms.path_outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		}
 		if (g_ms.fileout == -1)
 		{
-			ft_free_point(ms->path_outfile);
+			ft_free_point(g_ms.path_outfile);
 			ft_error(13, ms, NULL, NULL);
 			return (1);
 		}
 	}
-	ft_free_point(ms->path_outfile);
+	ft_free_point(g_ms.path_outfile);
 	return (0);
 }
 
@@ -87,7 +87,7 @@ int	ft_set_in(t_ms *ms, int type)
 	{
 		g_ms.open_hero_doc = 1;
 		signal (SIGQUIT, SIG_IGN);
-		g_ms.filein = ft_here_doc_open(ms->path_infile);
+		g_ms.filein = ft_here_doc_open(g_ms.path_infile);
 		if (g_ms.filein == -1)
 		{
 			return (1);
@@ -96,14 +96,14 @@ int	ft_set_in(t_ms *ms, int type)
 		g_ms.open_hero_doc = 0;
 	}
 	else
-		g_ms.filein = open(ms->path_infile, O_RDONLY, 644);
+		g_ms.filein = open(g_ms.path_infile, O_RDONLY, 644);
 	if (g_ms.filein == -1)
 	{
-		ft_free_point(ms->path_infile);
+		ft_free_point(g_ms.path_infile);
 		ft_error(12, ms, NULL, NULL);
 		return (1);
 	}
-	ft_free_point(ms->path_infile);
+	ft_free_point(g_ms.path_infile);
 	return (0);
 }
 
@@ -113,7 +113,7 @@ void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
 	{
 		ms->k = 0;
 		ms->m = 0;
-		while (ms->line[ms->k])
+		while (g_ms.line[ms->k])
 		{
 			if (!(ms->k >= start && ms->k <= end))
 				ms->m++;
@@ -123,8 +123,8 @@ void	ft_red_copy_line_aux(t_ms *ms, int start, int end, char t)
 	else if (t == 'f')
 	{
 		ms->temp[ms->m] = '\0';
-		ft_free_point(ms->line);
-		ms->line = ft_strdup(ms->temp);
+		ft_free_point(g_ms.line);
+		g_ms.line = ft_strdup(ms->temp);
 		ft_free_point(ms->temp);
 	}
 }

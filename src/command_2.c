@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 21:05:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 	if (ms->n_pipe > 1)
 	{
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
-		cmd->base_list_cmd = ft_split_ms(ms->line, '|');
+		cmd->base_list_cmd = ft_split_ms(g_ms.line, '|');
 		ms->i = 0;
 		while (ms->i != ms->n_pipe)
 		{
@@ -30,7 +30,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 	{
 		ms->i = 0;
 		cmd = (t_cmd *) malloc (ms->n_pipe * sizeof (t_cmd));
-		cmd[ms->i].arg_cmd = ft_split_ms(ms->line, ' ');
+		cmd[ms->i].arg_cmd = ft_split_ms(g_ms.line, ' ');
 	}
 	if (ft_command_split_aux(ms, cmd) == 1)
 		return (1);
@@ -40,7 +40,7 @@ int	ft_command_split(t_ms *ms, t_cmd *cmd)
 
 int	ft_command_split_aux(t_ms *ms, t_cmd *cmd)
 {
-	ft_free_point(ms->line);
+	ft_free_point(g_ms.line);
 	if (cmd[0].arg_cmd[0] == NULL)
 	{
 		ft_error(8, ms, NULL, NULL);

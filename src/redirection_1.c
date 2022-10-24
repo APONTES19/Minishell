@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 18:52:01 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int	ft_redirection(t_ms *ms)
 	ms->type = 1;
 	ms->i = 0;
 	ms->q = '\'';
-	while (ms->line[ms->i])
+	while (g_ms.line[ms->i])
 	{
-		if (ms-> line[ms->i] == ms->q || ms-> line[ms->i] == '\"')
+		if (g_ms.line[ms->i] == ms->q || g_ms.line[ms->i] == '\"')
 		{
-			if (ms-> line[ms->i] == '\"')
+			if (g_ms.line[ms->i] == '\"')
 				ms->q = '\"';
 			ft_redirection_aux(ms, ms->q);
 		}
-		if (ms-> line[ms->i] == '<')
+		if (g_ms.line[ms->i] == '<')
 		{
 			if (ft_red_check_next(ms) == 1)
 				return (1);
-			ft_red_point(ms, ms->type, &ms->path_infile);
+			ft_red_point(ms, ms->type, &g_ms.path_infile);
 			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
 			ms->i = -1;
@@ -48,19 +48,19 @@ int	ft_redirection_2(t_ms *ms)
 	q = '\'';
 	ms->i = 0;
 	ms->type = 1;
-	while (ms->line[ms->i])
+	while (g_ms.line[ms->i])
 	{
-		if (ms-> line[ms->i] == q || ms-> line[ms->i] == '\"')
+		if (g_ms.line[ms->i] == q || g_ms.line[ms->i] == '\"')
 		{
-			if (ms-> line[ms->i] == '\"')
+			if (g_ms.line[ms->i] == '\"')
 				q = '\"';
 			ft_redirection_aux(ms, q);
 		}
-		if (ms-> line[ms->i] == '>')
+		if (g_ms.line[ms->i] == '>')
 		{
 			if (ft_red_check_next(ms) == 1)
 				return (1);
-			ft_red_point(ms, ms->type, &ms->path_outfile);
+			ft_red_point(ms, ms->type, &g_ms.path_outfile);
 			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
 			ms->i = -1;
@@ -72,10 +72,10 @@ int	ft_redirection_2(t_ms *ms)
 
 int	ft_redirection_3(t_ms *ms, int type)
 {
-	if (ms->path_infile != NULL)
+	if (g_ms.path_infile != NULL)
 	{
-		if (ft_strncmp_m(ms->line, "") == 0
-			&& ft_strncmp_m(ms->path_infile, "") == 0)
+		if (ft_strncmp_m(g_ms.line, "") == 0
+			&& ft_strncmp_m(g_ms.path_infile, "") == 0)
 		{
 			ft_error(26, ms, NULL, NULL);
 			return (1);
@@ -83,10 +83,10 @@ int	ft_redirection_3(t_ms *ms, int type)
 		else if (ft_set_in(ms, type) == 1)
 			return (1);
 	}
-	if (ms->path_outfile != NULL)
+	if (g_ms.path_outfile != NULL)
 	{
-		if (ft_strncmp_m(ms->line, "") == 0
-			&& ft_strncmp_m(ms->path_outfile, "") == 0)
+		if (ft_strncmp_m(g_ms.line, "") == 0
+			&& ft_strncmp_m(g_ms.path_outfile, "") == 0)
 		{
 			ft_error(26, ms, NULL, NULL);
 			return (1);
@@ -100,21 +100,21 @@ int	ft_redirection_3(t_ms *ms, int type)
 void	ft_red_point(t_ms *ms, int type, char **path)
 {
 	ft_red_point_aux(ms, 'i', type);
-	while (ms->line[ms->k])
+	while (g_ms.line[ms->k])
 	{
 		if (ms->k == ms->start)
 		{
-			while (ms->line[ms->k] == ' ')
+			while (g_ms.line[ms->k] == ' ')
 				ms->k++;
 		}
-		if (ms->line[ms->k] == '\'')
+		if (g_ms.line[ms->k] == '\'')
 			ft_red_point_aux(ms, 'a', type);
-		if (ms->line[ms->k] == '\"')
+		if (g_ms.line[ms->k] == '\"')
 		{
 			ms->t = '\"';
 			ft_red_point_aux(ms, 'a', type);
 		}
-		if (ft_strchr("| ><", ms->line[ms->k]) != NULL)
+		if (ft_strchr("| ><", g_ms.line[ms->k]) != NULL)
 			break ;
 		ms->k++;
 	}
@@ -136,7 +136,7 @@ void	ft_red_point_aux(t_ms *ms, char f, int type)
 	else
 	{
 		ms->k++;
-		while (ms->line[ms->k] != ms->t)
+		while (g_ms.line[ms->k] != ms->t)
 			ms->k++;
 	}
 }

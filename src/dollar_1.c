@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 20:31:35 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	ft_set_line_dollar(t_ms *ms)
 {
 	ms->i = 0;
-	while (ms->line[ms->i])
+	while (g_ms.line[ms->i])
 	{
-		if (ms->line[ms->i] == '\'')
+		if (g_ms.line[ms->i] == '\'')
 			ft_redirection_aux(ms, '\'');
-		if (ms->line[ms->i] == '\"')
+		if (g_ms.line[ms->i] == '\"')
 			ft_aux_dollar_1(ms);
-		if (ms->i >= 0 && ms->line[ms->i] == '$')
+		if (ms->i >= 0 && g_ms.line[ms->i] == '$')
 		{
-			if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
+			if (ft_strchr(" |", g_ms.line[ms->i + 1]) != NULL)
 			{
-				if (ms->line[ms->i + 1])
+				if (g_ms.line[ms->i + 1])
 					ms->i++;
 			}
 			else
@@ -42,15 +42,15 @@ int	ft_set_line_dollar(t_ms *ms)
 void	ft_aux_dollar_1(t_ms *ms)
 {
 	ms->i++;
-	while (ms->line[ms->i] != '\"')
+	while (g_ms.line[ms->i] != '\"')
 	{
-		if (ms->line[ms->i] == '$')
+		if (g_ms.line[ms->i] == '$')
 		{
-			if (ft_strchr(" |", ms->line[ms->i + 1]) != NULL)
+			if (ft_strchr(" |", g_ms.line[ms->i + 1]) != NULL)
 			{
-				if (ms->line[ms->i + 1] != '\0')
+				if (g_ms.line[ms->i + 1] != '\0')
 				{
-					if (ms->line[ms->i + 1] != '\0')
+					if (g_ms.line[ms->i + 1] != '\0')
 						ms->i++;
 				}
 			}
@@ -73,10 +73,10 @@ void	ft_get_path_dollar(t_ms *ms)
 	ms->start = ms->i + 1;
 	ms->k = ms->start;
 	ms->j = 0;
-	while (ft_strchr(" |\"\'", ms->line[ms->k]) == NULL)
+	while (ft_strchr(" |\"\'", g_ms.line[ms->k]) == NULL)
 		ms->k++;
 	ms->end = (ms->k - ms->start);
-	temp = ft_substr(ms->line, ms->start, ms->end);
+	temp = ft_substr(g_ms.line, ms->start, ms->end);
 	temp2 = NULL;
 	ft_aux_dollar_2(ms, &temp, &temp2);
 	ft_change_line_dollar(ms, &temp2);

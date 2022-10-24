@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 05:15:02 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:28:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ft_kill_loop(int signum)
 		g_ms.exit_s = 130;
 		dup2(g_ms.fo, STDIN);
 		close(STDIN);
+		ft_free_point(g_ms.line);
+		ft_free_point(g_ms.path_infile);
 		write (1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_redisplay();

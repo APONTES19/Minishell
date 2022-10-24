@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/23 19:45:48 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 void	ft_get_line(t_ms *ms)
 {
 	ft_get_head_line(ms);
-	ms->line = readline(ms->head);
-	if (ms->line == NULL)
+	g_ms.line = readline(ms->head);
+	if (g_ms.line == NULL)
 	{
 		printf("CTRL+D\n");
 		ft_free_crtl_d(ms);
 	}
-	if (ft_strncmp_m(ms->line, "") == 0)
+	if (ft_strncmp_m(g_ms.line, "") == 0)
 	{
 		ft_free_point(ms->head);
-		ft_free_point(ms->line);
+		ft_free_point(g_ms.line);
 		ft_get_line(ms);
 		return ;
 	}
-	else if (ms->line[0] == ' ')
+	else if (g_ms.line[0] == ' ')
 		ft_check_space(ms);
 	ft_free_point(ms->head);
 }
