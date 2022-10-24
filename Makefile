@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
+#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/24 10:52:00 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/10/24 18:20:55 by ryoshio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 
 #running
 run: all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  --suppressions=./includes/readline.supp ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  --suppressions=./includes/readline.h ./minishell
 
 $(LIBFT):
 	@cd $(LIBFT_PATH) && $(MAKE)

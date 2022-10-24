@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:17:56 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:09:31 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,14 @@ int	ft_set_line_dollar(t_ms *ms)
 void	ft_aux_dollar_1(t_ms *ms)
 {
 	ms->i++;
-	while (g_ms.line[ms->i] != '\"')
+	while (g_ms.line[ms->i] != '\"' && g_ms.line[ms->i])
 	{
 		if (g_ms.line[ms->i] == '$')
 		{
-			if (ft_strchr(" |", g_ms.line[ms->i + 1]) != NULL)
+			if (ft_strchr(" \'\"|", g_ms.line[ms->i + 1]) != NULL)
 			{
-				if (g_ms.line[ms->i + 1] != '\0')
-				{
-					if (g_ms.line[ms->i + 1] != '\0')
+				if (g_ms.line[ms->i + 2] != '\0')
 						ms->i++;
-				}
 			}
 			else
 			{

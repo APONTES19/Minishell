@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 17:53:10 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:20:32 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		printf("%s: command not found\n", cmd);
 		ft_free_cmd(ms, cm);
 		ft_free_exit(ms, cm);
+		ft_free_point(ms->path_cmd);
 		exit(g_ms.exit_s);
 	}
 	if (number == 23)
