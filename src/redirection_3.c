@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 17:40:51 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:53:30 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	ft_set_in(t_ms *ms, int type)
 		g_ms.filein = ft_here_doc_open(g_ms.path_infile);
 		if (g_ms.filein == -1)
 		{
-			ft_free_point(g_ms.line);
 			ft_free_point(g_ms.path_infile);
 			return (1);
 		}
