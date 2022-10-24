@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 18:50:27 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:38:30 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ void	ft_error(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 0)
 		printf("Invalid arguments\n");
 	if (number == 1)
+	{
+		ft_free_point(g_ms.line);
 		printf("quote is missing\n");
+	}
+		
 	if (number == 2)
 		printf("invalid character: %c\n", g_ms.line[ms->i]);
 	if (number == 3)
