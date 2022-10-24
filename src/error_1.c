@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 14:16:45 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:53:10 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,28 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		exit(g_ms.exit_s);
 	}
 	if (number == 12)
+	{
 		printf("%s: No such file or directory\n", g_ms.path_infile);
-	if (number == 13)
-		printf("%s:  Permission denied\n", g_ms.path_outfile);
-	if (number == 14)
-	{
-		g_ms.exit_s = 1;
-		printf("cd: too many arguments\n");
+		ft_free_point(g_ms.line);
+		ft_free_point(g_ms.path_infile);
 	}
-	if (number == 15)
+	if (number == 13)
 	{
-		g_ms.exit_s = 1;
-		printf("cd: OLDPWD not set\n");
+		printf("%s:  Permission denied\n", g_ms.path_outfile);
+		ft_free_point(g_ms.line);
+		ft_free_point(g_ms.path_outfile);
 	}
 	ft_error_2(number, ms, cm, cmd);
 }
 
 void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
+	if (number == 14)
+		printf("cd: too many arguments\n");
+	if (number == 15)
+		printf("cd: OLDPWD not set\n");
+	if (number == 14 || number == 15)
+		g_ms.exit_s = 1;
 	if (number == 16)
 		printf("Value Envp = NUll\n");
 	if (number == 17)
@@ -86,16 +90,14 @@ void	ft_error_2(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		exit(g_ms.exit_s);
 	}
 	if (number == 19)
-	{
 		printf ("env: '%s': we don't configure for arguments\n", cmd);
-	}
-	if (number == 20)
-		printf("export: '%s': não é um identificador válido\n", cmd);
 	ft_error_3(number, ms, cm, cmd);
 }
 
 void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 {
+	if (number == 20)
+		printf("export: '%s': não é um identificador válido\n", cmd);
 	if (number == 21)
 	{
 		g_ms.exit_s = 1;
@@ -117,7 +119,5 @@ void	ft_error_3(int number, t_ms *ms, t_cmd *cm, char *cmd)
 		g_ms.exit_s = 1;
 		printf("cd: HOME not set\n");
 	}
-	if (number == 24)
-		printf("Error '|' void\n");
 	ft_error_4(number, ms, cm, cmd);
 }

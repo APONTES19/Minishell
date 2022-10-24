@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:03:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 14:48:14 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:55:29 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	main(int argc, char **argv, char **envp)
 
 static void	ft_while(t_ms *ms, t_cmd *cmd)
 {
-	g_ms.open_hero_doc = 0;
-	g_ms.command_on = 0;
 	ft_set_init(ms, cmd);
 	ft_get_line(ms);
 	add_history(g_ms.line);
@@ -79,6 +77,8 @@ void	ft_set_init(t_ms *ms, t_cmd *cmd)
 	g_ms.path_infile = NULL;
 	g_ms.path_outfile = NULL;
 	g_ms.i = 0;
+	g_ms.open_hero_doc = 0;
+	g_ms.command_on = 0;
 	unlink(".hero_doc");
 }
 
