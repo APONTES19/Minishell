@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:17:18 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:56:03 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 # include "./define.h"
 # include "./libs.h"
 # include "./strutcs.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include <errno.h>
-# include <signal.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 
 int		ft_check_input(t_ms *ms, t_cmd *cmd);
 int		ft_check_quote(t_ms	*ms);

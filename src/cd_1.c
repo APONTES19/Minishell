@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:11 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/21 23:01:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:53:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	ft_minus_cd(t_ms *ms)
 		getcwd(ms->temp, 1024);
 		new_old = ft_strjoin("OLDPWD=", ms->temp);
 		ft_change_envp("OLDPWD", new_old);
-		ft_printf("%s\n", old);
+		printf("%s\n", old);
 		chdir(old);
 		ft_update_pwd(ms);
 		ft_free_point(new_old);

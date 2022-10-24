@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:50:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 09:10:51 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:53:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_env(t_ms *ms, t_cmd *cmd)
 		ms->i = 0;
 		while (g_ms.envp[ms->i])
 		{
-			ft_printf ("%s\n", g_ms.envp[ms->i]);
+			printf ("%s\n", g_ms.envp[ms->i]);
 			ms->i++;
 		}
 	}

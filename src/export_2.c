@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:08:18 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/10 22:12:35 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:53:39 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_print_export(void)
 	i = 0;
 	while (g_ms.envp[i])
 	{
-		ft_printf("declare -x ");
-		ft_printf("%s\n", g_ms.envp[sort[i]]);
+		printf("declare -x ");
+		printf("%s\n", g_ms.envp[sort[i]]);
 		i ++;
 	}
 	free(sort);

@@ -3,19 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
+#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/24 05:50:59 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/10/24 10:52:00 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # libs *********************************************************************** #
-PRINTF_PATH =	./libs/ft_printf/
 LIBFT_PATH =	./libs/libft/
-GNL_PATH =	./libs/gnl/get_next_line.c
 
-PRINTF =		$(PRINTF_PATH)libftprintf.a
 LIBFT =			$(LIBFT_PATH)libft.a
 HEADERS_PATH=	./includes/
 
@@ -62,11 +59,9 @@ OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 # compilation **************************************************************** #
 CC=cc
 FLAG=-Wall -Werror -Wextra
-GNL_FLAGS= -D BUFFER_SIZE=6000
 # clean ********************************************************************** #
 RM=-rm -f
 RM_DIR=rm -rf
-
 # rules ********************************************************************** #
 all:	$(NAME)
 
@@ -75,8 +70,8 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 	@$(CC) $(FLAG) -I $(HEADERS_PATH) -c $< -o $@
 
 $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
-		@$(CC) $(FLAG) $(GNL_FLAGS) -I $(HEADERS_PATH) -o $@ $(OBJ) \
-		$(LIBFT) $(PRINTF) -lreadline
+		@$(CC) $(FLAG) -I $(HEADERS_PATH) -o $@ $(OBJ) \
+		$(LIBFT) -lreadline
 # message in terminal ************ #
 		@echo "\033[1;32m"
 		@echo "	Minishell created ✓"
@@ -94,9 +89,6 @@ run: all
 $(LIBFT):
 	@cd $(LIBFT_PATH) && $(MAKE)
 
-$(PRINTF):
-	@cd $(PRINTF_PATH) && $(MAKE)
-
 clean:
 		@$(RM_DIR) $(OBJ_PATH)
 		@echo "\033[0;31m       ▥ Minishell objects clean ✓ \033[0m"
@@ -106,7 +98,6 @@ fclean:		clean
 		@echo "\033[0;31m       ▥ Minishell clean ✓ \033[0m"
 
 fcleanlib:
-	@cd $(PRINTF_PATH) && $(MAKE) fclean
 	@cd $(LIBFT_PATH) && $(MAKE) fclean
 	@echo "\033[0;31m       ▥ libs clean ✓ \033[0m"
 

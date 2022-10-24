@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 11:55:28 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/11 00:31:47 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:55:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 # define LIBS_H
 
 # include "../libs/libft/includes/libft.h"
-# include "../libs/ft_printf/includes/ft_printf.h"
-# include "../libs/gnl/includes/get_next_line.h"
-# include <stdlib.h> // exit
-# include <stdio.h> // fget
-# include <string.h>//readline
-# include <unistd.h>// read
-# include <sys/types.h>//wait
-# include <sys/wait.h>//wait
+# include <string.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <errno.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 #endif
