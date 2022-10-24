@@ -6,11 +6,13 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:21:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 18:20:15 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:15:13 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int	initialize_path(t_ms *ms, char *path);
 
 int	ft_command_split(t_ms *ms, t_cmd *cmd)
 {
@@ -57,7 +59,7 @@ int	ft_get_path(t_ms *ms, char *cmd)
 
 	path = NULL;
 	path = ft_getenv("PATH");
-	if (path == NULL)
+	if (initialize_path(ms, path) == 1)
 		return (1);
 	ms->path_list = ft_split(path, ':');
 	ms->j = -1;
@@ -105,4 +107,14 @@ void	ft_aux_path(t_ms *ms, int number)
 		free (ms->path_cmd);
 		ms->path_cmd = NULL;
 	}
+}
+
+static int	initialize_path(t_ms *ms, char *path)
+{
+	if (path == NULL)
+	{
+		ms->path_cmd = ft_strdup("");
+		return (1);
+	}
+	return (0);
 }
