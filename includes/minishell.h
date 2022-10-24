@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:27 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 20:28:01 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 04:31:11 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_get_path_dollar(t_ms *ms);
 void	ft_change_line_dollar(t_ms *ms, char **dollar);
 void	ft_aux_dollar_1(t_ms *ms);
 void	ft_aux_dollar_2(t_ms *ms, char **temp, char **temp2);
-void	ft_aux_dollar_3(t_ms *ms , char **temp, char **temp2);
+void	ft_aux_dollar_3(t_ms *ms, char **temp, char **temp2);
 int		ft_strncmp_m(const char *str1, const char *str2);
 void	ft_exit_m(t_ms *ms, t_cmd *cmd);
 void	ft_execve(t_ms *ms, t_cmd *cm);

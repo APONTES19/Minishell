@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 04:55:40 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 05:15:57 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_check_build(t_ms *ms, t_cmd *cmd)
 		return (ft_pwd());
 	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "echo") == 0)
 		return (ft_echo(ms, cmd));
-	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0],"exit") == 0)
+	else if (ft_strncmp_m(cmd[g_ms.p].arg_cmd[0], "exit") == 0)
 		return (ft_exit_m(ms, cmd));
 	ms->j = 0;
 }

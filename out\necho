@@ -1,0 +1,1 @@
+aaaaaaaaaaaaaaaaa cat out | cat out > out\necho -rf out\nexit

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/23 19:18:38 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 05:21:00 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_here_doc_open(char *str)
 	g_ms.fo = open(".hero_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
-
 		line = readline(">");
 		if(!line)
 		{
@@ -42,7 +41,6 @@ int	ft_here_doc_open(char *str)
             }
             return(-1);
 		}
-
 		else if (ft_strncmp_m(line, str) == 1)
 		{
 			write (g_ms.fo, line, ft_strlen(line));
