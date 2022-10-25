@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:29:41 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 10:27:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:37:54 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ void	ft_set_fd_1(t_ms *ms)
 		dup2(ms->pipe[1], STDOUT);
 	else if (g_ms.p == (ms->n_pipe -1) && g_ms.path_outfile != NULL)
 	{
+		ft_free_point(g_ms.path_outfile);
 		dup2(g_ms.fileout, STDOUT);
 		close(g_ms.fileout);
 	}
 	close(ms->pipe[1]);
 	if (g_ms.p == 0 && g_ms.path_infile != NULL)
 	{
+		ft_free_point(g_ms.path_infile);
 		dup2(g_ms.filein, STDIN);
 		close(g_ms.filein);
 	}

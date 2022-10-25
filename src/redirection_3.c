@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 19:53:30 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:54:29 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	ft_set_out(t_ms *ms, int type)
 			return (1);
 		}
 	}
-	ft_free_point(g_ms.path_outfile);
 	return (0);
 }
 
@@ -105,6 +104,5 @@ int	ft_set_in(t_ms *ms, int type)
 		ft_error(12, ms, NULL, NULL);
 		return (1);
 	}
-	ft_free_point(g_ms.path_infile);
 	return (0);
 }

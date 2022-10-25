@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 17:07:18 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:09:04 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_redirection(t_ms *ms)
 		{
 			if (ft_red_check_next(ms) == 1)
 				return (1);
+			if (g_ms.path_infile != NULL)
+				ft_free_point(g_ms.path_infile);
 			ft_red_point(ms, ms->type, &g_ms.path_infile);
 			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
@@ -60,6 +62,8 @@ int	ft_redirection_2(t_ms *ms)
 		{
 			if (ft_red_check_next(ms) == 1)
 				return (1);
+			if (g_ms.path_outfile != NULL)
+				ft_free_point(g_ms.path_outfile);
 			ft_red_point(ms, ms->type, &g_ms.path_outfile);
 			if (ft_redirection_3(ms, ms->type) == 1)
 				return (1);
