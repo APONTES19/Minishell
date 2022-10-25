@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:49:01 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 19:44:13 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:47:08 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ void	ft_error_1(int number, t_ms *ms, t_cmd *cm, char *cmd)
 	if (number == 12)
 	{
 		printf("%s: No such file or directory\n", g_ms.path_infile);
-		ft_free_point(g_ms.line);
 		ft_free_point(g_ms.path_infile);
 	}
 	if (number == 13)
 	{
 		printf("%s:  Permission denied\n", g_ms.path_outfile);
-		ft_free_point(g_ms.line);
 		ft_free_point(g_ms.path_outfile);
 	}
 	ft_error_2(number, ms, cm, cmd);

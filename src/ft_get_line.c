@@ -6,7 +6,7 @@
 /*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:31:52 by ryoshio-          #+#    #+#             */
-/*   Updated: 2022/10/24 15:20:01 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:45:46 by ryoshio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_get_line(t_ms *ms)
 	g_ms.line = readline(ms->head);
 	if (g_ms.line == NULL)
 		ft_free_crtl_d(ms);
+	if (g_ms.line[0] == ' ')
+		ft_check_space();
 	if (ft_strncmp_m(g_ms.line, "") == 0)
 	{
 		ft_free_point(ms->head);
@@ -25,8 +27,6 @@ void	ft_get_line(t_ms *ms)
 		ft_get_line(ms);
 		return ;
 	}
-	else if (g_ms.line[0] == ' ')
-		ft_check_space();
 	ft_free_point(ms->head);
 }
 
