@@ -6,13 +6,13 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 21:54:29 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:46:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	ft_ctrl_d(char *str);
+static int	ft_ctrl_d(char *str);
 
 void	ft_redirection_aux(t_ms *ms, char q)
 {
@@ -36,7 +36,7 @@ int	ft_here_doc_open(char *str)
 		{
 			free (line);
 			if (g_ms.open_hero_doc == 1)
-				ft_ctrl_d(str);
+				return (ft_ctrl_d(str));
 			return (-1);
 		}
 		else if (ft_strncmp_m(line, str) == 1)
@@ -51,12 +51,14 @@ int	ft_here_doc_open(char *str)
 	}
 }
 
-static void	ft_ctrl_d(char *str)
+static int	ft_ctrl_d(char *str)
 {
 	close (g_ms.fo);
 	printf (" warning: here-document delimited by"
 		" end-of-file (wanted `%s')\n", str);
+	return (open(".hero_doc", O_RDONLY, 644));
 }
+
 
 int	ft_set_out(t_ms *ms, int type)
 {
@@ -89,13 +91,14 @@ int	ft_set_in(t_ms *ms, int type)
 		g_ms.open_hero_doc = 1;
 		signal (SIGQUIT, SIG_IGN);
 		g_ms.filein = ft_here_doc_open(g_ms.path_infile);
-		if (g_ms.filein == -1)
+		if (g_ms.filein == -1 || ft_strncmp_m(g_ms.line, "") == 0)
 		{
 			ft_free_point(g_ms.path_infile);
 			return (1);
 		}
 		signal (SIGQUIT, ft_quit);
 		g_ms.open_hero_doc = 0;
+
 	}
 	else
 		g_ms.filein = open(g_ms.path_infile, O_RDONLY, 644);
