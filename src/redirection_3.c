@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:35:00 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/25 10:46:09 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:47:47 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	ft_ctrl_d(char *str)
 	return (open(".hero_doc", O_RDONLY, 644));
 }
 
-
 int	ft_set_out(t_ms *ms, int type)
 {
 	if (g_ms.path_outfile != NULL)
@@ -98,7 +97,6 @@ int	ft_set_in(t_ms *ms, int type)
 		}
 		signal (SIGQUIT, ft_quit);
 		g_ms.open_hero_doc = 0;
-
 	}
 	else
 		g_ms.filein = open(g_ms.path_infile, O_RDONLY, 644);

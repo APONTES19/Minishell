@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+         #
+#    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/10/24 18:20:55 by ryoshio-         ###   ########.fr        #
+#    Updated: 2022/10/25 11:00:18 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) $(FLAG) -I $(HEADERS_PATH) -c $< -o $@
 
-$(NAME):$(PRINTF) $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
 		@$(CC) $(FLAG) -I $(HEADERS_PATH) -o $@ $(OBJ) \
 		$(LIBFT) -lreadline
 # message in terminal ************ #
@@ -81,10 +81,6 @@ $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@echo "	run ./Minishell in the terminal !"
 		@echo "	ex: ls -la "
 		@echo "\033[0m"
-
-#running
-run: all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  --suppressions=./includes/readline.h ./minishell
 
 $(LIBFT):
 	@cd $(LIBFT_PATH) && $(MAKE)

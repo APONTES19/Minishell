@@ -6,17 +6,17 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:32:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 22:09:04 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:53:53 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+static void	ft_aux_redirection(t_ms *ms);
+
 int	ft_redirection(t_ms *ms)
 {
-	ms->type = 1;
-	ms->i = 0;
-	ms->q = '\'';
+	ft_aux_redirection(ms);
 	while (g_ms.line[ms->i])
 	{
 		if (g_ms.line[ms->i] == ms->q || g_ms.line[ms->i] == '\"')
@@ -43,20 +43,25 @@ int	ft_redirection(t_ms *ms)
 	return (0);
 }
 
+static void	ft_aux_redirection(t_ms *ms)
+{
+	ms->type = 1;
+	ms->i = 0;
+	ms->q = '\'';
+}
+
 int	ft_redirection_2(t_ms *ms)
 {
-	char	q;
-
-	q = '\'';
+	ms->t = '\'';
 	ms->i = 0;
 	ms->type = 1;
 	while (g_ms.line[ms->i])
 	{
-		if (g_ms.line[ms->i] == q || g_ms.line[ms->i] == '\"')
+		if (g_ms.line[ms->i] == ms->t || g_ms.line[ms->i] == '\"')
 		{
 			if (g_ms.line[ms->i] == '\"')
-				q = '\"';
-			ft_redirection_aux(ms, q);
+				ms->t = '\"';
+			ft_redirection_aux(ms, ms->t);
 		}
 		if (g_ms.line[ms->i] == '>')
 		{
@@ -99,48 +104,4 @@ int	ft_redirection_3(t_ms *ms, int type)
 			return (1);
 	}
 	return (0);
-}
-
-void	ft_red_point(t_ms *ms, int type, char **path)
-{
-	ft_red_point_aux(ms, 'i', type);
-	while (g_ms.line[ms->k])
-	{
-		if (ms->k == ms->start)
-		{
-			while (g_ms.line[ms->k] == ' ')
-				ms->k++;
-		}
-		if (g_ms.line[ms->k] == '\'')
-			ft_red_point_aux(ms, 'a', type);
-		if (g_ms.line[ms->k] == '\"')
-		{
-			ms->t = '\"';
-			ft_red_point_aux(ms, 'a', type);
-		}
-		if (ft_strchr("| ><", g_ms.line[ms->k]) != NULL)
-			break ;
-		ms->k++;
-	}
-	ms->start = ms->start - type;
-	ms->end = ms->k;
-	ms->end--;
-	ft_red_temp(ms, ms->start, ms->end, path);
-}
-
-void	ft_red_point_aux(t_ms *ms, char f, int type)
-{
-	if (f == 'i')
-	{
-		ms->start = (ms->i + type);
-		ms->k = ms->start;
-		ms->end = ms->k;
-		ms->t = '\'';
-	}
-	else
-	{
-		ms->k++;
-		while (g_ms.line[ms->k] != ms->t)
-			ms->k++;
-	}
 }

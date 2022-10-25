@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 15:22:52 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 20:00:47 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:53:56 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,48 @@ int	ft_red_check_next(t_ms *ms)
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_red_point(t_ms *ms, int type, char **path)
+{
+	ft_red_point_aux(ms, 'i', type);
+	while (g_ms.line[ms->k])
+	{
+		if (ms->k == ms->start)
+		{
+			while (g_ms.line[ms->k] == ' ')
+				ms->k++;
+		}
+		if (g_ms.line[ms->k] == '\'')
+			ft_red_point_aux(ms, 'a', type);
+		if (g_ms.line[ms->k] == '\"')
+		{
+			ms->t = '\"';
+			ft_red_point_aux(ms, 'a', type);
+		}
+		if (ft_strchr("| ><", g_ms.line[ms->k]) != NULL)
+			break ;
+		ms->k++;
+	}
+	ms->start = ms->start - type;
+	ms->end = ms->k;
+	ms->end--;
+	ft_red_temp(ms, ms->start, ms->end, path);
+}
+
+void	ft_red_point_aux(t_ms *ms, char f, int type)
+{
+	if (f == 'i')
+	{
+		ms->start = (ms->i + type);
+		ms->k = ms->start;
+		ms->end = ms->k;
+		ms->t = '\'';
+	}
+	else
+	{
+		ms->k++;
+		while (g_ms.line[ms->k] != ms->t)
+			ms->k++;
+	}
 }
