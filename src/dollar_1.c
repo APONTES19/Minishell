@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:27:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 18:09:31 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:40:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	ft_aux_dollar_1(t_ms *ms)
 		{
 			if (ft_strchr(" \'\"|", g_ms.line[ms->i + 1]) != NULL)
 			{
-				if (g_ms.line[ms->i + 2] != '\0')
-						ms->i++;
+				if (g_ms.line[ms->i + 2] != '\0'
+					&& g_ms.line[ms->i + 1] != '\"')
+					ms->i++;
 			}
 			else
 			{
@@ -58,7 +59,8 @@ void	ft_aux_dollar_1(t_ms *ms)
 				break ;
 			}
 		}
-		ms->i++;
+		if (g_ms.line[ms->i] != '\"' && g_ms.line[ms->i])
+			ms->i++;
 	}
 }
 
