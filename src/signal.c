@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryoshio- <ryoshio-@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:36:51 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/10/24 17:59:02 by ryoshio-         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:08:43 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static void	ft_kill_loop_utils(void)
 			i ++;
 		}
 		g_ms.command_on = 0;
+		write (1, "\n", 1);
 	}
 	g_ms.exit_s = 130;
 }
